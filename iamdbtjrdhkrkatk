@@ -1,2 +1,8 @@
-wdsagawdsawdsad
-  
+local args = {
+    [1] = "Claim",
+    [2] = 1,
+    [3] = 117392621111,
+    [4] = 10
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Core"):WaitForChild("Interface"):WaitForChild("Streak"):FireServer(unpack(args))
