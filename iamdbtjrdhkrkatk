@@ -1,1 +1,4177 @@
-([[This file was protected with MoonSec V3]]):gsub('.+', (function(a) _czzYiZXyotJt = a; end)); return(function(f,...)local a;local t;local o;local r;local s;local d;local e=24915;local n=0;local l={};while n<753 do n=n+1;while n<0x27e and e%0x15da<0xaed do n=n+1 e=(e*965)%22527 local h=n+e if(e%0x1298)<0x94c then e=(e*0x2d2)%0x162e while n<0x314 and e%0x35f4<0x1afa do n=n+1 e=(e-335)%48316 local d=n+e if(e%0x22f8)>0x117c then e=(e*0x189)%0xc11b local e=92520 if not l[e]then l[e]=0x1 o=getfenv and getfenv();end elseif e%2~=0 then e=(e*0x42)%0xa675 local e=12669 if not l[e]then l[e]=0x1 a={};end else e=(e*0x323)%0xbd33 n=n+1 local e=13519 if not l[e]then l[e]=0x1 t=string;end end end elseif e%2~=0 then e=(e-0x179)%0x10e1 while n<0x305 and e%0x884<0x442 do n=n+1 e=(e*623)%29769 local o=n+e if(e%0x46e8)>0x2374 then e=(e-0x2e8)%0x9b33 local e=95980 if not l[e]then l[e]=0x1 end elseif e%2~=0 then e=(e*0x97)%0x39f2 local e=89717 if not l[e]then l[e]=0x1 s=tonumber;end else e=(e*0x3c3)%0x2d00 n=n+1 local e=8512 if not l[e]then l[e]=0x1 end end end else e=(e-0x3da)%0x1d7e n=n+1 while n<0xb3 and e%0x47c6<0x23e3 do n=n+1 e=(e*510)%13261 local h=n+e if(e%0x4480)>=0x2240 then e=(e-0x13b)%0xb0fa local e=63892 if not l[e]then l[e]=0x1 o=(not o)and _ENV or o;end elseif e%2~=0 then e=(e*0x3e4)%0x4007 local e=39959 if not l[e]then l[e]=0x1 r="\4\8\116\111\110\117\109\98\101\114\80\77\99\101\88\69\89\70\0\6\115\116\114\105\110\103\4\99\104\97\114\107\105\76\74\118\109\74\114\0\6\115\116\114\105\110\103\3\115\117\98\86\103\70\111\105\87\116\117\0\6\115\116\114\105\110\103\4\98\121\116\101\79\111\90\71\118\76\113\109\0\5\116\97\98\108\101\6\99\111\110\99\97\116\108\65\113\77\68\69\114\107\0\5\116\97\98\108\101\6\105\110\115\101\114\116\71\98\98\72\113\120\110\98\5";end else e=(e-0x2ea)%0x8778 n=n+1 local e=55980 if not l[e]then l[e]=0x1 d=function(d)local e=0x01 local function l(n)e=e+n return d:sub(e-n,e-0x01)end while true do local n=l(0x01)if(n=="\5")then break end local e=t.byte(l(0x01))local e=l(e)if n=="\2"then e=a.PMceXEYF(e)elseif n=="\3"then e=e~="\0"elseif n=="\6"then o[e]=function(e,n)return f(8,nil,f,n,e)end elseif n=="\4"then e=o[e]elseif n=="\0"then e=o[e][l(t.byte(l(0x01)))];end local n=l(0x08)a[n]=e end end end end end end end e=(e-931)%22981 end d(r);local e={};for n=0x0,0xff do local l=a.kiLJvmJr(n);e[n]=l;e[l]=n;end local function h(n)return e[n];end local t=(function(f,t)local r,l=0x01,0x10 local n={{},{},{}}local o=-0x01 local e=0x01 local d=f while true do n[0x03][a.VgFoiWtu(t,e,(function()e=r+e return e-0x01 end)())]=(function()o=o+0x01 return o end)()if o==(0x0f)then o=""l=0x000 break end end local o=#t while e<o+0x01 do n[0x02][l]=a.VgFoiWtu(t,e,(function()e=r+e return e-0x01 end)())l=l+0x01 if l%0x02==0x00 then l=0x00 a.GbbHqxnb(n[0x01],(h((((n[0x03][n[0x02][0x00]]or 0x00)*0x10)+(n[0x03][n[0x02][0x01]]or 0x00)+d)%0x100)));d=f+d;end end return a.lAqMDErk(n[0x01])end);d(t(73,"XU;gDRn+hQbvN6BmvN"));d(t(131,"wpGU7mQB3VjkCvxqBv!cxjQ3xUmBvV7qQV7Qv77VCVUkkxGqkkGG33yjjxCG7%G3V3pUVkp3jp4k3Cqm3vxUmjxjpGVUBkqjQxq BUC!QvCvmqvp7UC!7HQ7xBvp7qCjUxC#UQmpUQjBUBjUGmjGGv3kFkBjpmVxx3GGjU3Vqj3jqkpmqVQxxCBCqpmGCBQUCmmpCUQmjvxjQqmUCG7xC7UVCmGqkqGVjBGxj7GvjVpm3mqB3xqxVQj3G3q738qk3V&p3pkqmvqvm7vjB7CCQ8kQqmBGQGCV7xvQU7CV7vVq7%jjGBjvCV7mqjVQUmj3px3BqQ3pGUGjjkV7DC3vOk3QqjBCqGBBx3BUqTQGxGmBxUqTBGmxC37QCv7UQp7vCU7GkOGqk77 VQpGVQGx3BhmVGkGUppvVUpG3{qq37vjBkxBQBxCQVqxmi3G4ox3QBvkmvxYU1CkUkk<UCkkpCjpvmm7UxjvUpjBGGk)GGj3GUBk}zBpq3VQjpGGY3BV?VBjV7BGqmBmqGBGxqQfxjQGCjQpkvmpQj"));local e=(-41657+(function()local l,n=0,1;(function(e)e(e(e and e)and e(e and e))end)(function(e)if l>398 then return e end l=l+1 n=(n-484)%42464 if(n%570)<=285 then return e else return e(e(e))end return e(e(e))end)return n;end)())local le=(getfenv)or(function()return _ENV end);local h=a.DhWZbbzO or a.zSRYtPQa;local ee=1;local o=2;local r=4;local d=3;local function y(u,...)local m=t(e,"RN9S/2mo5nTl:xBPmxo5l/P_9:5PT/B6N:T:P:SnoPm5BT9nm5nxn/9o/xnl5/Nq/B5o:5P29Po:TnB/x:mPnxB/N/A5oN:P1l/mmol2BPB52ToSo::2P/Sjm:PT/n5x:NW2Smo2lBx9SSmnTTBll/(S9:m5T/9S5l:mPTSnoSlxPm9No.TNBSNBSP5nxT+n/ToP2/n5::d5//:m92m/nnlB{x225nmNn:x5N/2j5::5O//Jo::SP/SZm:PS/nnnTPPx/55/l2Pm9loSS:5Nl/Pk9:2S2wn/cnBxSfllnlx;5/:2P:S5o/w/2/5xxNt2x:NP2/nb::/xl9BNNBm/nnx/TPBn9/mon:x5N/TSBxSBmn5lBNSNP/S:m:T5B/m::lPnS5onlTBPN5mnl B/NnPrSmm5T/BDmolx_xPa2P:NPoS/mNT2o/l:B:95m/BS/Boxl2W/SN2PTxBB9UmoTloST:B59nmzn:x5m5lnz-S/mn/759l5P/Ssl2Nm2T5nxrPxx/Nn/:55://STBxxN2m/nNl:C2/9N:2xn/xLd:n7Bn9:m5ToomlgPm95m/TQ:o:NB5o:mn:;m/mxSPT2S/ooT:B59/T/>NSBo2:2P5S:%//To:l5P/omxlN//552:BBmS2oxlN55x544S:o5P52nnP:nWm/:5NnTunSno5T:xl9NmBTmxxNB2Snlm/T5x:N52/BS/NmTl5BnSWm/nnorxmB59/maBT/oS/lxPNS:m:TPBex5mSnm5:No/mn/lx(N/9onlTBPB/o/T/xxx/2lnNBN://n5Po5F//9ollBBx9/mNn:o/l:B:95m/BS/Boxl2{/SN/TlnP/S!moT9oAlnB59/m*PlSl5B:TB2SN2Bn5P29om5oTBVT5PS9F2:n59YoPTxB:9xmBTS:l9n29TKxNN5/:5N25nlxg,:/5:59nmPnlBS992J95mlTbx:N5/N9xm:Smo9TBBTP5/ToQT:B5iPUo9/:/nPB:oooNTD9lNx2/N/NT9N2/xZlT4:595::i/:n/:/??S:Bm9S2nnTxByx2/5N:/PxSBoo/5TU:pP:S5x:9/mqn5xoxTJl/o:oPnSBoNlnPSBTm2nnxB9NNonm:NN2SBoxl2P59:W//To:l5P/n:xlen/5nSx sTSxoBlS55:50pS:o5692Nnn:xT/PnN:25n/NxolloP9NSmNnlxSLSmEnT:xWB/S5ln:PnS3m:TnBBPxm:T5B9T:Bl9/mXn:9Son:n5:xoX//Oo:PPmmnN:BPS/nnnT9=T/SoxnPPNS5m2S:oPl/P{9:TT?x/oS:T.knS9C:2B5/:CP:9S9pm/xnlx!=5lmlTKo/o:2mT:SNgNm5BSxT9xnno9x:m>T/x5N/28:P9no}T:xBNn2onlm:l?B/9j2:Bx/95/l2P:Svm2T%o5:TPw9:m5B5/n5PlnPmS:oNnTB2Snm9TNxnN:2to5xmsP/n55:5KS::NN//5.l:/SnnBnPPmNnox/,N/2N/2/5::5d/5nxP9om9Sao{T5B/9%TT3o/5o2/:5::/H S:xPN22xnNm5TlBWN:25x://5!l5:l92o}o9o/l=B:95nnTIx:N522nK:: 52m5ml:P5S/n2T:B59/o9T:x5N/2YT5:5{//uT9xNP/SQm:TBB/9N2:nnx/N/m555:/t(/9o5l2P!Sd5/T/B;N:2Pn/xNX:/5nS:!P:S5o2lyB:95omT/x:N52/lS::V5//n9:PP5S2o*x:B59/mLl:B/N/2N5::ns/oNo::TLPScmPT5+m9 2:n5x/9N/:5n:/>SS:o5l/Ps/mm5T/B+N:25nmxYM:2N5/:gP:Sno/l9B:/5onTJxxN52/n*xTu5//Tol:PlS/oiT:PS9/n4:Nx5No2kl^:59//bT::oP/SSm:xmB/922::5BlNs/P55xp,#2lo5B/z:9:mlT/PxN:2Pn/tk92/55o:0z/S55TlhN:Slm/TSx://2/nP::S52/54lPP5/:o*llB59/5on:x:N/2{5::lw/o#nll5P5Sbo2T5BB9v5:l9x/N//:nP:/N/S:T5:mPUS!m5T5BK//25T/Bx6:/l5/:SP:S:o/lwro95m5T+x:N52on!P:NB//5/l:{NS/oPT:N59BmjT*x5922wTx:5S/2Bo:l:P/S9m:l9B/S%omn5xoNFmT55:5OYm:oxl/PS9:n2T/BPN:25n5xhNH/55/:gzSS5T/lxB:9:m/lDx:/S2/:0BND5/55%x2P5/No>x:Pl9/m/n:,oN/mT5:P5NN/I5Ql5P5S=n9T5N/SB2:n:x/Nl/:n9:/SvSPo5l5PW2Sm5lSB.N:o/n/x2(:/n5/:_P:/T5/lDP995ooTKx:N52/nx::ix//5ml:PnS/5s:BB595mu:9x5Nn27n:xNp//So:lBP/S/m:T5P:9y2xn5xoNU/B55B/NoS:oTl/PN9:oTT/P99925n5x#9N/55/:cP:Sxo/l2B:9xm/T}x:N5m/nF:BM5/n5GlBP52/5lT:Bl9/m9n:PSN/2WlS:5Zn/Fo:l5PmSZn::mB/922:l:x/Sn/:5Txx3&/9o5l/PU9:m5l/BmN:2xn/PTw:/B5/:%eNS5ooltPN95mmTVx:922/nz::#n//5Ll:PnS/o_T:P:9/m#n:x5Nm2s5::5m5loo:l:P/S<m:NP/25nx nnx/N;TjT5Tx5922lTl/Pn9:m5T/9n5T::Pn/9o9TnBo92P:SPo/l<B:oT:nzx/l5:lniS::N///5el:/Pn2xn9Q9BnSx9xP/Joxl:P_:nQ//3o:l5P/l59PB5B/9/2:n5x/2SllPT9nv(/-o5l/PQnS:nNN/2Nx25n/x%-:/55/xaS:Sno/l%B:95m/T4::2o2/TN::e5//x99Nm5TbxnEP/nn5:2u39l55lPPB9nmlT2o:lBP/SQm:Nx29n}lxPlSPNg2m55:/.659BN9m22oP:xNm2m5N:Tn2xYG:/55/:CP:/_l/lNB:95m/TDx:N5o5xt::MB//5pl:/lT5B9NN/n5PmNn:x5N/2W5::5#/5vo::9P/S>m:BP/nn/TPPx/m5ml2Bl9nEc/No5l/P8mPx/&2/n5noBn/x*O:2Tlo:LP:S5ool+B:95oml/x:N52/nN:: 5//n9:FP5S/oGTBB59/m{n:xTN/2*5::nF//9o:lB9NS)m:T5+n9s2xn5x/N(2jT/:/eDS:nxl/PN9:oTT5BZN:25n2x.I:/5T/:^P:S5o/lqB:9Pm/l9P5N52/nh:xk5//57l:N2S/oZT:B59/m/n:#59n2-5::5MP/in.l59/S9m:T5B/S92:TTx/992/55:278Sxo5l/PjS:mBT/BJN:mon/xNv:o5T9:&P:S5oBliP:95om:Px:Nn2/nn::75//T*:PP5S2o0TxB5Som+TBB:N/2S5:x/_//0o:l5PxScmxT5Bo9>2Bn5P/9o/:5n:/#NS:oBl/Z9S:m5ToBC9N25n/xja:2l5/:NP:Slo/l9B:/5o/T=xxN522nQx9Z52m5Nl:PlS/o5T:B59/m3lSx5N22%5P:5km/hn:lxP/SNm:TnB/9m2:TTxnNM/P55:5cVS:o5l/?/9:mnT/BSN:2Tn/PpN//552:CPxS5oTlXPB/Nm/TSx:9n2/n^::V5mB56lxP5SoojTBB5//5nn:xnN/2N5:xm}/295/l5PoSzonT5B/9b2:T5x/N//:55:/H7S:o5:9PU9Pm5T5B;N:25n/B5h:/n5/:jP:Sno/l/}995m/TrxBN522n!::No//5fl:PnS/oiT:B59/mEn:x5N/");local n=0;a.xeiUpICV(function()a.UmtImZZc()n=n+1 end)local function e(l,e)if e then return n end;n=l+n;end local l,n,c=f(0,f,e,m,a.OoZGvLqm);local function t()local n,l=a.OoZGvLqm(m,e(1,3),e(5,6)+2);e(2);return(l*256)+n;end;local b=true;local b=0 local function p()local e=n();local n=n();local d=1;local o=(l(n,1,20)*(2^32))+e;local e=l(n,21,31);local n=((-1)^l(n,32));if(e==0)then if(o==b)then return n*0;else e=1;d=0;end;elseif(e==2047)then return(o==0)and(n*(1/0))or(n*(0/0));end;return a.TLkP_TyD(n,e-1023)*(d+(o/(2^52)));end;local k=n;local function j(n)local l;if(not n)then n=k();if(n==0)then return'';end;end;l=a.VgFoiWtu(m,e(1,3),e(5,6)+n-1);e(n)local e=""for n=(1+b),#l do e=e..a.VgFoiWtu(l,n,n)end return e;end;local k=#a.ocqqfiap(s('\49.\48'))~=1 local e=n;local function ne(...)return{...},a.irpKSGQr('#',...)end local function z()local e={};local b={};local s={};local m={s,b,nil,e};local e=n()local h={}for o=1,e do local l=c();local n;if(l==3)then n=(c()~=#{});elseif(l==1)then local e=p();if k and a.hvWZLjvC(a.ocqqfiap(e),'.(\48+)$')then e=a.rfsnYsRi(e);end n=e;elseif(l==0)then n=j();end;h[o]=n;end;for m=1,n()do local e=c();if(l(e,1,1)==0)then local f=l(e,2,3);local a=l(e,4,6);local e={t(),t(),nil,nil};if(f==0)then e[d]=t();e[r]=t();elseif(f==#{1})then e[d]=n();elseif(f==u[2])then e[d]=n()-(2^16)elseif(f==u[3])then e[d]=n()-(2^16)e[r]=t();end;if(l(a,1,1)==1)then e[o]=h[e[o]]end if(l(a,2,2)==1)then e[d]=h[e[d]]end if(l(a,3,3)==1)then e[r]=h[e[r]]end s[m]=e;end end;for e=1,n()do b[e-(#{1})]=z();end;m[3]=c();return m;end;local function y(l,n,e)local o=n;local o=e;return s(a.hvWZLjvC(a.hvWZLjvC(({a.xeiUpICV(l)})[2],n),e))end local function b(g,e,m)local function y(...)local t,k,p,z,s,n,c,_,u,j,y,l;local e=0;while-1<e do if e<=2 then if 0<e then if 1<e then n=-41;c=-1;else p=f(6,2,3,53,g);s=ne z=0;end else t=f(6,23,1,15,g);k=f(6,79,2,52,g);end else if e>=5 then if 2~=e then for n=22,90 do if e<6 then l=f(7);break;end;e=-2;break;end;else e=-2;end else if e>1 then repeat if 4~=e then _={};u={...};break;end;j=a.irpKSGQr('#',...)-1;y={};until true;else _={};u={...};end end end e=e+1;end;for e=0,j do if(e>=p)then _[e-p]=u[e+1];else l[e]=u[e+1];end;end;local e=j-p+1 local e;local f;local function u(...)while true do end end while true do if n<-40 then n=n+42 end e=t[n];f=e[ee];if 28<f then if 42<f then if f<=49 then if 46<=f then if 47>=f then if 47~=f then local n=e[o]local o,e=s(l[n](h(l,n+1,e[d])))c=e+n-1 local e=0;for n=n,c do e=e+1;l[n]=o[e];end;else local f,c;for a=0,6 do if a>2 then if a<=4 then if-1~=a then for m=24,95 do if a~=3 then f=e[o];c=l[e[d]];l[f+1]=c;l[f]=c[e[r]];n=n+1;e=t[n];break;end;f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];break;end;else f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];end else if a==6 then f=e[o]l[f]=l[f](h(l,f+1,e[d]))else l(e[o],e[d]);n=n+1;e=t[n];end end else if a<=0 then l[e[o]]=m[e[d]];n=n+1;e=t[n];else if 2>a then f=e[o];c=l[e[d]];l[f+1]=c;l[f]=c[e[r]];n=n+1;e=t[n];else l(e[o],e[d]);n=n+1;e=t[n];end end end end end else if f~=46 then for n=37,72 do if 48<f then for e=e[o],e[d]do l[e]=nil;end;break;end;local e=e[o]l[e]=l[e]()break;end;else for e=e[o],e[d]do l[e]=nil;end;end end else if f>=44 then if f==44 then l[e[o]]=l[e[d]]+e[r];else if l[e[o]]then n=n+1;else n=e[d];end;end else if(l[e[o]]==e[r])then n=n+1;else n=e[d];end;end end else if f>53 then if f>=56 then if 53<=f then for n=37,71 do if 57~=f then local t,r,h,c,a,f;local n=0;while n>-1 do if n<4 then if 2>n then if n~=-3 then repeat if n~=0 then r=o;break;end;t=e;until true;else t=e;end else if 3~=n then h=d;else c=l;end end else if 5>=n then if 1<n then repeat if 5>n then a=c[t[h]];break;end;f=t[r];until true;else f=t[r];end else if n~=7 then l[f]=a;else n=-2;end end end n=n+1 end break;end;local n=e[o];local o=l[n];for e=n+1,e[d]do a.GbbHqxnb(o,l[e])end;break;end;else local n=e[o];local o=l[n];for e=n+1,e[d]do a.GbbHqxnb(o,l[e])end;end else if f>53 then for t=27,96 do if 55~=f then if(l[e[o]]==e[r])then n=n+1;else n=e[d];end;break;end;m[e[d]]=l[e[o]];break;end;else m[e[d]]=l[e[o]];end end else if f<52 then if f>=47 then repeat if 51>f then local e=e[o]local o,n=s(l[e](l[e+1]))c=n+e-1 local n=0;for e=e,c do n=n+1;l[e]=o[n];end;break;end;local t,h,a,f,r;local n=0;while n>-1 do if n<3 then if 0>=n then t=e;else if n==2 then a=d;else h=o;end end else if n<=4 then if n~=0 then repeat if n~=4 then f=t[a];break;end;r=t[h];until true;else f=t[a];end else if n>3 then for e=43,65 do if 6>n then l(r,f);break;end;n=-2;break;end;else l(r,f);end end end n=n+1 end until true;else local t,h,a,f,r;local n=0;while n>-1 do if n<3 then if 0>=n then t=e;else if n==2 then a=d;else h=o;end end else if n<=4 then if n~=0 then repeat if n~=4 then f=t[a];break;end;r=t[h];until true;else f=t[a];end else if n>3 then for e=43,65 do if 6>n then l(r,f);break;end;n=-2;break;end;else l(r,f);end end end n=n+1 end end else if 49<f then repeat if f>52 then for f=0,3 do if 2<=f then if f>2 then if(l[e[o]]==e[r])then n=n+1;else n=e[d];end;else l[e[o]]=m[e[d]];n=n+1;e=t[n];end else if f==1 then m[e[d]]=l[e[o]];n=n+1;e=t[n];else l[e[o]]=(e[d]~=0);n=n+1;e=t[n];end end end break;end;local e=e[o]local o,n=s(l[e](l[e+1]))c=n+e-1 local n=0;for e=e,c do n=n+1;l[e]=o[n];end;until true;else for f=0,3 do if 2<=f then if f>2 then if(l[e[o]]==e[r])then n=n+1;else n=e[d];end;else l[e[o]]=m[e[d]];n=n+1;e=t[n];end else if f==1 then m[e[d]]=l[e[o]];n=n+1;e=t[n];else l[e[o]]=(e[d]~=0);n=n+1;e=t[n];end end end end end end end else if 35<f then if 39>f then if f<37 then n=e[d];else if f~=38 then for f=0,6 do if 2>=f then if f<=0 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];else if 0~=f then repeat if f<2 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];break;end;l[e[o]][e[d]]=e[r];n=n+1;e=t[n];until true;else l[e[o]][e[d]]=e[r];n=n+1;e=t[n];end end else if f<5 then if f~=3 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];else l[e[o]][e[d]]=e[r];n=n+1;e=t[n];end else if f>2 then for a=13,64 do if 5~=f then l[e[o]][e[d]]=e[r];break;end;l[e[o]][e[d]]=e[r];n=n+1;e=t[n];break;end;else l[e[o]][e[d]]=e[r];end end end end else if l[e[o]]then n=n+1;else n=e[d];end;end end else if f<41 then if f>38 then for n=10,88 do if 39~=f then l[e[o]]={};break;end;l[e[o]]={};break;end;else l[e[o]]={};end else if f~=38 then repeat if 42>f then local f,b,p,k,u;for a=0,5 do if a<=2 then if a>0 then if a<2 then l[e[o]]=m[e[d]];n=n+1;e=t[n];else l[e[o]]=l[e[d]];n=n+1;e=t[n];end else f=e[o];b=l[e[d]];l[f+1]=b;l[f]=b[e[r]];n=n+1;e=t[n];end else if 3<a then if a>=3 then repeat if 4<a then n=e[d];break;end;f=e[o]l[f](h(l,f+1,c))n=n+1;e=t[n];until true;else f=e[o]l[f](h(l,f+1,c))n=n+1;e=t[n];end else f=e[o]p,k=s(l[f](l[f+1]))c=k+f-1 u=0;for e=f,c do u=u+1;l[e]=p[u];end;n=n+1;e=t[n];end end end break;end;local n=e[o]l[n]=l[n](h(l,n+1,e[d]))until true;else local f,b,p,k,u;for a=0,5 do if a<=2 then if a>0 then if a<2 then l[e[o]]=m[e[d]];n=n+1;e=t[n];else l[e[o]]=l[e[d]];n=n+1;e=t[n];end else f=e[o];b=l[e[d]];l[f+1]=b;l[f]=b[e[r]];n=n+1;e=t[n];end else if 3<a then if a>=3 then repeat if 4<a then n=e[d];break;end;f=e[o]l[f](h(l,f+1,c))n=n+1;e=t[n];until true;else f=e[o]l[f](h(l,f+1,c))n=n+1;e=t[n];end else f=e[o]p,k=s(l[f](l[f+1]))c=k+f-1 u=0;for e=f,c do u=u+1;l[e]=p[u];end;n=n+1;e=t[n];end end end end end end else if f<32 then if 30>f then local n=e[o];local o=l[n];for e=n+1,e[d]do a.GbbHqxnb(o,l[e])end;else if f~=26 then for a=26,94 do if 30<f then for f=0,6 do if 3<=f then if 4>=f then if f~=3 then l[e[o]]={};n=n+1;e=t[n];else l[e[o]][e[d]]=l[e[r]];n=n+1;e=t[n];end else if f~=6 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];else l[e[o]][e[d]]=e[r];end end else if f<=0 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];else if 1<f then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];else l[e[o]][e[d]]=e[r];n=n+1;e=t[n];end end end end break;end;l[e[o]][e[d]]=e[r];break;end;else l[e[o]][e[d]]=e[r];end end else if 34<=f then if 31<f then repeat if f<35 then l[e[o]][e[d]]=l[e[r]];break;end;local e=e[o]l[e](h(l,e+1,c))until true;else l[e[o]][e[d]]=l[e[r]];end else if f~=33 then l[e[o]]=l[e[d]]+e[r];else l[e[o]]=m[e[d]];end end end end end else if f<14 then if 7<=f then if 10>f then if f<=7 then local f,t,r,a,h,c;local n=0;while n>-1 do if 4<=n then if n>5 then if n~=3 then for e=49,89 do if 7>n then l[c]=h;break;end;n=-2;break;end;else n=-2;end else if 4==n then h=a[f[r]];else c=f[t];end end else if 2<=n then if n~=-2 then for e=19,57 do if 2~=n then a=l;break;end;r=d;break;end;else r=d;end else if-2~=n then for l=41,65 do if 1>n then f=e;break;end;t=o;break;end;else t=o;end end end n=n+1 end else if 4<f then for a=42,71 do if 9~=f then local e=e[o]l[e]=l[e](h(l,e+1,c))break;end;local f,c;for a=0,6 do if 2>=a then if 1<=a then if 1==a then f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];else f=e[o];c=l[e[d]];l[f+1]=c;l[f]=c[e[r]];n=n+1;e=t[n];end else l[e[o]][e[d]]=l[e[r]];n=n+1;e=t[n];end else if a>=5 then if a>=1 then for m=34,85 do if 5<a then f=e[o];c=l[e[d]];l[f+1]=c;l[f]=c[e[r]];break;end;f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];break;end;else f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];end else if 0~=a then repeat if 4>a then l(e[o],e[d]);n=n+1;e=t[n];break;end;for e=e[o],e[d]do l[e]=nil;end;n=n+1;e=t[n];until true;else l(e[o],e[d]);n=n+1;e=t[n];end end end end break;end;else local e=e[o]l[e]=l[e](h(l,e+1,c))end end else if f>11 then if 10<f then for n=35,53 do if 12~=f then l[e[o]]=(e[d]~=0);break;end;local f,t,h,a,r;local n=0;while n>-1 do if 3>n then if 1>n then f=e;else if-1~=n then for e=25,67 do if 1~=n then h=d;break;end;t=o;break;end;else t=o;end end else if 5<=n then if n>4 then for e=20,86 do if 5<n then n=-2;break;end;l(r,a);break;end;else n=-2;end else if n~=2 then for e=14,81 do if 4~=n then a=f[h];break;end;r=f[t];break;end;else r=f[t];end end end n=n+1 end break;end;else l[e[o]]=(e[d]~=0);end else if 10~=f then l[e[o]]=(e[d]~=0);else for e=e[o],e[d]do l[e]=nil;end;end end end else if 2<f then if 4>=f then if f>0 then repeat if 3~=f then l[e[o]]=m[e[d]];break;end;local h,c;for f=0,3 do if f>=2 then if-2~=f then for r=39,72 do if 3~=f then l(e[o],e[d]);n=n+1;e=t[n];break;end;h=e[o];c=l[h];for e=h+1,e[d]do a.GbbHqxnb(c,l[e])end;break;end;else l(e[o],e[d]);n=n+1;e=t[n];end else if f~=-2 then repeat if f<1 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];break;end;l[e[o]]={};n=n+1;e=t[n];until true;else l[e[o]][e[d]]=e[r];n=n+1;e=t[n];end end end until true;else local h,c;for f=0,3 do if f>=2 then if-2~=f then for r=39,72 do if 3~=f then l(e[o],e[d]);n=n+1;e=t[n];break;end;h=e[o];c=l[h];for e=h+1,e[d]do a.GbbHqxnb(c,l[e])end;break;end;else l(e[o],e[d]);n=n+1;e=t[n];end else if f~=-2 then repeat if f<1 then l[e[o]][e[d]]=e[r];n=n+1;e=t[n];break;end;l[e[o]]={};n=n+1;e=t[n];until true;else l[e[o]][e[d]]=e[r];n=n+1;e=t[n];end end end end else if f~=5 then local f;l[e[o]][e[d]]=l[e[r]];n=n+1;e=t[n];f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];do return end;else local e=e[o]l[e]=l[e](h(l,e+1,c))end end else if f>=1 then if f>-3 then for a=49,92 do if f~=1 then local e=e[o]l[e]=l[e]()break;end;local f,a;l(e[o],e[d]);n=n+1;e=t[n];f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];f=e[o];a=l[e[d]];l[f+1]=a;l[f]=a[e[r]];n=n+1;e=t[n];l(e[o],e[d]);n=n+1;e=t[n];f=e[o]l[f]=l[f](h(l,f+1,e[d]))n=n+1;e=t[n];f=e[o];a=l[e[d]];l[f+1]=a;l[f]=a[e[r]];n=n+1;e=t[n];l(e[o],e[d]);break;end;else local e=e[o]l[e]=l[e]()end else l[e[o]]=l[e[d]]+e[r];n=n+1;e=t[n];m[e[d]]=l[e[o]];n=n+1;e=t[n];l[e[o]]={};n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]]=m[e[d]];n=n+1;e=t[n];l[e[o]][e[d]]=l[e[r]];end end end else if f<=20 then if 17<=f then if f<19 then if 16<f then repeat if f<18 then local n=e[o]local o,e=s(l[n](h(l,n+1,e[d])))c=e+n-1 local e=0;for n=n,c do e=e+1;l[n]=o[e];end;break;end;l[e[o]][e[d]]=e[r];until true;else local n=e[o]local o,e=s(l[n](h(l,n+1,e[d])))c=e+n-1 local e=0;for n=n,c do e=e+1;l[n]=o[e];end;end else if f>=15 then repeat if 19~=f then m[e[d]]=l[e[o]];break;end;local f,u,p,k,b;for a=0,6 do if 2<a then if a>4 then if a~=5 then f=e[o];u=l[e[d]];l[f+1]=u;l[f]=u[e[r]];else f=e[o]l[f]=l[f]()n=n+1;e=t[n];end else if a~=-1 then repeat if 3~=a then f=e[o]l[f]=l[f](h(l,f+1,c))n=n+1;e=t[n];break;end;f=e[o]p,k=s(l[f](h(l,f+1,e[d])))c=k+f-1 b=0;for e=f,c do b=b+1;l[e]=p[b];end;n=n+1;e=t[n];until true;else f=e[o]l[f]=l[f](h(l,f+1,c))n=n+1;e=t[n];end end else if a>0 then if a~=0 then for h=18,56 do if 1<a then l(e[o],e[d]);n=n+1;e=t[n];break;end;f=e[o];u=l[e[d]];l[f+1]=u;l[f]=u[e[r]];n=n+1;e=t[n];break;end;else l(e[o],e[d]);n=n+1;e=t[n];end else l[e[o]]=m[e[d]];n=n+1;e=t[n];end end end until true;else m[e[d]]=l[e[o]];end end else if f<=14 then local n=e[o]l[n]=l[n](h(l,n+1,e[d]))else if f>=13 then for n=30,71 do if f~=15 then local n=e[o];local o=l[e[d]];l[n+1]=o;l[n]=o[e[r]];break;end;do return end;break;end;else do return end;end end end else if 24>=f then if f>22 then if f>21 then for n=14,60 do if f~=23 then l[e[o]][e[d]]=l[e[r]];break;end;local e=e[o]l[e](h(l,e+1,c))break;end;else local e=e[o]l[e](h(l,e+1,c))end else if 22==f then local o=e[o];local n=l[e[d]];l[o+1]=n;l[o]=n[e[r]];else do return end;end end else if f<27 then if 21<=f then repeat if f<26 then l[e[o]]=b(k[e[d]],nil,m);break;end;l[e[o]][e[d]]=l[e[r]];n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]]={};n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]][e[d]]=e[r];n=n+1;e=t[n];l[e[o]][e[d]]=e[r];until true;else l[e[o]]=b(k[e[d]],nil,m);end else if 23<f then for t=20,69 do if f~=27 then n=e[d];break;end;l[e[o]]=b(k[e[d]],nil,m);break;end;else l[e[o]]=b(k[e[d]],nil,m);end end end end end end n=1+n;end;end;return y end;local d=0xff;local c={};local f=(1);local o='';(function(n)local l=n local t=0x00 local e=0x00 l={(function(r)if t>0x2f then return r end t=t+1 e=(e+0xc19-r)%0x45 return(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x39);o='\37';d={function()d()end};o=o..'\100\43';end return true end)'zxEYy'and l[0x2](0x191+r))or(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x10);d[2]=(d[2]*(y(function()c()end,h(o))-y(d[1],h(o))))+1;c[f]={};d=d[2];f=f+d;end return true end)'jEZgK'and l[0x3](r+0x22c))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x8d);end return true end)'CueAq'and l[0x1](r+0x2bb))or r end),(function(r)if t>0x2b then return r end t=t+1 e=(e+0x11de-r)%0x31 return(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x23);end return true end)'iLTad'and l[0x3](0x26b+r))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x28);o={o..'\58 a',o};c[f]=z();f=f+((not a.ek_nXAFm)and 1 or 0);o[1]='\58'..o[1];d[2]=0xff;end return true end)'CmOFd'and l[0x1](r+0x14a))or(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x32);end return true end)'_GoII'and l[0x2](r+0x171))or r end),(function(o)if t>0x26 then return o end t=t+1 e=(e+0xb3a-o)%0x49 return(e%0x03==0x0 and(function(l)if not n[l]then e=e+0x01 n[l]=(0x6a);end return true end)'yJcrt'and l[0x2](0x24e+o))or(e%0x03==0x1 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xc6);end return true end)'WeCXL'and l[0x3](o+0x363))or(e%0x03==0x2 and(function(l)if not n[l]then e=e+0x01 n[l]=(0xf2);c[f]=le();f=f+d;end return true end)'nator'and l[0x1](o+0x25c))or o end)}l[0x1](0xed8)end){};local e=b(h(c));return e(...);end return y((function()local n={}local e=0x01;local l;if a.ek_nXAFm then l=a.ek_nXAFm(y)else l=''end if a.hvWZLjvC(l,a.DtWlaVVY)then e=e+0;else e=e+1;end n[e]=0x02;n[n[e]+0x01]=0x03;return n;end)(),...)end)((function(l,e,n,d,o,t)local t;if l>3 then if l<6 then if l>1 then repeat if 5>l then local l=d;local f,t,o=o(2);do return function()local e,n,d,r=e(n,l(l,l),l(l,l)+3);l(4);return(r*f)+(d*t)+(n*o)+e;end;end;break;end;local l=d;do return function()local e=e(n,l(l,l),l(l,l));l(1);return e;end;end;until true;else local l=d;local r,f,t=o(2);do return function()local e,n,o,d=e(n,l(l,l),l(l,l)+3);l(4);return(d*r)+(o*f)+(n*t)+e;end;end;end else if 7<=l then if 5<=l then repeat if 8>l then do return setmetatable({},{['__\99\97\108\108']=function(e,d,o,l,n)if n then return e[n]elseif l then return e else e[d]=o end end})end break;end;do return n(l,nil,n);end until true;else do return n(l,nil,n);end end else do return o[n]end;end end else if 1<l then if l>-2 then repeat if l~=3 then do return 16777216,65536,256 end;break;end;do return e(1),e(4,o,d,n,e),e(5,o,d,n)end;until true;else do return e(1),e(4,o,d,n,e),e(5,o,d,n)end;end else if 1==l then do return function(l,e,n)if n then local e=(l/2^(e-1))%2^((n-1)-(e-1)+1);return e-e%1;else local e=2^(e-1);return(l%(e+e)>=e)and 1 or 0;end;end;end;else do return e(1),e(4,o,d,n,e),e(5,o,d,n)end;end end end end),...)
+-- Ultimate Replay LocalScript V17
+-- 적용 내용:
+-- 1) 긴 리플레이 재생 중 현재 프레임에 없는 BasePart는 Parent=nil 처리
+-- 2) 재생 상태를 순차 디코딩해서 긴 리플레이 seek/재생 부담 완화
+-- 3) 맵은 낮은 위치 정밀도, 캐릭터는 높은 위치 정밀도로 저장
+-- 4) 저장된 리플레이를 공유 코드(JSON 문자열)로 내보내기/가져오기
+-- 5) Lighting과 Lighting 내부 오브젝트 값을 프레임 변화로 녹화/재생
+
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local SoundService = game:GetService("SoundService")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local HttpService = game:GetService("HttpService")
+local EncodingService = game:GetService("EncodingService")
+Lighting = game:GetService("Lighting")
+
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+-- Explorer/standalone mode: no ReplayPersistence server remotes are required.
+local LoadReplaysFunction = nil
+local SaveReplayFunction = nil
+local DeleteReplayFunction = nil
+
+local REPLAY_VERSION = 17
+local MIN_REPLAY_VERSION = 17
+local REPLAY_FPS = 20
+local frameStep = 1 / REPLAY_FPS
+local STATE_CACHE_LIMIT = 32
+local LIVE_HIDE_ENFORCE_INTERVAL = 1
+
+local POS_SCALE = 20
+local MAP_POS_SCALE = 20
+local CHARACTER_POS_SCALE = 300
+local SIZE_SCALE = 20
+
+local Possessions = {}
+local currentSession
+
+local isRecording = false
+local isReplayMode = false
+local isPlaying = false
+local isDraggingTimeline = false
+
+local totalFrames = 0
+local currentFrame = 1
+local recordAccumulator = 0
+
+local recordingConnection
+local recAddedConnection
+local recAddedSoundConnection
+recAddedLightingConnection = nil
+local liveAddedConnection
+local liveSoundAddedConnection
+local liveEnforceConnection
+
+local hiddenOtherGuis = {}
+local hiddenStates = {}
+lightingRestoreState = nil
+
+local ReplayFolder = Instance.new("Folder")
+ReplayFolder.Name = "ReplaySystemFolder"
+
+local startReplay
+local refreshReplayList
+
+local BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+local BASE64_LOOKUP = {}
+for i = 1, #BASE64 do
+	BASE64_LOOKUP[BASE64:sub(i, i)] = i - 1
+end
+
+local function base64Encode(data)
+	local out = {}
+	local len = #data
+	for i = 1, len, 3 do
+		local b1 = string.byte(data, i) or 0
+		local b2 = string.byte(data, i + 1) or 0
+		local b3 = string.byte(data, i + 2) or 0
+		local n = b1 * 65536 + b2 * 256 + b3
+		local c1 = math.floor(n / 262144) % 64
+		local c2 = math.floor(n / 4096) % 64
+		local c3 = math.floor(n / 64) % 64
+		local c4 = n % 64
+		out[#out + 1] = BASE64:sub(c1 + 1, c1 + 1)
+		out[#out + 1] = BASE64:sub(c2 + 1, c2 + 1)
+		out[#out + 1] = i + 1 <= len and BASE64:sub(c3 + 1, c3 + 1) or "="
+		out[#out + 1] = i + 2 <= len and BASE64:sub(c4 + 1, c4 + 1) or "="
+	end
+	return table.concat(out)
+end
+
+local function base64Decode(data)
+	data = tostring(data):gsub("%s", "")
+	local out = {}
+	for i = 1, #data, 4 do
+		local ch1 = data:sub(i, i)
+		local ch2 = data:sub(i + 1, i + 1)
+		local ch3 = data:sub(i + 2, i + 2)
+		local ch4 = data:sub(i + 3, i + 3)
+		local c1 = BASE64_LOOKUP[ch1] or 0
+		local c2 = BASE64_LOOKUP[ch2] or 0
+		local c3 = BASE64_LOOKUP[ch3] or 0
+		local c4 = BASE64_LOOKUP[ch4] or 0
+		local n = c1 * 262144 + c2 * 4096 + c3 * 64 + c4
+		out[#out + 1] = string.char(math.floor(n / 65536) % 256)
+		if ch3 ~= "=" then
+			out[#out + 1] = string.char(math.floor(n / 256) % 256)
+		end
+		if ch4 ~= "=" then
+			out[#out + 1] = string.char(n % 256)
+		end
+	end
+	return table.concat(out)
+end
+
+local function packPosition(v, scale)
+	scale = scale or POS_SCALE
+	return math.clamp(math.round(v * scale), -2147483648, 2147483647)
+end
+
+local function unpackPosition(x, scale)
+	scale = scale or POS_SCALE
+	return x / scale
+end
+
+local function packSize(v)
+	return math.clamp(math.round(v * SIZE_SCALE), 0, 65535)
+end
+
+local function unpackSize(x)
+	return x / SIZE_SCALE
+end
+
+local function packEuler(rx, ry, rz)
+	local function comp(angle)
+		local norm = (angle + math.pi) / (math.pi * 2)
+		return math.clamp(math.round(norm * 1023), 0, 1023)
+	end
+	return bit32.bor(bit32.lshift(comp(rx), 20), bit32.lshift(comp(ry), 10), comp(rz))
+end
+
+local function unpackEuler(packed)
+	local function decomp(c)
+		return (c / 1023) * (math.pi * 2) - math.pi
+	end
+	return decomp(bit32.rshift(packed, 20)), decomp(bit32.band(bit32.rshift(packed, 10), 0x3FF)), decomp(bit32.band(packed, 0x3FF))
+end
+
+local function packColor555565(r, g, b)
+	local r5 = math.clamp(math.floor(r * 31), 0, 31)
+	local g6 = math.clamp(math.floor(g * 63), 0, 63)
+	local b5 = math.clamp(math.floor(b * 31), 0, 31)
+	return bit32.bor(bit32.lshift(r5, 11), bit32.lshift(g6, 5), b5)
+end
+
+local function unpackColor555565(packed)
+	return Color3.new(bit32.rshift(packed, 11) / 31, bit32.band(bit32.rshift(packed, 5), 0x3F) / 63, bit32.band(packed, 0x1F) / 31)
+end
+
+local function writeVarUInt(buf, offset, value)
+	while value >= 0x80 do
+		buffer.writeu8(buf, offset, bit32.bor(bit32.band(value, 0x7F), 0x80))
+		offset += 1
+		value = bit32.rshift(value, 7)
+	end
+	buffer.writeu8(buf, offset, value)
+	return offset + 1
+end
+
+local function readVarUInt(buf, offset)
+	local value = 0
+	local shift = 0
+	while true do
+		local byte = buffer.readu8(buf, offset)
+		offset += 1
+		value = bit32.bor(value, bit32.lshift(bit32.band(byte, 0x7F), shift))
+		if bit32.band(byte, 0x80) == 0 then
+			break
+		end
+		shift += 7
+	end
+	return value, offset
+end
+
+local function getOrCreateStringIndex(dict, arr, str)
+	if not str or str == "" then
+		return 0
+	end
+	if dict[str] then
+		return dict[str]
+	end
+	local idx = #arr + 1
+	dict[str] = idx
+	arr[idx] = str
+	return idx
+end
+
+local writePackedValue
+local readPackedValue
+
+local function estimateFrameChangeBufferSize(frameChanges, trackedParts)
+	local total = 32
+	for id, state in pairs(frameChanges) do
+		local item = trackedParts[id]
+		if item then
+			total += 5
+			if state ~= false then
+				if item.kind == "BasePart" then
+					total += 32
+				elseif item.kind == "Decal" then
+					total += 16
+				elseif item.kind == "Sound" then
+					total += 10
+				elseif item.kind == "Text" then
+					total += 5
+				elseif item.kind == "Enabled" then
+					total += 1
+				elseif item.kind == "Props" then
+					total += 2048
+				end
+			end
+		end
+	end
+	return total
+end
+
+local function serializeBuffer(frameChanges, trackedParts, oldStatesMap, stringDict, stringArray)
+	local tempBuf = buffer.create(math.max(128, estimateFrameChangeBufferSize(frameChanges, trackedParts) * 2))
+	local offset = 0
+
+	for id, state in pairs(frameChanges) do
+		local item = trackedParts[id]
+		if item then
+			if state == false then
+				offset = writeVarUInt(tempBuf, offset, bit32.lshift(id, 1))
+			else
+				offset = writeVarUInt(tempBuf, offset, bit32.lshift(id, 1) + 1)
+
+				if item.kind == "BasePart" then
+					local posScale = item.posScale or POS_SCALE
+					local lastState = oldStatesMap[id]
+					local mask = 0
+
+					local pos = state[1].Position
+					local size = state[2]
+					local color = state[3]
+					local trans = state[4]
+					local rx, ry, rz = state[1]:ToEulerAnglesYXZ()
+
+					local lpx, lpy, lpz = 0, 0, 0
+					if lastState then
+						lpx = packPosition(lastState[1].Position.X, posScale)
+						lpy = packPosition(lastState[1].Position.Y, posScale)
+						lpz = packPosition(lastState[1].Position.Z, posScale)
+					end
+
+					local px = packPosition(pos.X, posScale)
+					local py = packPosition(pos.Y, posScale)
+					local pz = packPosition(pos.Z, posScale)
+					local dx = px - lpx
+					local dy = py - lpy
+					local dz = pz - lpz
+
+					if not lastState or dx ~= 0 or dy ~= 0 or dz ~= 0 then
+						mask = bit32.bor(mask, 1)
+						if lastState and math.abs(dx) <= 127 and math.abs(dy) <= 127 and math.abs(dz) <= 127 then
+							mask = bit32.bor(mask, 32)
+						end
+					end
+
+					local lrx, lry, lrz = 0, 0, 0
+					if lastState then
+						lrx, lry, lrz = lastState[1]:ToEulerAnglesYXZ()
+					end
+					if not lastState or (Vector3.new(rx, ry, rz) - Vector3.new(lrx, lry, lrz)).Magnitude > 0.001 then
+						mask = bit32.bor(mask, 2)
+					end
+					if not lastState or (size - lastState[2]).Magnitude > 0.001 then
+						mask = bit32.bor(mask, 4)
+					end
+
+					local colorChanged = not lastState or math.abs(color.R - lastState[3].R) > 0.01 or math.abs(color.G - lastState[3].G) > 0.01 or math.abs(color.B - lastState[3].B) > 0.01
+					local transChanged = not lastState or math.abs(trans - lastState[4]) > 0.01
+					if colorChanged then
+						mask = bit32.bor(mask, 8)
+					end
+					if transChanged then
+						mask = bit32.bor(mask, 16)
+					end
+
+					buffer.writeu8(tempBuf, offset, mask)
+					offset += 1
+
+					if bit32.band(mask, 1) ~= 0 then
+						if bit32.band(mask, 32) ~= 0 then
+							buffer.writei8(tempBuf, offset, dx)
+							offset += 1
+							buffer.writei8(tempBuf, offset, dy)
+							offset += 1
+							buffer.writei8(tempBuf, offset, dz)
+							offset += 1
+						else
+							buffer.writei32(tempBuf, offset, px)
+							offset += 4
+							buffer.writei32(tempBuf, offset, py)
+							offset += 4
+							buffer.writei32(tempBuf, offset, pz)
+							offset += 4
+						end
+					end
+
+					if bit32.band(mask, 2) ~= 0 then
+						buffer.writeu32(tempBuf, offset, packEuler(rx, ry, rz))
+						offset += 4
+					end
+					if bit32.band(mask, 4) ~= 0 then
+						buffer.writeu16(tempBuf, offset, packSize(size.X))
+						offset += 2
+						buffer.writeu16(tempBuf, offset, packSize(size.Y))
+						offset += 2
+						buffer.writeu16(tempBuf, offset, packSize(size.Z))
+						offset += 2
+					end
+					if bit32.band(mask, 8) ~= 0 then
+						buffer.writeu16(tempBuf, offset, packColor555565(color.R, color.G, color.B))
+						offset += 2
+					end
+					if bit32.band(mask, 16) ~= 0 then
+						buffer.writeu8(tempBuf, offset, math.clamp(math.round(trans * 255), 0, 255))
+						offset += 1
+					end
+				elseif item.kind == "Decal" then
+					local sIdx = getOrCreateStringIndex(stringDict, stringArray, state[1])
+					offset = writeVarUInt(tempBuf, offset, sIdx)
+					buffer.writef32(tempBuf, offset, state[2] or 0)
+					offset += 4
+					buffer.writef32(tempBuf, offset, state[3] or 0)
+					offset += 4
+					local color = state[4] or Color3.new(1, 1, 1)
+					buffer.writeu16(tempBuf, offset, packColor555565(color.R, color.G, color.B))
+					offset += 2
+				elseif item.kind == "Sound" then
+					buffer.writeu8(tempBuf, offset, state[1] and 1 or 0)
+					offset += 1
+					buffer.writef32(tempBuf, offset, state[2])
+					offset += 4
+					buffer.writef32(tempBuf, offset, state[3])
+					offset += 4
+				elseif item.kind == "Text" then
+					local sIdx = getOrCreateStringIndex(stringDict, stringArray, state)
+					offset = writeVarUInt(tempBuf, offset, sIdx)
+				elseif item.kind == "Enabled" then
+					buffer.writeu8(tempBuf, offset, state and 1 or 0)
+					offset += 1
+				elseif item.kind == "Props" then
+					local propCount = 0
+					for _ in pairs(state) do
+						propCount += 1
+					end
+					offset = writeVarUInt(tempBuf, offset, propCount)
+					for prop, value in pairs(state) do
+						offset = writeVarUInt(tempBuf, offset, getOrCreateStringIndex(stringDict, stringArray, prop))
+						offset = writePackedValue(tempBuf, offset, value, stringDict, stringArray)
+					end
+				end
+			end
+		end
+	end
+
+	if offset == 0 then
+		return false
+	end
+
+	local finalBuf = buffer.create(offset)
+	buffer.copy(finalBuf, 0, tempBuf, 0, offset)
+	return finalBuf
+end
+
+local function deserializeBufferUnsafe(buf, trackedParts, targetState, stringArray)
+	if not buf then
+		return true
+	end
+
+	local size = buffer.len(buf)
+	local offset = 0
+
+	while offset < size do
+		local val, newOff = readVarUInt(buf, offset)
+		offset = newOff
+		local id = bit32.rshift(val, 1)
+		local isValid = bit32.band(val, 1) == 1
+		local item = trackedParts[id]
+		if not item then
+			break
+		end
+
+		if not isValid then
+			targetState[id] = false
+		elseif item.kind == "BasePart" then
+			local posScale = item.posScale or POS_SCALE
+			local mask = buffer.readu8(buf, offset)
+			offset += 1
+			local oldState = targetState[id]
+
+			local px, py, pz = 0, 0, 0
+			local rx, ry, rz = 0, 0, 0
+			local sx, sy, sz = 1, 1, 1
+			local r, g, b = 1, 1, 1
+			local trans = 0
+			local packedPx, packedPy, packedPz = 0, 0, 0
+
+			if oldState and oldState ~= false then
+				packedPx = packPosition(oldState[1].Position.X, posScale)
+				packedPy = packPosition(oldState[1].Position.Y, posScale)
+				packedPz = packPosition(oldState[1].Position.Z, posScale)
+				rx, ry, rz = oldState[1]:ToEulerAnglesYXZ()
+				sx, sy, sz = oldState[2].X, oldState[2].Y, oldState[2].Z
+				r, g, b = oldState[3].R, oldState[3].G, oldState[3].B
+				trans = oldState[4]
+			end
+
+			if bit32.band(mask, 1) ~= 0 then
+				if bit32.band(mask, 32) ~= 0 then
+					packedPx += buffer.readi8(buf, offset)
+					offset += 1
+					packedPy += buffer.readi8(buf, offset)
+					offset += 1
+					packedPz += buffer.readi8(buf, offset)
+					offset += 1
+				else
+					packedPx = buffer.readi32(buf, offset)
+					offset += 4
+					packedPy = buffer.readi32(buf, offset)
+					offset += 4
+					packedPz = buffer.readi32(buf, offset)
+					offset += 4
+				end
+			end
+
+			px, py, pz = unpackPosition(packedPx, posScale), unpackPosition(packedPy, posScale), unpackPosition(packedPz, posScale)
+
+			if bit32.band(mask, 2) ~= 0 then
+				rx, ry, rz = unpackEuler(buffer.readu32(buf, offset))
+				offset += 4
+			end
+			if bit32.band(mask, 4) ~= 0 then
+				sx = unpackSize(buffer.readu16(buf, offset))
+				offset += 2
+				sy = unpackSize(buffer.readu16(buf, offset))
+				offset += 2
+				sz = unpackSize(buffer.readu16(buf, offset))
+				offset += 2
+			end
+			if bit32.band(mask, 8) ~= 0 then
+				local packedCol = buffer.readu16(buf, offset)
+				offset += 2
+				local col = unpackColor555565(packedCol)
+				r, g, b = col.R, col.G, col.B
+			end
+			if bit32.band(mask, 16) ~= 0 then
+				trans = buffer.readu8(buf, offset) / 255
+				offset += 1
+			end
+
+			targetState[id] = {
+				CFrame.new(px, py, pz) * CFrame.fromEulerAnglesYXZ(rx, ry, rz),
+				Vector3.new(sx, sy, sz),
+				Color3.new(r, g, b),
+				trans,
+			}
+		elseif item.kind == "Decal" then
+			local sIdx, nextOff = readVarUInt(buf, offset)
+			offset = nextOff
+			local texture = sIdx == 0 and "" or (stringArray[sIdx] or "")
+			local transparency = buffer.readf32(buf, offset)
+			offset += 4
+			local localModifier = buffer.readf32(buf, offset)
+			offset += 4
+			local packedCol = buffer.readu16(buf, offset)
+			offset += 2
+			local col = unpackColor555565(packedCol)
+			targetState[id] = { texture, transparency, localModifier, col }
+		elseif item.kind == "Sound" then
+			local isPlay = buffer.readu8(buf, offset) == 1
+			offset += 1
+			local tPos = buffer.readf32(buf, offset)
+			offset += 4
+			local vol = buffer.readf32(buf, offset)
+			offset += 4
+			targetState[id] = { isPlay, tPos, vol }
+		elseif item.kind == "Text" then
+			local sIdx, nextOff = readVarUInt(buf, offset)
+			offset = nextOff
+			targetState[id] = sIdx == 0 and "" or (stringArray[sIdx] or "")
+		elseif item.kind == "Enabled" then
+			targetState[id] = buffer.readu8(buf, offset) == 1
+			offset += 1
+		elseif item.kind == "Props" then
+			local propCount
+			propCount, offset = readVarUInt(buf, offset)
+			local props = {}
+			for _ = 1, propCount do
+				local propIdx
+				propIdx, offset = readVarUInt(buf, offset)
+				local propName = propIdx == 0 and "" or (stringArray[propIdx] or "")
+				local value
+				value, offset = readPackedValue(buf, offset, stringArray)
+				if propName ~= "" and value ~= nil then
+					props[propName] = value
+				end
+			end
+			targetState[id] = props
+		end
+	end
+
+	return true
+end
+
+local function deserializeBuffer(buf, trackedParts, targetState, stringArray)
+	local ok, result = pcall(deserializeBufferUnsafe, buf, trackedParts, targetState, stringArray)
+	if not ok then
+		warn("[Replay] frame decode failed:", result)
+		return false
+	end
+	return result ~= false
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "UltimateReplayGui"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = PlayerGui
+
+local function corner(obj, radius)
+	local c = Instance.new("UICorner")
+	c.CornerRadius = UDim.new(0, radius or 8)
+	c.Parent = obj
+	return c
+end
+
+local function makeButton(parent, size, color, text)
+	local btn = Instance.new("TextButton")
+	btn.Size = size
+	btn.BackgroundColor3 = color
+	btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextSize = 18
+	btn.Text = text
+	btn.AutoButtonColor = true
+	btn.BorderSizePixel = 0
+	btn.TextWrapped = true
+	btn.Parent = parent
+	corner(btn, 8)
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Color3.fromRGB(255, 255, 255)
+	stroke.Transparency = 0.88
+	stroke.Thickness = 1
+	stroke.Parent = btn
+	return btn
+end
+
+local MainToggleBtn = makeButton(ScreenGui, UDim2.new(0, 160, 0, 45), Color3.fromRGB(50, 50, 50), "🎬 리플레이 메뉴")
+MainToggleBtn.Position = UDim2.new(0, 20, 0.4, 0)
+MainToggleBtn.AnchorPoint = Vector2.new(0, 0.5)
+MainToggleBtn.BackgroundColor3 = Color3.fromRGB(36, 41, 53)
+
+local ActionMenu = Instance.new("Frame")
+ActionMenu.Size = UDim2.new(0, 165, 0, 100)
+ActionMenu.Position = UDim2.new(0, 20, 0.4, -32)
+ActionMenu.AnchorPoint = Vector2.new(0, 1)
+ActionMenu.BackgroundTransparency = 1
+ActionMenu.Visible = false
+ActionMenu.Parent = ScreenGui
+
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.FillDirection = Enum.FillDirection.Vertical
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+UIListLayout.Padding = UDim.new(0, 8)
+UIListLayout.Parent = ActionMenu
+
+local RecordBtn = makeButton(ActionMenu, UDim2.new(0, 165, 0, 45), Color3.fromRGB(214, 74, 92), "⏺ 녹화 시작")
+local OpenListBtn = makeButton(ActionMenu, UDim2.new(0, 165, 0, 45), Color3.fromRGB(65, 132, 210), "📂 리플레이 목록")
+
+local ListPanel = Instance.new("Frame")
+ListPanel.Size = UDim2.new(0, 520, 0, 390)
+ListPanel.Position = UDim2.new(0.5, 0, 0.5, 0)
+ListPanel.AnchorPoint = Vector2.new(0.5, 0.5)
+ListPanel.BackgroundColor3 = Color3.fromRGB(25, 29, 38)
+ListPanel.BorderSizePixel = 0
+ListPanel.Visible = false
+ListPanel.Parent = ScreenGui
+corner(ListPanel, 8)
+local ListPanelStroke = Instance.new("UIStroke")
+ListPanelStroke.Color = Color3.fromRGB(120, 150, 190)
+ListPanelStroke.Transparency = 0.72
+ListPanelStroke.Thickness = 1
+ListPanelStroke.Parent = ListPanel
+
+local ListTitle = Instance.new("TextLabel")
+ListTitle.Size = UDim2.new(1, -60, 0, 46)
+ListTitle.Position = UDim2.new(0, 14, 0, 0)
+ListTitle.BackgroundTransparency = 1
+ListTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+ListTitle.Font = Enum.Font.SourceSansBold
+ListTitle.TextSize = 22
+ListTitle.TextXAlignment = Enum.TextXAlignment.Left
+ListTitle.Text = "리플레이 보관함"
+ListTitle.Parent = ListPanel
+
+local CloseListBtn = makeButton(ListPanel, UDim2.new(0, 30, 0, 30), Color3.fromRGB(200, 50, 50), "X")
+CloseListBtn.Position = UDim2.new(1, -42, 0, 8)
+CloseListBtn.TextSize = 16
+
+local ScrollingFrame = Instance.new("ScrollingFrame")
+ScrollingFrame.Size = UDim2.new(1, -24, 1, -178)
+ScrollingFrame.Position = UDim2.new(0, 12, 0, 52)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.ScrollBarThickness = 6
+ScrollingFrame.Parent = ListPanel
+
+local ScrollLayout = Instance.new("UIListLayout")
+ScrollLayout.Padding = UDim.new(0, 5)
+ScrollLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ScrollLayout.Parent = ScrollingFrame
+
+local ShareCodeScroll = Instance.new("ScrollingFrame")
+ShareCodeScroll.Size = UDim2.new(1, -132, 0, 78)
+ShareCodeScroll.Position = UDim2.new(0, 12, 1, -112)
+ShareCodeScroll.BackgroundColor3 = Color3.fromRGB(34, 39, 51)
+ShareCodeScroll.BorderSizePixel = 0
+ShareCodeScroll.ScrollBarThickness = 8
+ShareCodeScroll.ScrollingDirection = Enum.ScrollingDirection.Y
+ShareCodeScroll.CanvasSize = UDim2.new(0, 0, 0, 78)
+ShareCodeScroll.Parent = ListPanel
+corner(ShareCodeScroll, 6)
+
+local ShareCodeBox = Instance.new("TextBox")
+ShareCodeBox.Size = UDim2.new(1, -14, 0, 78)
+ShareCodeBox.Position = UDim2.new(0, 7, 0, 0)
+ShareCodeBox.BackgroundTransparency = 1
+ShareCodeBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+ShareCodeBox.PlaceholderText = "리플레이 코드를 붙여넣기"
+ShareCodeBox.PlaceholderColor3 = Color3.fromRGB(170, 170, 170)
+ShareCodeBox.BorderSizePixel = 0
+ShareCodeBox.ClearTextOnFocus = false
+ShareCodeBox.MultiLine = true
+ShareCodeBox.TextWrapped = true
+ShareCodeBox.TextXAlignment = Enum.TextXAlignment.Left
+ShareCodeBox.TextYAlignment = Enum.TextYAlignment.Top
+ShareCodeBox.Font = Enum.Font.Code
+ShareCodeBox.TextSize = 12
+ShareCodeBox.Text = ""
+ShareCodeBox.Parent = ShareCodeScroll
+
+local function updateShareCodeScrollCanvas()
+	task.defer(function()
+		if not ShareCodeBox or not ShareCodeBox.Parent or not ShareCodeScroll then
+			return
+		end
+
+		local viewHeight = math.max(ShareCodeScroll.AbsoluteSize.Y, 78)
+		local textHeight = viewHeight
+		pcall(function()
+			textHeight = math.max(viewHeight, ShareCodeBox.TextBounds.Y + 18)
+		end)
+
+		ShareCodeBox.Size = UDim2.new(1, -14, 0, textHeight)
+		ShareCodeScroll.CanvasSize = UDim2.new(0, 0, 0, textHeight)
+	end)
+end
+
+ShareCodeBox:GetPropertyChangedSignal("Text"):Connect(updateShareCodeScrollCanvas)
+ShareCodeScroll:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateShareCodeScrollCanvas)
+updateShareCodeScrollCanvas()
+
+local function scrollShareCodeWithWheel(input)
+	if input.UserInputType ~= Enum.UserInputType.MouseWheel then
+		return
+	end
+
+	local maxY = math.max(0, ShareCodeScroll.AbsoluteCanvasSize.Y - ShareCodeScroll.AbsoluteSize.Y)
+	local nextY = math.clamp(ShareCodeScroll.CanvasPosition.Y - (input.Position.Z * 36), 0, maxY)
+	ShareCodeScroll.CanvasPosition = Vector2.new(0, nextY)
+end
+
+ShareCodeScroll.InputChanged:Connect(scrollShareCodeWithWheel)
+ShareCodeBox.InputChanged:Connect(scrollShareCodeWithWheel)
+
+local ApplyCodeBtn = makeButton(ListPanel, UDim2.new(0, 95, 0, 45), Color3.fromRGB(80, 200, 120), "적용")
+ApplyCodeBtn.Position = UDim2.new(1, -107, 1, -112)
+ApplyCodeBtn.TextSize = 18
+
+PrevShareChunkBtn = makeButton(ListPanel, UDim2.new(0, 45, 0, 20), Color3.fromRGB(70, 70, 70), "<")
+PrevShareChunkBtn.Position = UDim2.new(1, -107, 1, -62)
+PrevShareChunkBtn.TextSize = 16
+PrevShareChunkBtn.Visible = false
+
+NextShareChunkBtn = makeButton(ListPanel, UDim2.new(0, 45, 0, 20), Color3.fromRGB(70, 70, 70), ">")
+NextShareChunkBtn.Position = UDim2.new(1, -57, 1, -62)
+NextShareChunkBtn.TextSize = 16
+NextShareChunkBtn.Visible = false
+
+local ShareStatusLabel = Instance.new("TextLabel")
+ShareStatusLabel.Size = UDim2.new(1, -24, 0, 22)
+ShareStatusLabel.Position = UDim2.new(0, 12, 1, -28)
+ShareStatusLabel.BackgroundTransparency = 1
+ShareStatusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+ShareStatusLabel.Font = Enum.Font.SourceSans
+ShareStatusLabel.TextSize = 14
+ShareStatusLabel.TextXAlignment = Enum.TextXAlignment.Left
+ShareStatusLabel.Text = ""
+ShareStatusLabel.Parent = ListPanel
+
+local PlaybackMenu = Instance.new("Frame")
+PlaybackMenu.Size = UDim2.new(0, 480, 0, 80)
+PlaybackMenu.Position = UDim2.new(0.5, 0, 0.9, -20)
+PlaybackMenu.AnchorPoint = Vector2.new(0.5, 1)
+PlaybackMenu.BackgroundTransparency = 1
+PlaybackMenu.Visible = false
+PlaybackMenu.Parent = ScreenGui
+
+local PlayPauseBtn = makeButton(PlaybackMenu, UDim2.new(0, 150, 0, 45), Color3.fromRGB(200, 150, 80), "⏸ 일시정지")
+PlayPauseBtn.Position = UDim2.new(0.5, -80, 0, 0)
+PlayPauseBtn.AnchorPoint = Vector2.new(0.5, 0)
+
+local CloseReplayBtn = makeButton(PlaybackMenu, UDim2.new(0, 150, 0, 45), Color3.fromRGB(200, 80, 80), "❌ 리플레이 종료")
+CloseReplayBtn.Position = UDim2.new(0.5, 80, 0, 0)
+CloseReplayBtn.AnchorPoint = Vector2.new(0.5, 0)
+
+local TimelineBg = Instance.new("Frame")
+TimelineBg.Size = UDim2.new(1, 0, 0, 15)
+TimelineBg.Position = UDim2.new(0.5, 0, 1, -10)
+TimelineBg.AnchorPoint = Vector2.new(0.5, 1)
+TimelineBg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TimelineBg.Parent = PlaybackMenu
+corner(TimelineBg, 999)
+
+local TimelineFill = Instance.new("Frame")
+TimelineFill.Size = UDim2.new(0, 0, 1, 0)
+TimelineFill.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+TimelineFill.Parent = TimelineBg
+corner(TimelineFill, 999)
+
+local function packValue(v)
+	local t = typeof(v)
+	if t == "number" or t == "string" or t == "boolean" then
+		return v
+	elseif t == "Vector2" then
+		return { __t = "Vector2", X = v.X, Y = v.Y }
+	elseif t == "Vector3" then
+		return { __t = "Vector3", X = v.X, Y = v.Y, Z = v.Z }
+	elseif t == "Color3" then
+		return { __t = "Color3", R = v.R, G = v.G, B = v.B }
+	elseif t == "CFrame" then
+		return { __t = "CFrame", Values = { v:GetComponents() } }
+	elseif t == "UDim" then
+		return { __t = "UDim", Scale = v.Scale, Offset = v.Offset }
+	elseif t == "UDim2" then
+		return { __t = "UDim2", XS = v.X.Scale, XO = v.X.Offset, YS = v.Y.Scale, YO = v.Y.Offset }
+	elseif t == "EnumItem" then
+		return { __t = "EnumItem", Value = tostring(v) }
+	elseif t == "NumberRange" then
+		return { __t = "NumberRange", Min = v.Min, Max = v.Max }
+	elseif t == "NumberSequence" then
+		local keypoints = {}
+		for i, kp in ipairs(v.Keypoints) do
+			keypoints[i] = { Time = kp.Time, Value = kp.Value, Envelope = kp.Envelope }
+		end
+		return { __t = "NumberSequence", Keypoints = keypoints }
+	elseif t == "ColorSequence" then
+		local keypoints = {}
+		for i, kp in ipairs(v.Keypoints) do
+			keypoints[i] = { Time = kp.Time, Color = packValue(kp.Value) }
+		end
+		return { __t = "ColorSequence", Keypoints = keypoints }
+	end
+	return nil
+end
+
+local function unpackValue(v)
+	if typeof(v) ~= "table" or not v.__t then
+		return v
+	end
+	if v.__t == "Vector2" then
+		return Vector2.new(v.X, v.Y)
+	elseif v.__t == "Vector3" then
+		return Vector3.new(v.X, v.Y, v.Z)
+	elseif v.__t == "Color3" then
+		return Color3.new(v.R, v.G, v.B)
+	elseif v.__t == "CFrame" then
+		return CFrame.new(table.unpack(v.Values))
+	elseif v.__t == "UDim" then
+		return UDim.new(v.Scale, v.Offset)
+	elseif v.__t == "UDim2" then
+		return UDim2.new(v.XS, v.XO, v.YS, v.YO)
+	elseif v.__t == "EnumItem" then
+		local enumName, itemName = tostring(v.Value):match("^Enum%.([^%.]+)%.(.+)$")
+		if enumName and itemName then
+			local ok, enumItem = pcall(function()
+				return Enum[enumName][itemName]
+			end)
+			if ok then
+				return enumItem
+			end
+		end
+	elseif v.__t == "NumberRange" then
+		return NumberRange.new(v.Min, v.Max)
+	elseif v.__t == "NumberSequence" then
+		local keypoints = {}
+		for i, kp in ipairs(v.Keypoints or {}) do
+			keypoints[i] = NumberSequenceKeypoint.new(kp.Time, kp.Value, kp.Envelope or 0)
+		end
+		return NumberSequence.new(keypoints)
+	elseif v.__t == "ColorSequence" then
+		local keypoints = {}
+		for i, kp in ipairs(v.Keypoints or {}) do
+			keypoints[i] = ColorSequenceKeypoint.new(kp.Time, unpackValue(kp.Color))
+		end
+		return ColorSequence.new(keypoints)
+	end
+	return nil
+end
+
+local function packedValuesEqual(a, b)
+	if type(a) ~= type(b) then
+		return false
+	end
+	if type(a) == "number" then
+		return math.abs(a - b) <= 0.000001
+	end
+	if type(a) ~= "table" then
+		return a == b
+	end
+	for k, v in pairs(a) do
+		if not packedValuesEqual(v, b[k]) then
+			return false
+		end
+	end
+	for k in pairs(b) do
+		if a[k] == nil then
+			return false
+		end
+	end
+	return true
+end
+
+local function appendProps(target, source)
+	for _, prop in ipairs(source) do
+		target[#target + 1] = prop
+	end
+end
+
+local BASEPART_PROPS = {
+	"Size", "CFrame", "Color", "Transparency", "Material", "MaterialVariant",
+	"Reflectance", "CanCollide", "CanTouch", "CanQuery", "CastShadow",
+	"TopSurface", "BottomSurface", "FrontSurface", "BackSurface", "LeftSurface", "RightSurface",
+}
+local MESH_PART_PROPS = { "MeshId", "TextureID", "DoubleSided", "RenderFidelity", "CollisionFidelity" }
+local SOUND_PROPS = { "SoundId", "Volume", "PlaybackSpeed", "TimePosition", "Looped", "RollOffMaxDistance", "RollOffMinDistance" }
+local GUI_PROPS = { "Size", "Position", "AnchorPoint", "BackgroundTransparency", "BackgroundColor3", "BorderSizePixel", "Visible", "Rotation" }
+local TEXT_PROPS = { "Text", "TextColor3", "TextTransparency", "TextScaled", "TextSize", "Font", "RichText", "TextStrokeColor3", "TextStrokeTransparency", "TextXAlignment", "TextYAlignment" }
+local CHARACTER_MESH_PROPS = { "BodyPart", "MeshId", "BaseTextureId", "OverlayTextureId" }
+LIGHTING_PROPS = {
+	"Ambient", "Brightness", "ClockTime", "TimeOfDay", "ColorShift_Bottom", "ColorShift_Top",
+	"EnvironmentDiffuseScale", "EnvironmentSpecularScale", "ExposureCompensation",
+	"FogColor", "FogEnd", "FogStart", "GeographicLatitude", "GlobalShadows",
+	"OutdoorAmbient", "ShadowSoftness", "Technology",
+}
+SKY_PROPS = {
+	"CelestialBodiesShown", "MoonAngularSize", "MoonTextureId",
+	"SkyboxBk", "SkyboxDn", "SkyboxFt", "SkyboxLf", "SkyboxRt", "SkyboxUp",
+	"StarCount", "SunAngularSize", "SunTextureId",
+}
+ATMOSPHERE_PROPS = { "Density", "Offset", "Color", "Decay", "Glare", "Haze" }
+BLOOM_PROPS = { "Enabled", "Intensity", "Size", "Threshold" }
+BLUR_PROPS = { "Enabled", "Size" }
+COLOR_CORRECTION_PROPS = { "Enabled", "Brightness", "Contrast", "Saturation", "TintColor" }
+DEPTH_OF_FIELD_PROPS = { "Enabled", "FarIntensity", "FocusDistance", "InFocusRadius", "NearIntensity" }
+SUN_RAYS_PROPS = { "Enabled", "Intensity", "Spread" }
+
+local function getPropertyList(obj)
+	local props = {}
+	if obj:IsA("Lighting") then appendProps(props, LIGHTING_PROPS) end
+	if obj:IsA("BasePart") then appendProps(props, BASEPART_PROPS) end
+	if obj:IsA("Part") then appendProps(props, { "Shape" }) end
+	if obj:IsA("MeshPart") then appendProps(props, MESH_PART_PROPS) end
+	if obj:IsA("Sound") then appendProps(props, SOUND_PROPS) end
+	if obj:IsA("Sky") then appendProps(props, SKY_PROPS) end
+	if obj:IsA("Atmosphere") then appendProps(props, ATMOSPHERE_PROPS) end
+	if obj:IsA("BloomEffect") then appendProps(props, BLOOM_PROPS) end
+	if obj:IsA("BlurEffect") then appendProps(props, BLUR_PROPS) end
+	if obj:IsA("ColorCorrectionEffect") then appendProps(props, COLOR_CORRECTION_PROPS) end
+	if obj:IsA("DepthOfFieldEffect") then appendProps(props, DEPTH_OF_FIELD_PROPS) end
+	if obj:IsA("SunRaysEffect") then appendProps(props, SUN_RAYS_PROPS) end
+	if obj:IsA("ValueBase") then appendProps(props, { "Value" }) end
+	if obj:IsA("SpecialMesh") or obj:IsA("BlockMesh") or obj:IsA("CylinderMesh") then appendProps(props, { "Scale", "Offset" }) end
+	if obj:IsA("SpecialMesh") then appendProps(props, { "MeshType", "MeshId", "TextureId", "VertexColor" }) end
+	if obj:IsA("CharacterMesh") then appendProps(props, CHARACTER_MESH_PROPS) end
+	if obj:IsA("Decal") or obj:IsA("Texture") then appendProps(props, { "Texture", "Face", "Color3", "Transparency", "LocalTransparencyModifier", "ZIndex" }) end
+	if obj:IsA("Texture") then appendProps(props, { "StudsPerTileU", "StudsPerTileV", "OffsetStudsU", "OffsetStudsV" }) end
+	if obj:IsA("SurfaceAppearance") then appendProps(props, { "ColorMap", "MetalnessMap", "NormalMap", "RoughnessMap", "AlphaMode" }) end
+	if obj:IsA("Shirt") then appendProps(props, { "ShirtTemplate" }) end
+	if obj:IsA("Pants") then appendProps(props, { "PantsTemplate" }) end
+	if obj:IsA("ShirtGraphic") then appendProps(props, { "Graphic" }) end
+	if obj:IsA("ParticleEmitter") then appendProps(props, { "Texture", "Enabled", "Rate", "Lifetime", "Speed", "SpreadAngle", "Rotation", "RotSpeed", "Size", "Transparency", "Color", "LightEmission", "LightInfluence", "ZOffset", "Acceleration", "Drag", "VelocityInheritance", "EmissionDirection" }) end
+	if obj:IsA("Trail") then appendProps(props, { "Texture", "Enabled", "Lifetime", "MinLength", "FaceCamera", "WidthScale", "Transparency", "Color", "LightEmission", "LightInfluence", "TextureLength", "TextureMode" }) end
+	if obj:IsA("Beam") then appendProps(props, { "Texture", "Enabled", "Width0", "Width1", "CurveSize0", "CurveSize1", "FaceCamera", "Segments", "Transparency", "Color", "LightEmission", "LightInfluence", "TextureLength", "TextureMode", "TextureSpeed" }) end
+	if obj:IsA("Light") then appendProps(props, { "Enabled", "Brightness", "Color", "Shadows" }) end
+	if obj:IsA("PointLight") or obj:IsA("SpotLight") then appendProps(props, { "Range" }) end
+	if obj:IsA("SpotLight") then appendProps(props, { "Angle", "Face" }) end
+	if obj:IsA("SurfaceLight") then appendProps(props, { "Angle", "Face", "Range" }) end
+	if obj:IsA("SurfaceGui") then appendProps(props, { "Enabled", "Face", "AlwaysOnTop", "Brightness", "LightInfluence", "PixelsPerStud", "SizingMode", "CanvasSize" }) end
+	if obj:IsA("BillboardGui") then appendProps(props, { "Enabled", "AlwaysOnTop", "Size", "StudsOffset", "StudsOffsetWorldSpace", "MaxDistance", "LightInfluence" }) end
+	if obj:IsA("GuiObject") then appendProps(props, GUI_PROPS) end
+	if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then appendProps(props, TEXT_PROPS) end
+	if obj:IsA("Attachment") then appendProps(props, { "CFrame", "Position", "Orientation", "Visible", "Axis", "SecondaryAxis" }) end
+	if obj:IsA("Humanoid") then appendProps(props, { "DisplayDistanceType", "HealthDisplayType", "NameDisplayDistance" }) end
+	return props
+end
+
+local DEFAULT_INSTANCE_CACHE = {}
+local DEFAULT_PROP_CACHE = {}
+
+local function getDefaultInstance(className)
+	if DEFAULT_INSTANCE_CACHE[className] ~= nil then
+		return DEFAULT_INSTANCE_CACHE[className] ~= false and DEFAULT_INSTANCE_CACHE[className] or nil
+	end
+
+	local ok, inst = pcall(function()
+		return Instance.new(className)
+	end)
+	if ok and inst then
+		DEFAULT_INSTANCE_CACHE[className] = inst
+		return inst
+	end
+
+	DEFAULT_INSTANCE_CACHE[className] = false
+	return nil
+end
+
+local function getDefaultPackedProperty(className, prop)
+	local classCache = DEFAULT_PROP_CACHE[className]
+	if not classCache then
+		classCache = {}
+		DEFAULT_PROP_CACHE[className] = classCache
+	end
+
+	local cached = classCache[prop]
+	if cached then
+		return cached.value, cached.ok
+	end
+
+	local defaultInst = getDefaultInstance(className)
+	if not defaultInst then
+		classCache[prop] = { ok = false }
+		return nil, false
+	end
+
+	local ok, value = pcall(function()
+		return defaultInst[prop]
+	end)
+	if not ok then
+		classCache[prop] = { ok = false }
+		return nil, false
+	end
+
+	local packed = packValue(value)
+	if packed == nil then
+		classCache[prop] = { ok = false }
+		return nil, false
+	end
+
+	classCache[prop] = { ok = true, value = packed }
+	return packed, true
+end
+
+local function isDefaultPackedProperty(className, prop, packed)
+	local defaultPacked, hasDefault = getDefaultPackedProperty(className, prop)
+	return hasDefault and packedValuesEqual(packed, defaultPacked)
+end
+
+local function captureProps(obj)
+	local data = {}
+	for _, prop in ipairs(getPropertyList(obj)) do
+		local ok, value = pcall(function()
+			return obj[prop]
+		end)
+		if ok then
+			local packed = packValue(value)
+			if packed ~= nil and not isDefaultPackedProperty(obj.ClassName, prop, packed) then
+				data[prop] = packed
+			end
+		end
+	end
+	return data
+end
+
+function captureAllPackedProps(obj)
+	local data = {}
+	for _, prop in ipairs(getPropertyList(obj)) do
+		local ok, value = pcall(function()
+			return obj[prop]
+		end)
+		if ok then
+			local packed = packValue(value)
+			if packed ~= nil then
+				data[prop] = packed
+			end
+		end
+	end
+	return data
+end
+
+local function applyProps(obj, props, skip)
+	if typeof(props) ~= "table" then
+		return
+	end
+	for prop, packed in pairs(props) do
+		if not skip or not skip[prop] then
+			local value = unpackValue(packed)
+			if value ~= nil then
+				pcall(function()
+					obj[prop] = value
+				end)
+			end
+		end
+	end
+end
+
+local function applyDefaultPropsForSkipped(obj, className, props, skip)
+	props = props or {}
+	skip = skip or {}
+	for _, prop in ipairs(getPropertyList(obj)) do
+		if props[prop] == nil and not skip[prop] then
+			local defaultPacked, hasDefault = getDefaultPackedProperty(className, prop)
+			if hasDefault then
+				local value = unpackValue(defaultPacked)
+				if value ~= nil then
+					pcall(function()
+						obj[prop] = value
+					end)
+				end
+			end
+		end
+	end
+end
+
+function shouldCaptureLightingChild(obj)
+	return not obj:IsA("Script")
+		and not obj:IsA("LocalScript")
+		and not obj:IsA("ModuleScript")
+end
+
+function restoreReplayLighting()
+	if not lightingRestoreState then
+		return
+	end
+
+	for i = #(lightingRestoreState.CreatedChildren or {}), 1, -1 do
+		local child = lightingRestoreState.CreatedChildren[i]
+		if child then
+			child:Destroy()
+		end
+	end
+
+	applyProps(Lighting, lightingRestoreState.Props)
+
+	for _, child in ipairs(lightingRestoreState.HiddenChildren or {}) do
+		if child and child.Parent == nil then
+			child.Parent = Lighting
+		end
+	end
+
+	lightingRestoreState = nil
+end
+
+local VALUE_NIL = 0
+local VALUE_NUMBER = 1
+local VALUE_STRING = 2
+local VALUE_FALSE = 3
+local VALUE_TRUE = 4
+local VALUE_VECTOR2 = 5
+local VALUE_VECTOR3 = 6
+local VALUE_COLOR3 = 7
+local VALUE_CFRAME = 8
+local VALUE_UDIM = 9
+local VALUE_UDIM2 = 10
+local VALUE_ENUM = 11
+local VALUE_NUMBER_RANGE = 12
+local VALUE_NUMBER_SEQUENCE = 13
+local VALUE_COLOR_SEQUENCE = 14
+local VALUE_NUMBER64 = 15
+
+local function estimateVarUIntSize(value)
+	value = math.max(0, tonumber(value) or 0)
+	local bytes = 1
+	while value >= 0x80 do
+		bytes += 1
+		value = math.floor(value / 128)
+	end
+	return bytes
+end
+
+local function estimateStringIndexSize()
+	return 5
+end
+
+local function estimatePackedValueSize(v)
+	if v == nil then
+		return 1
+	end
+
+	local valueType = type(v)
+	if valueType == "number" then
+		return 9
+	elseif valueType == "string" then
+		return 1 + estimateStringIndexSize()
+	elseif valueType == "boolean" then
+		return 1
+	elseif valueType ~= "table" or not v.__t then
+		return 1
+	end
+
+	if v.__t == "Vector2" then
+		return 1 + 8
+	elseif v.__t == "Vector3" or v.__t == "Color3" then
+		return 1 + 12
+	elseif v.__t == "CFrame" then
+		return 1 + 48
+	elseif v.__t == "UDim" then
+		return 1 + 8
+	elseif v.__t == "UDim2" then
+		return 1 + 16
+	elseif v.__t == "EnumItem" then
+		return 1 + estimateStringIndexSize()
+	elseif v.__t == "NumberRange" then
+		return 1 + 8
+	elseif v.__t == "NumberSequence" then
+		local count = #(v.Keypoints or {})
+		return 1 + estimateVarUIntSize(count) + count * 12
+	elseif v.__t == "ColorSequence" then
+		local count = #(v.Keypoints or {})
+		return 1 + estimateVarUIntSize(count) + count * 16
+	end
+
+	return 1
+end
+
+local function writeStringIndex(buf, offset, stringDict, stringArray, value)
+	return writeVarUInt(buf, offset, getOrCreateStringIndex(stringDict, stringArray, value))
+end
+
+local function readStringIndex(buf, offset, stringArray)
+	local idx, nextOffset = readVarUInt(buf, offset)
+	return idx == 0 and "" or (stringArray[idx] or ""), nextOffset
+end
+
+function writePackedValue(buf, offset, value, stringDict, stringArray)
+	if value == nil then
+		buffer.writeu8(buf, offset, VALUE_NIL)
+		return offset + 1
+	end
+
+	local valueType = type(value)
+	if valueType == "number" then
+		buffer.writeu8(buf, offset, VALUE_NUMBER64)
+		offset += 1
+		buffer.writef64(buf, offset, value)
+		return offset + 8
+	elseif valueType == "string" then
+		buffer.writeu8(buf, offset, VALUE_STRING)
+		offset += 1
+		return writeStringIndex(buf, offset, stringDict, stringArray, value)
+	elseif valueType == "boolean" then
+		buffer.writeu8(buf, offset, value and VALUE_TRUE or VALUE_FALSE)
+		return offset + 1
+	end
+
+	if typeof(value) ~= "table" or not value.__t then
+		buffer.writeu8(buf, offset, VALUE_NIL)
+		return offset + 1
+	end
+
+	if value.__t == "Vector2" then
+		buffer.writeu8(buf, offset, VALUE_VECTOR2)
+		offset += 1
+		buffer.writef32(buf, offset, value.X or 0)
+		offset += 4
+		buffer.writef32(buf, offset, value.Y or 0)
+		offset += 4
+	elseif value.__t == "Vector3" then
+		buffer.writeu8(buf, offset, VALUE_VECTOR3)
+		offset += 1
+		buffer.writef32(buf, offset, value.X or 0)
+		offset += 4
+		buffer.writef32(buf, offset, value.Y or 0)
+		offset += 4
+		buffer.writef32(buf, offset, value.Z or 0)
+		offset += 4
+	elseif value.__t == "Color3" then
+		buffer.writeu8(buf, offset, VALUE_COLOR3)
+		offset += 1
+		buffer.writef32(buf, offset, value.R or 1)
+		offset += 4
+		buffer.writef32(buf, offset, value.G or 1)
+		offset += 4
+		buffer.writef32(buf, offset, value.B or 1)
+		offset += 4
+	elseif value.__t == "CFrame" then
+		buffer.writeu8(buf, offset, VALUE_CFRAME)
+		offset += 1
+		local values = value.Values or {}
+		for i = 1, 12 do
+			buffer.writef32(buf, offset, values[i] or ((i == 4 or i == 8 or i == 12) and 1 or 0))
+			offset += 4
+		end
+	elseif value.__t == "UDim" then
+		buffer.writeu8(buf, offset, VALUE_UDIM)
+		offset += 1
+		buffer.writef32(buf, offset, value.Scale or 0)
+		offset += 4
+		buffer.writei32(buf, offset, math.round(value.Offset or 0))
+		offset += 4
+	elseif value.__t == "UDim2" then
+		buffer.writeu8(buf, offset, VALUE_UDIM2)
+		offset += 1
+		buffer.writef32(buf, offset, value.XS or 0)
+		offset += 4
+		buffer.writei32(buf, offset, math.round(value.XO or 0))
+		offset += 4
+		buffer.writef32(buf, offset, value.YS or 0)
+		offset += 4
+		buffer.writei32(buf, offset, math.round(value.YO or 0))
+		offset += 4
+	elseif value.__t == "EnumItem" then
+		buffer.writeu8(buf, offset, VALUE_ENUM)
+		offset += 1
+		offset = writeStringIndex(buf, offset, stringDict, stringArray, value.Value or "")
+	elseif value.__t == "NumberRange" then
+		buffer.writeu8(buf, offset, VALUE_NUMBER_RANGE)
+		offset += 1
+		buffer.writef32(buf, offset, value.Min or 0)
+		offset += 4
+		buffer.writef32(buf, offset, value.Max or 0)
+		offset += 4
+	elseif value.__t == "NumberSequence" then
+		buffer.writeu8(buf, offset, VALUE_NUMBER_SEQUENCE)
+		offset += 1
+		local keypoints = value.Keypoints or {}
+		offset = writeVarUInt(buf, offset, #keypoints)
+		for _, kp in ipairs(keypoints) do
+			buffer.writef32(buf, offset, kp.Time or 0)
+			offset += 4
+			buffer.writef32(buf, offset, kp.Value or 0)
+			offset += 4
+			buffer.writef32(buf, offset, kp.Envelope or 0)
+			offset += 4
+		end
+	elseif value.__t == "ColorSequence" then
+		buffer.writeu8(buf, offset, VALUE_COLOR_SEQUENCE)
+		offset += 1
+		local keypoints = value.Keypoints or {}
+		offset = writeVarUInt(buf, offset, #keypoints)
+		for _, kp in ipairs(keypoints) do
+			local color = kp.Color or {}
+			buffer.writef32(buf, offset, kp.Time or 0)
+			offset += 4
+			buffer.writef32(buf, offset, color.R or 1)
+			offset += 4
+			buffer.writef32(buf, offset, color.G or 1)
+			offset += 4
+			buffer.writef32(buf, offset, color.B or 1)
+			offset += 4
+		end
+	else
+		buffer.writeu8(buf, offset, VALUE_NIL)
+		offset += 1
+	end
+
+	return offset
+end
+
+function readPackedValue(buf, offset, stringArray)
+	local code = buffer.readu8(buf, offset)
+	offset += 1
+
+	if code == VALUE_NIL then
+		return nil, offset
+	elseif code == VALUE_NUMBER then
+		local value = buffer.readf32(buf, offset)
+		return value, offset + 4
+	elseif code == VALUE_NUMBER64 then
+		local value = buffer.readf64(buf, offset)
+		return value, offset + 8
+	elseif code == VALUE_STRING then
+		return readStringIndex(buf, offset, stringArray)
+	elseif code == VALUE_FALSE then
+		return false, offset
+	elseif code == VALUE_TRUE then
+		return true, offset
+	elseif code == VALUE_VECTOR2 then
+		local x = buffer.readf32(buf, offset)
+		offset += 4
+		local y = buffer.readf32(buf, offset)
+		offset += 4
+		return { __t = "Vector2", X = x, Y = y }, offset
+	elseif code == VALUE_VECTOR3 then
+		local x = buffer.readf32(buf, offset)
+		offset += 4
+		local y = buffer.readf32(buf, offset)
+		offset += 4
+		local z = buffer.readf32(buf, offset)
+		offset += 4
+		return { __t = "Vector3", X = x, Y = y, Z = z }, offset
+	elseif code == VALUE_COLOR3 then
+		local r = buffer.readf32(buf, offset)
+		offset += 4
+		local g = buffer.readf32(buf, offset)
+		offset += 4
+		local b = buffer.readf32(buf, offset)
+		offset += 4
+		return { __t = "Color3", R = r, G = g, B = b }, offset
+	elseif code == VALUE_CFRAME then
+		local values = {}
+		for i = 1, 12 do
+			values[i] = buffer.readf32(buf, offset)
+			offset += 4
+		end
+		return { __t = "CFrame", Values = values }, offset
+	elseif code == VALUE_UDIM then
+		local scale = buffer.readf32(buf, offset)
+		offset += 4
+		local offsetValue = buffer.readi32(buf, offset)
+		offset += 4
+		return { __t = "UDim", Scale = scale, Offset = offsetValue }, offset
+	elseif code == VALUE_UDIM2 then
+		local xs = buffer.readf32(buf, offset)
+		offset += 4
+		local xo = buffer.readi32(buf, offset)
+		offset += 4
+		local ys = buffer.readf32(buf, offset)
+		offset += 4
+		local yo = buffer.readi32(buf, offset)
+		offset += 4
+		return { __t = "UDim2", XS = xs, XO = xo, YS = ys, YO = yo }, offset
+	elseif code == VALUE_ENUM then
+		local value
+		value, offset = readStringIndex(buf, offset, stringArray)
+		return { __t = "EnumItem", Value = value }, offset
+	elseif code == VALUE_NUMBER_RANGE then
+		local min = buffer.readf32(buf, offset)
+		offset += 4
+		local max = buffer.readf32(buf, offset)
+		offset += 4
+		return { __t = "NumberRange", Min = min, Max = max }, offset
+	elseif code == VALUE_NUMBER_SEQUENCE then
+		local count
+		count, offset = readVarUInt(buf, offset)
+		local keypoints = {}
+		for i = 1, count do
+			local time = buffer.readf32(buf, offset)
+			offset += 4
+			local value = buffer.readf32(buf, offset)
+			offset += 4
+			local envelope = buffer.readf32(buf, offset)
+			offset += 4
+			keypoints[i] = { Time = time, Value = value, Envelope = envelope }
+		end
+		return { __t = "NumberSequence", Keypoints = keypoints }, offset
+	elseif code == VALUE_COLOR_SEQUENCE then
+		local count
+		count, offset = readVarUInt(buf, offset)
+		local keypoints = {}
+		for i = 1, count do
+			local time = buffer.readf32(buf, offset)
+			offset += 4
+			local r = buffer.readf32(buf, offset)
+			offset += 4
+			local g = buffer.readf32(buf, offset)
+			offset += 4
+			local b = buffer.readf32(buf, offset)
+			offset += 4
+			keypoints[i] = { Time = time, Color = { __t = "Color3", R = r, G = g, B = b } }
+		end
+		return { __t = "ColorSequence", Keypoints = keypoints }, offset
+	end
+
+	return nil, offset
+end
+
+local function buildStringDictionaryBuffer(strArr)
+	local size = 4
+	for i = 1, #strArr do
+		local str = strArr[i] or ""
+		size += estimateVarUIntSize(#str) + #str
+	end
+
+	local dictBuf = buffer.create(size)
+	local offset = 0
+	buffer.writeu32(dictBuf, offset, #strArr)
+	offset += 4
+	for i = 1, #strArr do
+		local str = strArr[i] or ""
+		offset = writeVarUInt(dictBuf, offset, #str)
+		buffer.writestring(dictBuf, offset, str, #str)
+		offset += #str
+	end
+
+	return dictBuf
+end
+
+local function rebuildStringDictFromArray(session)
+	session.StringArray = session.StringArray or {}
+	session.StringDict = {}
+	for i, str in ipairs(session.StringArray) do
+		if type(str) == "string" and str ~= "" and session.StringDict[str] == nil then
+			session.StringDict[str] = i
+		end
+	end
+end
+
+local function estimateManifestEntrySize(data)
+	local size = 64
+	local props = data.Props or {}
+	for _, value in pairs(props) do
+		size += estimateStringIndexSize() + estimatePackedValueSize(value)
+	end
+
+	local path = data.SourcePath or {}
+	size += estimateVarUIntSize(#path)
+	for _, entry in ipairs(path) do
+		size += estimateStringIndexSize() * 2 + estimateVarUIntSize(entry.Index or 1)
+	end
+
+	if data.MeshSize then
+		size += estimatePackedValueSize(data.MeshSize)
+	end
+
+	local refs = data.Refs or {}
+	for _, value in pairs(refs) do
+		size += estimateStringIndexSize() + estimateVarUIntSize(value)
+	end
+
+	if data.PosScale then
+		size += estimateVarUIntSize(data.PosScale)
+	end
+
+	return size
+end
+
+local function encodeManifestBuffer(manifest, stringDict, stringArray)
+	local entries = {}
+	local estimate = 16
+	for id, data in pairs(manifest or {}) do
+		local numericId = tonumber(id) or tonumber(data.Id)
+		if numericId and typeof(data) == "table" then
+			entries[#entries + 1] = { id = numericId, data = data }
+			estimate += estimateManifestEntrySize(data)
+		end
+	end
+	table.sort(entries, function(a, b)
+		return a.id < b.id
+	end)
+
+	local manifestBuf = buffer.create(estimate * 2 + 1024)
+	local offset = 0
+	offset = writeVarUInt(manifestBuf, offset, #entries)
+
+	for _, entry in ipairs(entries) do
+		local id = entry.id
+		local data = entry.data
+		local props = data.Props or {}
+		local sourcePath = data.SourcePath or {}
+		local parentId = tonumber(data.ParentId) or 0
+		local trackKind = data.TrackKind or ""
+
+		offset = writeVarUInt(manifestBuf, offset, id)
+		offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, data.ClassName or "")
+		offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, data.Name or "")
+		offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, trackKind)
+		offset = writeVarUInt(manifestBuf, offset, parentId)
+
+		local propCount = 0
+		for _ in pairs(props) do
+			propCount += 1
+		end
+		offset = writeVarUInt(manifestBuf, offset, propCount)
+		for prop, value in pairs(props) do
+			offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, prop)
+			offset = writePackedValue(manifestBuf, offset, value, stringDict, stringArray)
+		end
+
+		offset = writeVarUInt(manifestBuf, offset, #sourcePath)
+		for _, pathEntry in ipairs(sourcePath) do
+			offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, pathEntry.Name or "")
+			offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, pathEntry.ClassName or "")
+			offset = writeVarUInt(manifestBuf, offset, tonumber(pathEntry.Index) or 1)
+		end
+
+		local refs = data.Refs or {}
+		local refCount = 0
+		for _ in pairs(refs) do
+			refCount += 1
+		end
+
+		local extraMask = 0
+		if data.MeshSize then
+			extraMask = bit32.bor(extraMask, 1)
+		end
+		if refCount > 0 then
+			extraMask = bit32.bor(extraMask, 2)
+		end
+		if data.PosScale then
+			extraMask = bit32.bor(extraMask, 4)
+		end
+		buffer.writeu8(manifestBuf, offset, extraMask)
+		offset += 1
+
+		if bit32.band(extraMask, 1) ~= 0 then
+			offset = writePackedValue(manifestBuf, offset, data.MeshSize, stringDict, stringArray)
+		end
+		if bit32.band(extraMask, 2) ~= 0 then
+			offset = writeVarUInt(manifestBuf, offset, refCount)
+			for refName, refId in pairs(refs) do
+				offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, refName)
+				offset = writeVarUInt(manifestBuf, offset, tonumber(refId) or 0)
+			end
+		end
+		if bit32.band(extraMask, 4) ~= 0 then
+			offset = writeVarUInt(manifestBuf, offset, tonumber(data.PosScale) or POS_SCALE)
+		end
+	end
+
+	local finalBuf = buffer.create(offset)
+	buffer.copy(finalBuf, 0, manifestBuf, 0, offset)
+	return finalBuf
+end
+
+local function decodeManifestBuffer(manifestBuf, stringArray)
+	local manifest = {}
+	local offset = 0
+	local entryCount
+	entryCount, offset = readVarUInt(manifestBuf, offset)
+
+	for _ = 1, entryCount do
+		local id
+		id, offset = readVarUInt(manifestBuf, offset)
+
+		local className, name, trackKind
+		className, offset = readStringIndex(manifestBuf, offset, stringArray)
+		name, offset = readStringIndex(manifestBuf, offset, stringArray)
+		trackKind, offset = readStringIndex(manifestBuf, offset, stringArray)
+
+		local parentId
+		parentId, offset = readVarUInt(manifestBuf, offset)
+
+		local props = {}
+		local propCount
+		propCount, offset = readVarUInt(manifestBuf, offset)
+		for _ = 1, propCount do
+			local propName
+			propName, offset = readStringIndex(manifestBuf, offset, stringArray)
+			local value
+			value, offset = readPackedValue(manifestBuf, offset, stringArray)
+			if propName ~= "" and value ~= nil then
+				props[propName] = value
+			end
+		end
+
+		local sourcePath = {}
+		local pathCount
+		pathCount, offset = readVarUInt(manifestBuf, offset)
+		for i = 1, pathCount do
+			local pathName, pathClassName, index
+			pathName, offset = readStringIndex(manifestBuf, offset, stringArray)
+			pathClassName, offset = readStringIndex(manifestBuf, offset, stringArray)
+			index, offset = readVarUInt(manifestBuf, offset)
+			sourcePath[i] = { Name = pathName, ClassName = pathClassName, Index = index }
+		end
+
+		local data = {
+			Id = id,
+			ClassName = className,
+			Name = name,
+			TrackKind = trackKind ~= "" and trackKind or nil,
+			Props = props,
+			ParentId = parentId ~= 0 and parentId or nil,
+			SourcePath = sourcePath,
+		}
+
+		local extraMask = buffer.readu8(manifestBuf, offset)
+		offset += 1
+		if bit32.band(extraMask, 1) ~= 0 then
+			data.MeshSize, offset = readPackedValue(manifestBuf, offset, stringArray)
+		end
+		if bit32.band(extraMask, 2) ~= 0 then
+			local refCount
+			refCount, offset = readVarUInt(manifestBuf, offset)
+			local refs = {}
+			for _ = 1, refCount do
+				local refName, refId
+				refName, offset = readStringIndex(manifestBuf, offset, stringArray)
+				refId, offset = readVarUInt(manifestBuf, offset)
+				if refName ~= "" then
+					refs[refName] = refId
+				end
+			end
+			if next(refs) then
+				data.Refs = refs
+			end
+		end
+		if bit32.band(extraMask, 4) ~= 0 then
+			data.PosScale, offset = readVarUInt(manifestBuf, offset)
+		end
+
+		if className == "MeshPart" then
+			data.MeshId = props.MeshId
+			data.TextureID = props.TextureID
+		elseif className == "SpecialMesh" then
+			data.MeshId = props.MeshId
+			data.TextureId = props.TextureId
+			data.MeshType = props.MeshType
+		elseif className == "SurfaceAppearance" then
+			data.ColorMap = props.ColorMap
+			data.MetalnessMap = props.MetalnessMap
+			data.NormalMap = props.NormalMap
+			data.RoughnessMap = props.RoughnessMap
+			data.AlphaMode = props.AlphaMode
+		end
+
+		manifest[id] = data
+	end
+
+	return manifest
+end
+
+local function getRawProp(props, name)
+	if typeof(props) ~= "table" then
+		return nil
+	end
+	local value = props[name]
+	if typeof(value) == "table" and value.__t then
+		return unpackValue(value)
+	end
+	return value
+end
+
+local function getDecalTransparencyState(obj)
+	local transparency = 0
+	local localModifier = 0
+	pcall(function() transparency = obj.Transparency end)
+	pcall(function() localModifier = obj.LocalTransparencyModifier end)
+	return { transparency, localModifier }
+end
+
+local function applyDecalTransparencyState(obj, state)
+	if type(state) == "number" then
+		pcall(function() obj.Transparency = state end)
+		return
+	end
+	if type(state) ~= "table" then
+		return
+	end
+	pcall(function() obj.Transparency = state[1] or 0 end)
+	pcall(function() obj.LocalTransparencyModifier = state[2] or 0 end)
+end
+
+local function isBlankContentId(value)
+	value = tostring(value or "")
+	return value == "" or value == "0" or value == "rbxassetid://" or value == "rbxassetid://0"
+end
+
+local function hasTexturedHeadMesh(head)
+	if not head or not head:IsA("BasePart") or head.Name ~= "Head" then
+		return false
+	end
+
+	if head:IsA("MeshPart") then
+		local textureId = ""
+		pcall(function() textureId = head.TextureID end)
+		if not isBlankContentId(textureId) then
+			return true
+		end
+	end
+
+	for _, child in ipairs(head:GetChildren()) do
+		if child:IsA("SpecialMesh") then
+			local textureId = ""
+			pcall(function() textureId = child.TextureId end)
+			if not isBlankContentId(textureId) then
+				return true
+			end
+		elseif child:IsA("SurfaceAppearance") then
+			local colorMap = ""
+			pcall(function() colorMap = child.ColorMap end)
+			if not isBlankContentId(colorMap) then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
+local function isDuplicateDefaultFace(obj)
+	if not (obj:IsA("Decal") or obj:IsA("Texture")) then
+		return false
+	end
+	if string.lower(obj.Name) ~= "face" then
+		return false
+	end
+	return hasTexturedHeadMesh(obj.Parent)
+end
+
+local function isCharacterObject(obj)
+	local model = obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model")
+	return model and model:FindFirstChildOfClass("Humanoid") ~= nil
+end
+
+function isLightingReplayObject(obj)
+	return obj == Lighting or obj:IsDescendantOf(Lighting)
+end
+
+local function getReplayPositionScale(obj)
+	return isCharacterObject(obj) and CHARACTER_POS_SCALE or MAP_POS_SCALE
+end
+
+local function getTrackKind(obj)
+	if isLightingReplayObject(obj) and #getPropertyList(obj) > 0 then
+		return "Props"
+	elseif obj:IsA("BasePart") then
+		return "BasePart"
+	elseif obj:IsA("Decal") or obj:IsA("Texture") then
+		return "Decal"
+	elseif obj:IsA("Sound") then
+		return "Sound"
+	elseif obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+		return "Text"
+	elseif obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") or obj:IsA("Light") or obj:IsA("SurfaceGui") or obj:IsA("BillboardGui") then
+		return "Enabled"
+	end
+	return nil
+end
+
+local function isStaticReplayObject(obj)
+	return obj:IsA("SpecialMesh")
+		or obj:IsA("BlockMesh")
+		or obj:IsA("CylinderMesh")
+		or obj:IsA("Decal")
+		or obj:IsA("Texture")
+		or obj:IsA("SurfaceAppearance")
+		or obj:IsA("Shirt")
+		or obj:IsA("Pants")
+		or obj:IsA("ShirtGraphic")
+		or obj:IsA("CharacterMesh")
+end
+
+local function isManifestObject(obj)
+	if obj:IsDescendantOf(ReplayFolder) or obj.Name == "Terrain" or obj:IsA("Camera") then
+		return false
+	end
+	if isDuplicateDefaultFace(obj) then
+		return false
+	end
+	return getTrackKind(obj) ~= nil
+		or isStaticReplayObject(obj)
+		or obj:IsA("Model")
+		or obj:IsA("Folder")
+		or obj:IsA("Accessory")
+		or obj:IsA("Tool")
+		or obj:IsA("Humanoid")
+		or obj:IsA("Attachment")
+		or obj:IsA("GuiObject")
+end
+
+local function prepareReplayInstance(obj)
+	if obj:IsA("BasePart") then
+		obj.Anchored = true
+		obj.CanCollide = false
+		obj.LocalTransparencyModifier = 0
+	elseif obj:IsA("Sound") then
+		obj:Stop()
+	elseif isReplayHiddenEffectObject and isReplayHiddenEffectObject(obj) then
+		setReplayEffectActive(obj, false)
+	elseif obj:IsA("Humanoid") then
+		obj.PlatformStand = true
+		obj.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+	end
+end
+
+local function cleanClone(clone)
+	for _, c in pairs(clone:GetDescendants()) do
+		if c:IsA("JointInstance") or c:IsA("Constraint") or c:IsA("WeldConstraint") or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript") then
+			c:Destroy()
+		else
+			prepareReplayInstance(c)
+		end
+	end
+	prepareReplayInstance(clone)
+end
+
+local function removeReplayManagedVisualChildren(inst)
+	for _, child in ipairs(inst:GetDescendants()) do
+		if child:IsA("Decal") or child:IsA("Texture") then
+			child:Destroy()
+		end
+	end
+end
+
+local function getSiblingIndex(obj)
+	local parent = obj.Parent
+	if not parent then
+		return 1
+	end
+	local index = 0
+	for _, child in ipairs(parent:GetChildren()) do
+		if child.Name == obj.Name and child.ClassName == obj.ClassName then
+			index += 1
+			if child == obj then
+				return index
+			end
+		end
+	end
+	return 1
+end
+
+local function getInstancePath(obj)
+	local path = {}
+	local cur = obj
+	while cur and cur ~= game do
+		table.insert(path, 1, { Name = cur.Name, ClassName = cur.ClassName, Index = getSiblingIndex(cur) })
+		cur = cur.Parent
+	end
+	return path
+end
+
+local function findInstanceByPath(path)
+	if typeof(path) ~= "table" or #path == 0 then
+		return nil
+	end
+
+	local first = path[1]
+	local cur
+	local okService, service = pcall(function()
+		return game:GetService(first.ClassName)
+	end)
+	if okService and service and service.Name == first.Name then
+		cur = service
+	else
+		cur = game:FindFirstChild(first.Name)
+	end
+
+	for i = 2, #path do
+		if not cur then
+			return nil
+		end
+
+		local entry = path[i]
+		local wantedIndex = tonumber(entry.Index) or 1
+		local seen = 0
+		local found
+		for _, child in ipairs(cur:GetChildren()) do
+			if child.Name == entry.Name and child.ClassName == entry.ClassName then
+				seen += 1
+				if seen == wantedIndex then
+					found = child
+					break
+				end
+			end
+		end
+		cur = found
+	end
+
+	return cur
+end
+
+local function findChildByManifest(parent, data, usedInstances)
+	if not parent or typeof(data.SourcePath) ~= "table" then
+		return nil
+	end
+	local entry = data.SourcePath[#data.SourcePath]
+	if not entry then
+		return nil
+	end
+
+	local wantedIndex = tonumber(entry.Index) or 1
+	local seen = 0
+	for _, child in ipairs(parent:GetChildren()) do
+		if not usedInstances[child] and child.Name == entry.Name and child.ClassName == entry.ClassName then
+			seen += 1
+			if seen == wantedIndex then
+				return child
+			end
+		end
+	end
+
+	for _, child in ipairs(parent:GetChildren()) do
+		if not usedInstances[child] and child.Name == entry.Name and child.ClassName == entry.ClassName then
+			return child
+		end
+	end
+
+	return nil
+end
+
+local function setSmoothSurfaces(part)
+	for _, prop in ipairs({ "TopSurface", "BottomSurface", "FrontSurface", "BackSurface", "LeftSurface", "RightSurface" }) do
+		pcall(function()
+			part[prop] = Enum.SurfaceType.Smooth
+		end)
+	end
+end
+
+local function safeDiv(a, b)
+	if math.abs(b) < 0.001 then
+		return 1
+	end
+	return a / b
+end
+
+local function findManifestParentId(session, obj)
+	local parent = obj.Parent
+	while parent do
+		local parentId = session.OrigToId[parent]
+		if parentId then
+			return parentId
+		end
+		parent = parent.Parent
+	end
+	return nil
+end
+
+local function extractInitialState(session, obj, id)
+	local props = isLightingReplayObject(obj) and captureAllPackedProps(obj) or captureProps(obj)
+	local data = {
+		Id = id,
+		ClassName = obj.ClassName,
+		Name = obj.Name,
+		TrackKind = getTrackKind(obj),
+		Props = props,
+		ParentId = findManifestParentId(session, obj),
+		SourcePath = getInstancePath(obj),
+	}
+
+	if data.TrackKind == "BasePart" then
+		data.PosScale = getReplayPositionScale(obj)
+	end
+
+	if obj:IsA("MeshPart") then
+		data.MeshId = props.MeshId
+		data.TextureID = props.TextureID
+		local okMeshSize, meshSize = pcall(function()
+			return obj.MeshSize
+		end)
+		if okMeshSize then
+			data.MeshSize = packValue(meshSize)
+		end
+	end
+	if obj:IsA("SpecialMesh") then
+		data.MeshId = props.MeshId
+		data.TextureId = props.TextureId
+		data.MeshType = props.MeshType
+	end
+	if obj:IsA("SurfaceAppearance") then
+		data.ColorMap = props.ColorMap
+		data.MetalnessMap = props.MetalnessMap
+		data.NormalMap = props.NormalMap
+		data.RoughnessMap = props.RoughnessMap
+		data.AlphaMode = props.AlphaMode
+	end
+
+	local refs = {}
+	if obj:IsA("Trail") or obj:IsA("Beam") then
+		if obj.Attachment0 and session.OrigToId[obj.Attachment0] then
+			refs.Attachment0Id = session.OrigToId[obj.Attachment0]
+		end
+		if obj.Attachment1 and session.OrigToId[obj.Attachment1] then
+			refs.Attachment1Id = session.OrigToId[obj.Attachment1]
+		end
+	end
+	if obj:IsA("SurfaceGui") or obj:IsA("BillboardGui") then
+		local ok, adornee = pcall(function()
+			return obj.Adornee
+		end)
+		if ok and adornee and session.OrigToId[adornee] then
+			refs.AdorneeId = session.OrigToId[adornee]
+		end
+	end
+	if next(refs) then
+		data.Refs = refs
+	end
+
+	return data
+end
+
+local function applyReferences(inst, data, idToInstance)
+	local refs = data.Refs
+	if typeof(refs) ~= "table" then
+		return
+	end
+	if refs.Attachment0Id and idToInstance[tonumber(refs.Attachment0Id)] then
+		pcall(function() inst.Attachment0 = idToInstance[tonumber(refs.Attachment0Id)] end)
+	end
+	if refs.Attachment1Id and idToInstance[tonumber(refs.Attachment1Id)] then
+		pcall(function() inst.Attachment1 = idToInstance[tonumber(refs.Attachment1Id)] end)
+	end
+	if refs.AdorneeId and idToInstance[tonumber(refs.AdorneeId)] then
+		pcall(function() inst.Adornee = idToInstance[tonumber(refs.AdorneeId)] end)
+	end
+end
+
+local function registerTree(root)
+	if not currentSession or not root or root:IsDescendantOf(ReplayFolder) then
+		return
+	end
+
+	local allOrigs = { root }
+	for _, d in ipairs(root:GetDescendants()) do
+		allOrigs[#allOrigs + 1] = d
+	end
+
+	local hasManifestObject = false
+	for _, obj in ipairs(allOrigs) do
+		if isManifestObject(obj) then
+			hasManifestObject = true
+			break
+		end
+	end
+	if not hasManifestObject then
+		return
+	end
+
+	local archStates = {}
+	local function setArchivable(obj)
+		archStates[obj] = obj.Archivable
+		obj.Archivable = true
+		for _, child in ipairs(obj:GetChildren()) do
+			setArchivable(child)
+		end
+	end
+	pcall(function()
+		setArchivable(root)
+	end)
+
+	local tagPrefix = "Rep_" .. tostring(os.clock()) .. "_" .. tostring(math.random(1000, 9999)) .. "_"
+	for i, obj in ipairs(allOrigs) do
+		pcall(function()
+			obj:SetAttribute("RepTag", tagPrefix .. i)
+		end)
+	end
+
+	local okClone, rootClone = pcall(function()
+		return root:Clone()
+	end)
+
+	for obj, state in pairs(archStates) do
+		pcall(function()
+			obj.Archivable = state
+		end)
+	end
+
+	if not okClone or not rootClone then
+		for _, obj in ipairs(allOrigs) do
+			pcall(function()
+				obj:SetAttribute("RepTag", nil)
+			end)
+		end
+		return
+	end
+
+	local cloneDesc = { rootClone }
+	for _, c in ipairs(rootClone:GetDescendants()) do
+		cloneDesc[#cloneDesc + 1] = c
+	end
+
+	local cloneDict = {}
+	for _, c in ipairs(cloneDesc) do
+		local tag = c:GetAttribute("RepTag")
+		if tag then
+			cloneDict[tag] = c
+		end
+		c:SetAttribute("RepTag", nil)
+	end
+
+	for _, obj in ipairs(allOrigs) do
+		local tag = obj:GetAttribute("RepTag")
+		local clone = tag and cloneDict[tag]
+		if clone and isDuplicateDefaultFace(obj) then
+			clone:Destroy()
+			clone = nil
+		end
+		if clone then
+			currentSession.OrigToClone[obj] = clone
+		end
+		if clone and isManifestObject(obj) and not currentSession.OrigToId[obj] then
+			local id = currentSession.NextId
+			currentSession.NextId += 1
+			currentSession.OrigToId[obj] = id
+		end
+	end
+
+	for _, obj in ipairs(allOrigs) do
+		local id = currentSession.OrigToId[obj]
+		local clone = currentSession.OrigToClone[obj]
+		if id and clone and not currentSession.Manifest[id] then
+			currentSession.Manifest[id] = extractInitialState(currentSession, obj, id)
+			local kind = getTrackKind(obj)
+			if kind then
+				currentSession.TrackedParts[id] = {
+					id = id,
+					orig = obj,
+					clone = clone,
+					kind = kind,
+					className = obj.ClassName,
+					posScale = kind == "BasePart" and getReplayPositionScale(obj) or nil,
+				}
+				currentSession.TrackedListDirty = true
+			end
+		end
+		pcall(function()
+			obj:SetAttribute("RepTag", nil)
+		end)
+	end
+
+	local parentClone = root.Parent and currentSession.OrigToClone[root.Parent]
+	if parentClone then
+		rootClone.Parent = parentClone
+	else
+		currentSession.RootClones[root] = rootClone
+	end
+	cleanClone(rootClone)
+end
+
+function registerLightingObject(obj)
+	if not isRecording or not currentSession or not obj or not isLightingReplayObject(obj) then
+		return
+	end
+	if obj ~= Lighting and not shouldCaptureLightingChild(obj) then
+		return
+	end
+
+	local parent = obj.Parent
+	if parent and isLightingReplayObject(parent) and not currentSession.OrigToId[parent] then
+		registerLightingObject(parent)
+	end
+
+	if currentSession.OrigToId[obj] or not isManifestObject(obj) then
+		return
+	end
+
+	local id = currentSession.NextId
+	currentSession.NextId += 1
+	currentSession.OrigToId[obj] = id
+	currentSession.Manifest[id] = extractInitialState(currentSession, obj, id)
+
+	local kind = getTrackKind(obj)
+	if kind then
+		currentSession.TrackedParts[id] = {
+			id = id,
+			orig = obj,
+			clone = nil,
+			kind = kind,
+			className = obj.ClassName,
+		}
+		currentSession.TrackedListDirty = true
+	end
+end
+
+function registerLightingTree(root)
+	if not isRecording or not currentSession or not root then
+		return
+	end
+	if root ~= Lighting and not root:IsDescendantOf(Lighting) then
+		return
+	end
+
+	registerLightingObject(root)
+	for _, obj in ipairs(root:GetDescendants()) do
+		registerLightingObject(obj)
+	end
+end
+
+local function registerEntity(obj)
+	if not isRecording or not currentSession then
+		return
+	end
+	if not obj or not obj.Parent then
+		return
+	end
+	if obj:IsDescendantOf(ReplayFolder) or obj.Name == "Terrain" or obj:IsA("Camera") then
+		return
+	end
+
+	local root = obj
+	local modelAncestor = obj:FindFirstAncestorOfClass("Model")
+	if obj:IsA("Model") and obj:FindFirstChildOfClass("Humanoid") then
+		root = obj
+	elseif modelAncestor and modelAncestor:FindFirstChildOfClass("Humanoid") then
+		root = modelAncestor
+	end
+
+	if currentSession.OrigToClone[root] then
+		if not currentSession.OrigToClone[obj] and isManifestObject(obj) then
+			registerTree(obj)
+		end
+		return
+	end
+
+	registerTree(root)
+end
+
+local function getTrackedList(session)
+	if not session then
+		return {}
+	end
+
+	if session.TrackedList and not session.TrackedListDirty then
+		return session.TrackedList
+	end
+
+	local list = {}
+	for id, item in pairs(session.TrackedParts or {}) do
+		item.id = item.id or id
+		list[#list + 1] = item
+	end
+
+	table.sort(list, function(a, b)
+		return (a.id or 0) < (b.id or 0)
+	end)
+
+	session.TrackedList = list
+	session.TrackedListDirty = false
+	return list
+end
+
+local function sortedManifestEntries(manifest)
+	local entries = {}
+	for id, data in pairs(manifest or {}) do
+		local numericId = tonumber(id) or tonumber(data.Id)
+		if numericId and typeof(data) == "table" then
+			entries[#entries + 1] = { id = numericId, data = data }
+		end
+	end
+	table.sort(entries, function(a, b)
+		return a.id < b.id
+	end)
+	return entries
+end
+
+local function getManifestData(session, id)
+	if not session or not session.Manifest then
+		return nil
+	end
+	return session.Manifest[id] or session.Manifest[tostring(id)]
+end
+
+local function manifestHeadHasTexturedMesh(session, headId)
+	local headData = getManifestData(session, headId)
+	if typeof(headData) ~= "table" or headData.Name ~= "Head" then
+		return false
+	end
+
+	local headProps = headData.Props or {}
+	if headData.ClassName == "MeshPart" then
+		local textureId = getRawProp(headProps, "TextureID") or headData.TextureID
+		if not isBlankContentId(textureId) then
+			return true
+		end
+	end
+
+	for _, entry in ipairs(sortedManifestEntries(session.Manifest)) do
+		local data = entry.data
+		if tonumber(data.ParentId) == tonumber(headId) then
+			if data.ClassName == "SpecialMesh" then
+				local textureId = getRawProp(data.Props, "TextureId") or data.TextureId
+				if not isBlankContentId(textureId) then
+					return true
+				end
+			elseif data.ClassName == "SurfaceAppearance" then
+				local colorMap = getRawProp(data.Props, "ColorMap") or data.ColorMap
+				if not isBlankContentId(colorMap) then
+					return true
+				end
+			end
+		end
+	end
+
+	return false
+end
+
+local function shouldSkipManifestFace(session, data)
+	if typeof(data) ~= "table" then
+		return false
+	end
+	if data.ClassName ~= "Decal" and data.ClassName ~= "Texture" then
+		return false
+	end
+	if string.lower(tostring(data.Name or "")) ~= "face" then
+		return false
+	end
+	local parentId = tonumber(data.ParentId)
+	if not parentId then
+		return false
+	end
+	return manifestHeadHasTexturedMesh(session, parentId)
+end
+
+function isLightingManifestData(data)
+	if typeof(data) ~= "table" then
+		return false
+	end
+	if data.ClassName == "Lighting" then
+		return true
+	end
+	local path = data.SourcePath
+	local first = typeof(path) == "table" and path[1] or nil
+	return typeof(first) == "table" and first.ClassName == "Lighting"
+end
+
+function canParentReplayInstance(inst, parent)
+	if inst and inst:IsA("SurfaceAppearance") then
+		return parent ~= nil and parent:IsA("MeshPart")
+	end
+	return true
+end
+
+local function createLoadedInstance(data)
+	local props = data.Props or {}
+
+	if data.ClassName == "MeshPart" then
+		local source = findInstanceByPath(data.SourcePath)
+		if source and source:IsA("MeshPart") then
+			local clone = source:Clone()
+			clone.Name = data.Name or source.Name
+			removeReplayManagedVisualChildren(clone)
+			applyDefaultPropsForSkipped(clone, data.ClassName, props, { MeshId = true, MeshContent = true, TextureContent = true })
+			applyProps(clone, props, { MeshId = true, MeshContent = true, TextureContent = true })
+			cleanClone(clone)
+			return clone, nil, false, true
+		end
+
+		local part = Instance.new("Part")
+		part.Name = data.Name or "MissingMeshPart"
+		setSmoothSurfaces(part)
+		applyProps(part, props, {
+			MeshId = true,
+			MeshContent = true,
+			TextureContent = true,
+			TextureID = true,
+			TopSurface = true,
+			BottomSurface = true,
+			FrontSurface = true,
+			BackSurface = true,
+			LeftSurface = true,
+			RightSurface = true,
+		})
+
+		local mesh = Instance.new("SpecialMesh")
+		mesh.Name = "MeshPartFallbackMesh"
+		mesh.MeshType = Enum.MeshType.FileMesh
+		mesh.MeshId = tostring(getRawProp(props, "MeshId") or data.MeshId or "")
+		mesh.TextureId = tostring(getRawProp(props, "TextureID") or data.TextureID or "")
+		mesh.Parent = part
+
+		local wantedSize = getRawProp(props, "Size") or Vector3.new(1, 1, 1)
+		local meshSize = unpackValue(data.MeshSize)
+		if typeof(meshSize) == "Vector3" then
+			part.Size = Vector3.new(math.max(meshSize.X, 0.05), math.max(meshSize.Y, 0.05), math.max(meshSize.Z, 0.05))
+			mesh.Scale = Vector3.new(safeDiv(wantedSize.X, part.Size.X), safeDiv(wantedSize.Y, part.Size.Y), safeDiv(wantedSize.Z, part.Size.Z))
+		else
+			part.Size = Vector3.new(1, 1, 1)
+			mesh.Scale = wantedSize
+		end
+
+		prepareReplayInstance(part)
+		return part, mesh, true, false
+	end
+
+	if data.ClassName == "SurfaceAppearance" then
+		local source = findInstanceByPath(data.SourcePath)
+		local inst
+		if source and source:IsA("SurfaceAppearance") then
+			inst = source:Clone()
+			inst.Name = data.Name or source.Name
+		else
+			inst = Instance.new("SurfaceAppearance")
+			inst.Name = data.Name or "SurfaceAppearance"
+		end
+		applyDefaultPropsForSkipped(inst, data.ClassName, props)
+		applyProps(inst, props)
+		return inst, nil, false, source ~= nil
+	end
+
+	local ok, inst = pcall(function()
+		return Instance.new(data.ClassName)
+	end)
+	if not ok or not inst then
+		return nil
+	end
+
+	inst.Name = data.Name or data.ClassName
+	applyProps(inst, props)
+	prepareReplayInstance(inst)
+	return inst, nil, false, false
+end
+
+local function buildLoadedReplay(session)
+	if session.BuiltFromManifest then
+		return true
+	end
+
+	session.TrackedParts = {}
+	session.TrackedList = {}
+	session.TrackedListDirty = true
+	session.RootClones = {}
+	session.OrigToClone = {}
+	session.IdToClone = {}
+
+	local idToInstance = session.IdToClone
+	local usedInstances = {}
+	local entries = sortedManifestEntries(session.Manifest)
+
+	for _, entry in ipairs(entries) do
+		local id = entry.id
+		local data = entry.data
+		if not isLightingManifestData(data) and not shouldSkipManifestFace(session, data) then
+			local parentId = tonumber(data.ParentId)
+			local parent = parentId and idToInstance[parentId]
+			local inst = parent and findChildByManifest(parent, data, usedInstances)
+			local meshVisual, meshFallback = nil, false
+
+			if inst then
+				usedInstances[inst] = true
+				applyDefaultPropsForSkipped(inst, data.ClassName, data.Props)
+				applyProps(inst, data.Props)
+				prepareReplayInstance(inst)
+			else
+				local sourceCloned
+				inst, meshVisual, meshFallback, sourceCloned = createLoadedInstance(data)
+				if inst then
+					usedInstances[inst] = true
+					if sourceCloned then
+						for _, d in ipairs(inst:GetDescendants()) do
+							usedInstances[d] = false
+						end
+					end
+				end
+			end
+
+			if inst and not canParentReplayInstance(inst, parent) then
+				inst:Destroy()
+				inst = nil
+			end
+
+			if inst then
+				idToInstance[id] = inst
+				if data.TrackKind then
+					session.TrackedParts[id] = {
+						id = id,
+						orig = nil,
+						clone = inst,
+						kind = data.TrackKind,
+						className = data.ClassName,
+						posScale = tonumber(data.PosScale) or POS_SCALE,
+						meshFallback = meshFallback,
+						meshVisual = meshVisual,
+						meshBaseSize = meshFallback and inst.Size or nil,
+					}
+				end
+			end
+		end
+	end
+	session.TrackedListDirty = true
+
+	for _, entry in ipairs(entries) do
+		local inst = idToInstance[entry.id]
+		if inst then
+			applyReferences(inst, entry.data, idToInstance)
+		end
+	end
+
+	for _, entry in ipairs(entries) do
+		local id = entry.id
+		local data = entry.data
+		local inst = idToInstance[id]
+		if inst then
+			local parentId = tonumber(data.ParentId)
+			local parent = parentId and idToInstance[parentId]
+			if parent and inst.Parent ~= parent then
+				if canParentReplayInstance(inst, parent) then
+					inst.Parent = parent
+				end
+			elseif not parent then
+				if canParentReplayInstance(inst, nil) then
+					table.insert(session.RootClones, inst)
+				end
+			end
+		end
+	end
+
+	session.BuiltFromManifest = true
+	return true
+end
+
+function buildReplayLighting(session)
+	if not session or not session.Manifest then
+		return
+	end
+
+	local entries = sortedManifestEntries(session.Manifest)
+	local hasLightingData = false
+	for _, entry in ipairs(entries) do
+		if isLightingManifestData(entry.data) then
+			hasLightingData = true
+			break
+		end
+	end
+	if not hasLightingData then
+		return
+	end
+
+	restoreReplayLighting()
+
+	local originalChildren = Lighting:GetChildren()
+	local lightingIdToInstance = {}
+	local createdChildren = {}
+	session.LightingIdToInstance = lightingIdToInstance
+
+	lightingRestoreState = {
+		Props = captureAllPackedProps(Lighting),
+		HiddenChildren = {},
+		CreatedChildren = createdChildren,
+	}
+
+	for _, entry in ipairs(entries) do
+		local id = entry.id
+		local data = entry.data
+		if isLightingManifestData(data) then
+			local inst
+			if data.ClassName == "Lighting" then
+				inst = Lighting
+			else
+				local ok
+				ok, inst = pcall(function()
+					return Instance.new(data.ClassName)
+				end)
+				if ok and inst then
+					inst.Name = data.Name or data.ClassName
+					applyProps(inst, data.Props)
+					table.insert(createdChildren, inst)
+				else
+					inst = nil
+				end
+			end
+
+			if inst then
+				lightingIdToInstance[id] = inst
+				if data.TrackKind then
+					local item = session.TrackedParts[id]
+					if not item then
+						item = {
+							id = id,
+							orig = nil,
+							kind = data.TrackKind,
+							className = data.ClassName,
+						}
+						session.TrackedParts[id] = item
+					end
+					item.clone = inst
+					item.kind = data.TrackKind
+					item.id = id
+					item.replayParent = nil
+					item.replayParentId = tonumber(data.ParentId)
+				end
+			end
+		end
+	end
+
+	local parentedCount = 0
+	for _, entry in ipairs(entries) do
+		local inst = lightingIdToInstance[entry.id]
+		local data = entry.data
+		if inst and inst ~= Lighting and isLightingManifestData(data) then
+			local parent = tonumber(data.ParentId) and lightingIdToInstance[tonumber(data.ParentId)] or Lighting
+			pcall(function()
+				inst.Parent = parent or Lighting
+			end)
+			local item = session.TrackedParts[entry.id]
+			if item then
+				item.replayParent = parent or Lighting
+				item.replayParentId = tonumber(data.ParentId)
+			end
+			if inst.Parent then
+				parentedCount += 1
+			end
+		end
+	end
+
+	if parentedCount > 0 then
+		for _, child in ipairs(originalChildren) do
+			if child and child.Parent == Lighting then
+				table.insert(lightingRestoreState.HiddenChildren, child)
+				child.Parent = nil
+			end
+		end
+	else
+		for i = #createdChildren, 1, -1 do
+			local child = createdChildren[i]
+			if child then
+				child:Destroy()
+			end
+		end
+		lightingRestoreState.CreatedChildren = {}
+	end
+
+	session.TrackedListDirty = true
+end
+
+local function enforceGuisHidden()
+	if not isReplayMode then
+		return
+	end
+
+	for _, child in pairs(PlayerGui:GetChildren()) do
+		if child:IsA("ScreenGui") and child.Name ~= "UltimateReplayGui" then
+			if child.Enabled then
+				if hiddenOtherGuis[child] == nil then
+					hiddenOtherGuis[child] = true
+				end
+				child.Enabled = false
+			end
+		elseif child:IsA("Folder") then
+			for _, folderChild in pairs(child:GetChildren()) do
+				if folderChild:IsA("ScreenGui") and folderChild.Name ~= "UltimateReplayGui" and folderChild.Enabled then
+					if hiddenOtherGuis[folderChild] == nil then
+						hiddenOtherGuis[folderChild] = true
+					end
+					folderChild.Enabled = false
+				end
+			end
+		end
+	end
+end
+
+local function hideAllOtherGuis()
+	pcall(function()
+		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+	end)
+	hiddenOtherGuis = {}
+	pcall(function()
+		RunService:UnbindFromRenderStep("ReplayHideGuis")
+	end)
+	RunService:BindToRenderStep("ReplayHideGuis", Enum.RenderPriority.Last.Value + 1, enforceGuisHidden)
+end
+
+local function restoreAllOtherGuis()
+	pcall(function()
+		RunService:UnbindFromRenderStep("ReplayHideGuis")
+	end)
+	pcall(function()
+		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, true)
+	end)
+	for gui, wasEnabled in pairs(hiddenOtherGuis) do
+		if gui and gui.Parent then
+			gui.Enabled = wasEnabled
+		end
+	end
+	hiddenOtherGuis = {}
+end
+
+function isReplayHiddenEffectObject(obj)
+	local className = obj.ClassName
+	return obj:IsA("SurfaceGui")
+		or obj:IsA("BillboardGui")
+		or obj:IsA("ParticleEmitter")
+		or obj:IsA("Trail")
+		or obj:IsA("Beam")
+		or obj:IsA("Light")
+		or className == "Sparkles"
+		or className == "Fire"
+		or className == "Smoke"
+		or className == "Explosion"
+		or className == "Highlight"
+		or className == "SelectionBox"
+		or className == "SelectionSphere"
+		or className == "Handles"
+		or className == "ArcHandles"
+		or className == "ForceField"
+end
+
+function getReplayEffectActiveState(obj)
+	local okEnabled, enabled = pcall(function()
+		return obj.Enabled
+	end)
+	if okEnabled then
+		return "Enabled", enabled
+	end
+
+	local okVisible, visible = pcall(function()
+		return obj.Visible
+	end)
+	if okVisible then
+		return "Visible", visible
+	end
+
+	return nil, nil
+end
+
+function setReplayEffectActive(obj, active, prop)
+	prop = prop or select(1, getReplayEffectActiveState(obj))
+	if prop then
+		pcall(function()
+			obj[prop] = active
+		end)
+	end
+end
+
+local function hideLiveObject(obj)
+	if obj:IsDescendantOf(ReplayFolder) or obj.Name == "Terrain" or obj:IsA("Camera") then
+		return
+	end
+	if hiddenStates[obj] then
+		return
+	end
+
+	if obj:IsA("BasePart") then
+		hiddenStates[obj] = {
+			type = "BasePart",
+			origTrans = obj.Transparency,
+			origLocalTrans = obj.LocalTransparencyModifier,
+		}
+		obj.Transparency = 1
+		obj.LocalTransparencyModifier = 1
+	elseif obj:IsA("Decal") or obj:IsA("Texture") then
+		hiddenStates[obj] = { type = "Texture", origState = getDecalTransparencyState(obj) }
+		applyDecalTransparencyState(obj, { 1, 1 })
+	elseif isReplayHiddenEffectObject(obj) then
+		local prop, value = getReplayEffectActiveState(obj)
+		if prop then
+			hiddenStates[obj] = { type = "Effect", prop = prop, origValue = value }
+			setReplayEffectActive(obj, false, prop)
+		end
+	elseif obj:IsA("Sound") then
+		hiddenStates[obj] = { type = "Sound", origVol = obj.Volume }
+		obj.Volume = 0
+	end
+end
+
+local function enforceLiveWorldHidden()
+	for obj, data in pairs(hiddenStates) do
+		if obj and obj.Parent then
+			if data.type == "BasePart" then
+				obj.LocalTransparencyModifier = 1
+			elseif data.type == "Texture" then
+				applyDecalTransparencyState(obj, { 1, 1 })
+			elseif data.type == "Effect" then
+				setReplayEffectActive(obj, false, data.prop)
+			elseif data.type == "Sound" then
+				obj.Volume = 0
+			end
+		else
+			hiddenStates[obj] = nil
+		end
+	end
+end
+
+local function hideLiveTree(root)
+	if not root or root:IsDescendantOf(ReplayFolder) or root == workspace or root == SoundService then
+		return
+	end
+
+	hideLiveObject(root)
+	for _, obj in ipairs(root:GetDescendants()) do
+		hideLiveObject(obj)
+	end
+end
+
+local function addSourceRoot(root, roots, seen)
+	if not root or seen[root] or root:IsDescendantOf(ReplayFolder) or root == workspace or root == SoundService then
+		return
+	end
+
+	local parent = root.Parent
+	while parent do
+		if seen[parent] then
+			return
+		end
+		parent = parent.Parent
+	end
+
+	seen[root] = true
+	roots[#roots + 1] = root
+end
+
+local function collectReplaySourceRoots(session)
+	local roots = {}
+	local seen = {}
+
+	if not session then
+		return roots
+	end
+
+	for orig in pairs(session.RootClones or {}) do
+		if typeof(orig) == "Instance" then
+			addSourceRoot(orig, roots, seen)
+		end
+	end
+
+	for _, entry in ipairs(sortedManifestEntries(session.Manifest)) do
+		local data = entry.data
+		if typeof(data) == "table" and not data.ParentId and not isLightingManifestData(data) then
+			local source = findInstanceByPath(data.SourcePath)
+			if source then
+				addSourceRoot(source, roots, seen)
+			end
+		end
+	end
+
+	return roots
+end
+
+local function hideLiveWorld()
+	hiddenStates = {}
+
+	for _, obj in pairs(workspace:GetDescendants()) do
+		hideLiveObject(obj)
+	end
+	for _, obj in pairs(SoundService:GetDescendants()) do
+		hideLiveObject(obj)
+	end
+
+	liveAddedConnection = workspace.DescendantAdded:Connect(hideLiveObject)
+	liveSoundAddedConnection = SoundService.DescendantAdded:Connect(hideLiveObject)
+
+	pcall(function()
+		RunService:UnbindFromRenderStep("ReplayHideLive")
+	end)
+	local enforceAccumulator = 0
+	liveEnforceConnection = RunService.Heartbeat:Connect(function(dt)
+		enforceAccumulator += dt
+		if enforceAccumulator >= LIVE_HIDE_ENFORCE_INTERVAL then
+			enforceAccumulator = 0
+			enforceLiveWorldHidden()
+		end
+	end)
+end
+
+local function restoreLiveWorld()
+	pcall(function()
+		RunService:UnbindFromRenderStep("ReplayHideLive")
+	end)
+	if liveEnforceConnection then
+		liveEnforceConnection:Disconnect()
+		liveEnforceConnection = nil
+	end
+	if liveAddedConnection then
+		liveAddedConnection:Disconnect()
+		liveAddedConnection = nil
+	end
+	if liveSoundAddedConnection then
+		liveSoundAddedConnection:Disconnect()
+		liveSoundAddedConnection = nil
+	end
+
+	for obj, data in pairs(hiddenStates) do
+		if obj and obj.Parent then
+			if data.type == "BasePart" then
+				obj.LocalTransparencyModifier = data.origLocalTrans or 0
+				obj.Transparency = data.origTrans
+			elseif data.type == "Texture" then
+				applyDecalTransparencyState(obj, data.origState)
+			elseif data.type == "Effect" then
+				setReplayEffectActive(obj, data.origValue, data.prop)
+			elseif data.type == "Sound" then
+				obj.Volume = data.origVol
+			end
+		end
+	end
+	hiddenStates = {}
+end
+
+local function readStateIfChanged(item, lastState)
+	local orig = item.orig
+	if item.kind == "Props" then
+		if not orig or (orig ~= Lighting and not orig:IsDescendantOf(Lighting)) then
+			return lastState ~= false, false
+		end
+
+		local currentProps = captureAllPackedProps(orig)
+		if lastState and lastState ~= false and packedValuesEqual(currentProps, lastState) then
+			return false, lastState
+		end
+
+		return true, currentProps
+	end
+
+	if not orig or not orig.Parent then
+		return lastState ~= false, false
+	end
+	if not (orig:IsDescendantOf(workspace) or orig:IsDescendantOf(SoundService)) then
+		return lastState ~= false, false
+	end
+
+	if item.kind == "BasePart" then
+		local cf = orig.CFrame
+		local size = orig.Size
+		local color = orig.Color
+		local trans = (orig.Name == "HumanoidRootPart") and 1 or orig.Transparency
+
+		if lastState and lastState ~= false then
+			if cf:FuzzyEq(lastState[1], 0.001)
+				and (size - lastState[2]).Magnitude <= 0.001
+				and color == lastState[3]
+				and math.abs(trans - lastState[4]) <= 0.001 then
+				return false, lastState
+			end
+		end
+
+		return true, { cf, size, color, trans }
+	elseif item.kind == "Decal" then
+		local decalState = getDecalTransparencyState(orig)
+		local color = Color3.new(1, 1, 1)
+		local texture = ""
+		pcall(function() color = orig.Color3 end)
+		pcall(function() texture = orig.Texture end)
+
+		if lastState and lastState ~= false then
+			if texture == lastState[1]
+				and math.abs((decalState[1] or 0) - (lastState[2] or 0)) <= 0.001
+				and math.abs((decalState[2] or 0) - (lastState[3] or 0)) <= 0.001
+				and color == lastState[4] then
+				return false, lastState
+			end
+		end
+
+		return true, { texture, decalState[1], decalState[2], color }
+	elseif item.kind == "Sound" then
+		local isPlayingNow = orig.IsPlaying
+		local timePosition = orig.TimePosition
+		local volume = orig.Volume
+
+		if lastState and lastState ~= false then
+			if isPlayingNow == lastState[1]
+				and math.abs(timePosition - lastState[2]) <= 0.001
+				and math.abs(volume - lastState[3]) <= 0.001 then
+				return false, lastState
+			end
+		end
+
+		return true, { isPlayingNow, timePosition, volume }
+	elseif item.kind == "Text" then
+		local text = orig.Text
+		return text ~= lastState, text
+	elseif item.kind == "Enabled" then
+		local enabled = orig.Enabled
+		return enabled ~= lastState, enabled
+	end
+
+	return lastState ~= false, false
+end
+
+local function encodeSessionForSave(session)
+	session.StringArray = session.StringArray or {}
+	rebuildStringDictFromArray(session)
+
+	local manifestBuffer = encodeManifestBuffer(session.Manifest or {}, session.StringDict, session.StringArray)
+	local manifestLen = buffer.len(manifestBuffer)
+	local dictBuffer = buildStringDictionaryBuffer(session.StringArray)
+	local dictLen = buffer.len(dictBuffer)
+
+	local frameBuffers = {}
+	local framesDataSize = 0
+	for i = 1, #session.Frames do
+		local fb = session.Frames[i] or false
+		frameBuffers[i] = fb
+		framesDataSize += fb == false and 4 or (4 + buffer.len(fb))
+	end
+
+	local bigBuffer = buffer.create(dictLen + 4 + manifestLen + 4 + framesDataSize)
+	buffer.copy(bigBuffer, 0, dictBuffer, 0, dictLen)
+	local offset = dictLen
+
+	buffer.writeu32(bigBuffer, offset, manifestLen)
+	offset += 4
+	buffer.copy(bigBuffer, offset, manifestBuffer, 0, manifestLen)
+	offset += manifestLen
+
+	buffer.writeu32(bigBuffer, offset, #frameBuffers)
+	offset += 4
+	for _, fb in ipairs(frameBuffers) do
+		if fb == false then
+			buffer.writeu32(bigBuffer, offset, 0)
+			offset += 4
+		else
+			local len = buffer.len(fb)
+			buffer.writeu32(bigBuffer, offset, len)
+			offset += 4
+			buffer.copy(bigBuffer, offset, fb, 0, len)
+			offset += len
+		end
+	end
+
+	local okZstd, compressed = pcall(function()
+		return EncodingService:CompressBuffer(bigBuffer, Enum.CompressionAlgorithm.Zstd, 15)
+	end)
+	if not okZstd or not compressed then
+		warn("[Replay] zstd compression failed.")
+		return nil
+	end
+
+	return {
+		Version = REPLAY_VERSION,
+		ReplayFPS = session.ReplayFPS or REPLAY_FPS,
+		CreatedAt = session.CreatedAt or os.time(),
+		Manifest = {},
+		RecorderRootId = session.RecorderRootId,
+		Data = base64Encode(buffer.tostring(compressed)),
+		TotalFrames = #session.Frames,
+		TotalBytes = 0,
+		Compression = "zstd",
+	}
+end
+
+local function decodeSavedReplay(saved)
+	local ok, decoded = pcall(function()
+		if typeof(saved) ~= "table" then
+			return nil
+		end
+
+		local version = tonumber(saved.Version) or 0
+		if version < MIN_REPLAY_VERSION then
+			warn("[Replay] older replay data cannot be loaded by this decoder.")
+			return nil
+		end
+
+		local rawStr = saved.Data or ""
+		if type(rawStr) ~= "string" or rawStr == "" then
+			return nil
+		end
+
+		if saved.Compression ~= "zstd" then
+			return nil
+		end
+
+		local rawBuf = buffer.fromstring(base64Decode(rawStr))
+		local okDecompress, decompressed = pcall(function()
+			return EncodingService:DecompressBuffer(rawBuf, Enum.CompressionAlgorithm.Zstd)
+		end)
+		if not okDecompress or not decompressed then
+			return nil
+		end
+
+		local offset = 0
+		local strCount = buffer.readu32(decompressed, offset)
+		offset += 4
+		local stringArray = {}
+		for i = 1, strCount do
+			local len, newOff = readVarUInt(decompressed, offset)
+			offset = newOff
+			stringArray[i] = buffer.readstring(decompressed, offset, len)
+			offset += len
+		end
+
+		local manifestLen = buffer.readu32(decompressed, offset)
+		offset += 4
+		local manifestBuf = buffer.create(manifestLen)
+		buffer.copy(manifestBuf, 0, decompressed, offset, manifestLen)
+		offset += manifestLen
+
+		local decodedManifest = decodeManifestBuffer(manifestBuf, stringArray)
+
+		local numFrames = buffer.readu32(decompressed, offset)
+		offset += 4
+		local frames = {}
+		for i = 1, numFrames do
+			local len = buffer.readu32(decompressed, offset)
+			offset += 4
+			if len == 0 then
+				frames[i] = false
+			else
+				local frameBuf = buffer.create(len)
+				buffer.copy(frameBuf, 0, decompressed, offset, len)
+				offset += len
+				frames[i] = frameBuf
+			end
+		end
+
+		return {
+			Version = version,
+			UniqueId = saved.UniqueId,
+			ReplayFPS = saved.ReplayFPS or REPLAY_FPS,
+			CreatedAt = saved.CreatedAt,
+			SavedAt = saved.SavedAt,
+			Manifest = decodedManifest,
+			RecorderRootId = saved.RecorderRootId,
+			Frames = frames,
+			StringArray = stringArray,
+			TotalBytes = saved.TotalBytes or 0,
+			TrackedParts = {},
+			TrackedList = {},
+			TrackedListDirty = true,
+			OrigToClone = {},
+			RootClones = {},
+			OrigToId = {},
+			LastState = {},
+			NextId = 1,
+			IsLoadedReplay = true,
+			IsSaved = true,
+			IsSaving = false,
+		}
+	end)
+
+	if not ok then
+		warn("[Replay] saved replay decode failed:", decoded)
+		return nil
+	end
+
+	return decoded
+end
+
+function formatBytes(bytes)
+	bytes = tonumber(bytes) or 0
+	if bytes < 1024 then
+		return math.floor(bytes) .. " B"
+	end
+	if bytes < 1024 * 1024 then
+		return string.format("%.1f KB", bytes / 1024)
+	end
+	return string.format("%.2f MB", bytes / (1024 * 1024))
+end
+
+function trimText(text)
+	return tostring(text or ""):match("^%s*(.-)%s*$")
+end
+
+SHARE_CHUNK_BODY_LIMIT = 180000
+shareExportChunks = {}
+shareExportIndex = 1
+shareExportRawSize = 0
+shareImportChunkGroups = {}
+
+function selectShareCodeText()
+	task.defer(function()
+		if ShareCodeBox and ShareCodeBox.Parent then
+			local textLength = utf8.len(ShareCodeBox.Text) or #ShareCodeBox.Text
+			ShareCodeBox:CaptureFocus()
+			ShareCodeBox.CursorPosition = 1
+			ShareCodeBox.SelectionStart = textLength + 1
+		end
+	end)
+end
+
+function updateShareChunkButtons()
+	local hasChunks = shareExportChunks and #shareExportChunks > 1
+	if PrevShareChunkBtn then
+		PrevShareChunkBtn.Visible = hasChunks
+	end
+	if NextShareChunkBtn then
+		NextShareChunkBtn.Visible = hasChunks
+	end
+end
+
+function showShareExportChunk(index)
+	if not shareExportChunks or #shareExportChunks == 0 then
+		updateShareChunkButtons()
+		return
+	end
+
+	shareExportIndex = math.clamp(index, 1, #shareExportChunks)
+	ShareCodeBox.Text = shareExportChunks[shareExportIndex]
+	ShareCodeScroll.CanvasPosition = Vector2.new(0, 0)
+	updateShareCodeScrollCanvas()
+	updateShareChunkButtons()
+
+	if #shareExportChunks > 1 then
+		ShareStatusLabel.Text = "Code part " .. shareExportIndex .. "/" .. #shareExportChunks .. ". Copy each part with Ctrl+C. (" .. formatBytes(shareExportRawSize) .. ")"
+	else
+		ShareStatusLabel.Text = "Code ready. Copy with Ctrl+C. (" .. formatBytes(shareExportRawSize) .. ")"
+	end
+
+	selectShareCodeText()
+end
+
+function splitShareCodeText(shareText, payload)
+	shareExportChunks = {}
+	shareExportIndex = 1
+	shareExportRawSize = #shareText
+
+	if #shareText <= SHARE_CHUNK_BODY_LIMIT then
+		shareExportChunks[1] = shareText
+		return
+	end
+
+	local total = math.ceil(#shareText / SHARE_CHUNK_BODY_LIMIT)
+	local chunkId = tostring(payload.CreatedAt or os.time()) .. "-" .. tostring(#shareText) .. "-" .. tostring(math.random(100000, 999999))
+
+	for i = 1, total do
+		local startIndex = ((i - 1) * SHARE_CHUNK_BODY_LIMIT) + 1
+		local body = shareText:sub(startIndex, startIndex + SHARE_CHUNK_BODY_LIMIT - 1)
+		shareExportChunks[i] = "UR17CHUNK|" .. chunkId .. "|" .. i .. "|" .. total .. "|" .. body
+	end
+end
+
+function parseShareCodeChunk(codeText)
+	local chunkId, indexText, totalText, body = tostring(codeText or ""):match("^UR17CHUNK|([^|]+)|(%d+)|(%d+)|(.*)$")
+	if not chunkId then
+		return nil
+	end
+
+	local index = tonumber(indexText)
+	local total = tonumber(totalText)
+	if not index or not total or index < 1 or total < 1 or index > total then
+		return nil
+	end
+
+	return chunkId, index, total, body or ""
+end
+
+function exportSessionToShareCode(session)
+	if not session or not session.Frames or #session.Frames == 0 then
+		ShareStatusLabel.Text = "내보낼 리플레이가 없습니다."
+		return
+	end
+
+	ShareStatusLabel.Text = "코드 생성 중..."
+
+	task.spawn(function()
+		local payload = encodeSessionForSave(session)
+		if not payload then
+			ShareStatusLabel.Text = "코드 생성 실패"
+			return
+		end
+
+		local ok, shareText = pcall(function()
+			return HttpService:JSONEncode(payload)
+		end)
+
+		if ok and type(shareText) == "string" then
+			splitShareCodeText(shareText, payload)
+			showShareExportChunk(1)
+		else
+			ShareStatusLabel.Text = "코드 생성 실패"
+		end
+	end)
+end
+
+function importSessionFromShareCode(codeText)
+	codeText = trimText(codeText)
+
+	if codeText == "" then
+		ShareStatusLabel.Text = "붙여넣은 코드가 없습니다."
+		return
+	end
+
+	local chunkId, chunkIndex, chunkTotal, chunkBody = parseShareCodeChunk(codeText)
+	if chunkId then
+		local group = shareImportChunkGroups[chunkId]
+		if not group then
+			group = { Total = chunkTotal, Parts = {}, Count = 0, Size = 0 }
+			shareImportChunkGroups[chunkId] = group
+		end
+
+		if group.Total ~= chunkTotal then
+			shareImportChunkGroups[chunkId] = nil
+			ShareStatusLabel.Text = "Chunk count mismatch. Start import again."
+			return
+		end
+
+		if not group.Parts[chunkIndex] then
+			group.Count += 1
+			group.Size += #chunkBody
+		else
+			group.Size += #chunkBody - #group.Parts[chunkIndex]
+		end
+		group.Parts[chunkIndex] = chunkBody
+
+		if group.Count < group.Total then
+			ShareStatusLabel.Text = "Loaded part " .. chunkIndex .. "/" .. group.Total .. ". Paste next part and press Apply."
+			return
+		end
+
+		local parts = {}
+		for i = 1, group.Total do
+			if not group.Parts[i] then
+				ShareStatusLabel.Text = "Missing part " .. i .. "/" .. group.Total .. "."
+				return
+			end
+			parts[i] = group.Parts[i]
+		end
+
+		codeText = table.concat(parts)
+		shareImportChunkGroups[chunkId] = nil
+	end
+
+	ShareStatusLabel.Text = "코드 적용 중..."
+
+	task.spawn(function()
+		local okJson, payload = pcall(function()
+			return HttpService:JSONDecode(codeText)
+		end)
+
+		if not okJson or typeof(payload) ~= "table" then
+			ShareStatusLabel.Text = "잘못된 리플레이 코드입니다."
+			return
+		end
+
+		local session = decodeSavedReplay(payload)
+		if not session then
+			ShareStatusLabel.Text = "리플레이를 불러오지 못했습니다."
+			return
+		end
+
+		session.IsSaved = false
+		session.IsSaving = false
+		session.UniqueId = nil
+		session.TotalBytes = #codeText
+
+		table.insert(Possessions, session)
+		refreshReplayList()
+
+		ShareStatusLabel.Text = "코드 적용 완료. 목록에 추가됐습니다."
+	end)
+end
+
+refreshReplayList = function()
+	for _, child in pairs(ScrollingFrame:GetChildren()) do
+		if child:IsA("Frame") then
+			child:Destroy()
+		end
+	end
+
+	for i, session in ipairs(Possessions) do
+		local itemFrame = Instance.new("Frame")
+		itemFrame.Size = UDim2.new(1, -4, 0, 56)
+		itemFrame.BackgroundColor3 = Color3.fromRGB(31, 36, 48)
+		itemFrame.BackgroundTransparency = 0
+		itemFrame.BorderSizePixel = 0
+		itemFrame.LayoutOrder = i
+		itemFrame.Parent = ScrollingFrame
+		corner(itemFrame, 8)
+
+		local rowStroke = Instance.new("UIStroke")
+		rowStroke.Color = Color3.fromRGB(255, 255, 255)
+		rowStroke.Transparency = session.IsSaved and 0.88 or 0.72
+		rowStroke.Thickness = 1
+		rowStroke.Parent = itemFrame
+
+		local actionWidth = 142
+		local btn = makeButton(itemFrame, UDim2.new(1, -actionWidth, 1, -10), Color3.fromRGB(43, 49, 64), "")
+		btn.Position = UDim2.new(0, 5, 0, 5)
+		btn.TextSize = 16
+		btn.TextXAlignment = Enum.TextXAlignment.Left
+
+		local fps = session.ReplayFPS or REPLAY_FPS
+		local duration = math.floor(#session.Frames / fps) .. "초"
+		local sizeStr = formatBytes(session.TotalBytes or 0)
+		btn.Text = "  ▶ #" .. i .. "  세션  ·  " .. duration .. "  ·  " .. sizeStr
+
+		btn.MouseButton1Click:Connect(function()
+			ListPanel.Visible = false
+			startReplay(session)
+		end)
+
+		local copyBtn = makeButton(itemFrame, UDim2.new(0, 84, 1, -10), Color3.fromRGB(78, 126, 205), "코드")
+		copyBtn.Position = UDim2.new(1, -136, 0, 5)
+		copyBtn.TextSize = 16
+
+		copyBtn.MouseButton1Click:Connect(function()
+			exportSessionToShareCode(session)
+		end)
+
+		local delBtn = makeButton(itemFrame, UDim2.new(0, 44, 1, -10), Color3.fromRGB(198, 72, 82), "삭제")
+		delBtn.Position = UDim2.new(1, -47, 0, 5)
+		delBtn.TextSize = 18
+
+		delBtn.MouseButton1Click:Connect(function()
+			table.remove(Possessions, i)
+			refreshReplayList()
+		end)
+	end
+
+	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, #Possessions * 62)
+end
+
+function loadSavedReplays()
+	Possessions = {}
+	refreshReplayList()
+end
+
+function saveSession(session)
+	ShareStatusLabel.Text = "이 버전은 서버 저장 없이 현재 세션에서만 사용됩니다."
+end
+
+function cloneReplayState(state)
+	local copy = {}
+	for id, value in pairs(state or {}) do
+		if type(value) == "table" then
+			local valueCopy = {}
+			for k, v in pairs(value) do
+				valueCopy[k] = v
+			end
+			copy[id] = valueCopy
+		else
+			copy[id] = value
+		end
+	end
+	return copy
+end
+
+function resetStateCache(session)
+	session.StateCache = { [0] = {} }
+	session.StateCacheOrder = {}
+end
+
+local function rememberState(session, frameIndex, state)
+	if not session.StateCache then
+		resetStateCache(session)
+	end
+	if session.StateCache[frameIndex] then
+		return
+	end
+
+	session.StateCache[frameIndex] = cloneReplayState(state)
+	table.insert(session.StateCacheOrder, frameIndex)
+
+	while #session.StateCacheOrder > STATE_CACHE_LIMIT do
+		local victim = table.remove(session.StateCacheOrder, 1)
+		session.StateCache[victim] = nil
+	end
+end
+
+local function getStateForFrame(session, frameIndex)
+	frameIndex = math.clamp(math.floor(frameIndex), 1, #session.Frames)
+	if not session.StateCache then
+		resetStateCache(session)
+	end
+
+	if session.StateCache[frameIndex] then
+		return session.StateCache[frameIndex]
+	end
+
+	local bestIndex = 0
+	for cachedIndex in pairs(session.StateCache) do
+		if cachedIndex <= frameIndex and cachedIndex > bestIndex then
+			bestIndex = cachedIndex
+		end
+	end
+
+	local state = cloneReplayState(session.StateCache[bestIndex] or {})
+	for i = bestIndex + 1, frameIndex do
+		if session.Frames[i] then
+			local ok = deserializeBuffer(session.Frames[i], session.TrackedParts, state, session.StringArray)
+			if not ok then
+				return nil
+			end
+		end
+	end
+
+	rememberState(session, frameIndex, state)
+	return session.StateCache[frameIndex]
+end
+
+SEEK_REBUILD_DISTANCE = REPLAY_FPS * 6
+AUTO_REPLAY_REPOSITION_DISTANCE = 1500
+AUTO_REPLAY_CAMERA_FORWARD_DISTANCE = 80
+
+function clearTable(t)
+	for k in pairs(t) do
+		t[k] = nil
+	end
+end
+
+function copyStateInto(target, source)
+	clearTable(target)
+	for id, value in pairs(source or {}) do
+		target[id] = value
+	end
+end
+
+function resetPlaybackCursor(session)
+	session.PlaybackState = {}
+	session.PlaybackFrame = 0
+	session.NextStateOverlay = {}
+	session.NextStateOverlayMeta = {}
+	session.NextStateOverlayFrame = nil
+	session.NextStateOverlayBaseFrame = nil
+end
+
+function getPlaybackStateForFrame(session, frameIndex)
+	frameIndex = math.clamp(math.floor(frameIndex), 1, #session.Frames)
+
+	if not session.PlaybackState then
+		resetPlaybackCursor(session)
+	end
+
+	if frameIndex < session.PlaybackFrame or frameIndex - session.PlaybackFrame > SEEK_REBUILD_DISTANCE then
+		local state = getStateForFrame(session, frameIndex)
+		if not state then
+			return nil
+		end
+		copyStateInto(session.PlaybackState, state)
+		session.PlaybackFrame = frameIndex
+		session.NextStateOverlayFrame = nil
+		return session.PlaybackState
+	end
+
+	local previousFrame = session.PlaybackFrame
+
+	for i = session.PlaybackFrame + 1, frameIndex do
+		if session.Frames[i] then
+			local ok = deserializeBuffer(session.Frames[i], session.TrackedParts, session.PlaybackState, session.StringArray)
+			if not ok then
+				return nil
+			end
+		end
+	end
+
+	session.PlaybackFrame = frameIndex
+	if previousFrame ~= frameIndex then
+		session.NextStateOverlayFrame = nil
+	end
+
+	return session.PlaybackState
+end
+
+function getNextStateOverlay(session, frameIndex, baseState)
+	if session.NextStateOverlayFrame == frameIndex and session.NextStateOverlayBaseFrame == session.PlaybackFrame then
+		return session.NextStateOverlay
+	end
+
+	local overlay = session.NextStateOverlay or {}
+	clearTable(overlay)
+	session.NextStateOverlay = overlay
+
+	local meta = session.NextStateOverlayMeta or {}
+	meta.__index = baseState
+	session.NextStateOverlayMeta = meta
+	setmetatable(overlay, meta)
+
+	if session.Frames[frameIndex] then
+		local ok = deserializeBuffer(session.Frames[frameIndex], session.TrackedParts, overlay, session.StringArray)
+		if not ok then
+			setmetatable(overlay, nil)
+			return nil
+		end
+	end
+
+	setmetatable(overlay, nil)
+	session.NextStateOverlayFrame = frameIndex
+	session.NextStateOverlayBaseFrame = session.PlaybackFrame
+	return overlay
+end
+
+function overlayValue(baseState, overlay, id)
+	local value = rawget(overlay, id)
+	if value ~= nil then
+		return value
+	end
+	return baseState[id]
+end
+
+function getReplayTargetPosition()
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	if root and root:IsA("BasePart") then
+		return root.Position
+	end
+
+	local camera = workspace.CurrentCamera
+	if camera then
+		return camera.CFrame.Position + camera.CFrame.LookVector * AUTO_REPLAY_CAMERA_FORWARD_DISTANCE
+	end
+
+	return Vector3.new(0, 10, 0)
+end
+
+function getReplayAnchorPosition(session)
+	local state = getStateForFrame(session, 1)
+	if not state then
+		return nil
+	end
+
+	local recorderRootId = tonumber(session.RecorderRootId)
+	if recorderRootId then
+		local value = state[recorderRootId]
+		if value and value ~= false then
+			return value[1].Position
+		end
+	end
+
+	local minPos
+	local maxPos
+	for _, item in ipairs(getTrackedList(session)) do
+		if item.kind == "BasePart" then
+			local value = state[item.id]
+			if value and value ~= false then
+				local pos = value[1].Position
+				if minPos then
+					minPos = Vector3.new(math.min(minPos.X, pos.X), math.min(minPos.Y, pos.Y), math.min(minPos.Z, pos.Z))
+					maxPos = Vector3.new(math.max(maxPos.X, pos.X), math.max(maxPos.Y, pos.Y), math.max(maxPos.Z, pos.Z))
+				else
+					minPos = pos
+					maxPos = pos
+				end
+			end
+		end
+	end
+
+	if minPos and maxPos then
+		return (minPos + maxPos) * 0.5
+	end
+
+	return nil
+end
+
+function updateReplayPlaybackOffset(session)
+	if not session then
+		return
+	end
+
+	session.PlaybackOffset = CFrame.new()
+
+	local anchor = getReplayAnchorPosition(session)
+	local target = getReplayTargetPosition()
+	if not anchor or not target then
+		return
+	end
+
+	local delta = target - anchor
+	if delta.Magnitude >= AUTO_REPLAY_REPOSITION_DISTANCE then
+		session.PlaybackOffset = CFrame.new(delta)
+	else
+		session.PlaybackOffset = CFrame.new()
+	end
+end
+
+function offsetReplayCFrame(cf)
+	if currentSession and currentSession.PlaybackOffset then
+		return currentSession.PlaybackOffset * cf
+	end
+	return cf
+end
+
+function updateRecorderRootId(session)
+	if not session or session.RecorderRootId then
+		return
+	end
+
+	local character = player.Character
+	local root = character and character:FindFirstChild("HumanoidRootPart")
+	if not root or not root:IsA("BasePart") then
+		return
+	end
+
+	if not session.OrigToId[root] then
+		registerEntity(character or root)
+	end
+
+	session.RecorderRootId = session.OrigToId[root]
+end
+
+function rememberReplayParents(session)
+	for _, item in ipairs(getTrackedList(session)) do
+		local clone = item.clone
+		if clone and clone.Parent then
+			item.replayParent = clone.Parent
+		end
+	end
+end
+
+function getReplayParentForItem(item)
+	if not item then
+		return nil
+	end
+	if item.replayParent then
+		return item.replayParent
+	end
+
+	local session = currentSession
+	if not session then
+		return nil
+	end
+
+	local data = getManifestData(session, item.id)
+	if not isLightingManifestData(data) then
+		return nil
+	end
+
+	local parentId = item.replayParentId or tonumber(data.ParentId)
+	if parentId then
+		local parent = session.LightingIdToInstance and session.LightingIdToInstance[parentId]
+		if not parent and session.TrackedParts and session.TrackedParts[parentId] then
+			parent = session.TrackedParts[parentId].clone
+		end
+		if parent then
+			item.replayParent = parent
+			return parent
+		end
+	end
+
+	if data.ClassName ~= "Lighting" then
+		item.replayParent = Lighting
+		return Lighting
+	end
+
+	return nil
+end
+
+function setReplayObjectActive(item, active)
+	local clone = item.clone
+	if not clone then
+		return
+	end
+
+	if active then
+		if not clone.Parent then
+			local parent = getReplayParentForItem(item)
+			if parent then
+				pcall(function()
+					clone.Parent = parent
+				end)
+			end
+		end
+	else
+		if clone.Parent then
+			item.replayParent = item.replayParent or clone.Parent
+			clone.Parent = nil
+		end
+	end
+end
+
+function applyFrame(floatFrame)
+	if not currentSession then
+		return
+	end
+
+	local idx1 = math.clamp(math.floor(floatFrame), 1, totalFrames)
+	local idx2 = math.min(idx1 + 1, totalFrames)
+	local alpha = floatFrame - idx1
+
+	local state1 = getPlaybackStateForFrame(currentSession, idx1)
+	if not state1 then
+		return
+	end
+
+	local state2Overlay
+	if idx2 ~= idx1 then
+		state2Overlay = getNextStateOverlay(currentSession, idx2, state1)
+		if not state2Overlay then
+			return
+		end
+	end
+
+	for _, item in ipairs(getTrackedList(currentSession)) do
+		local id = item.id
+		local c = item.clone
+		local f1 = state1[id]
+		local f2 = f1
+		if state2Overlay then
+			f2 = overlayValue(state1, state2Overlay, id)
+		end
+
+		if c and f1 ~= false and f1 ~= nil then
+			if item.kind == "BasePart" then
+				setReplayObjectActive(item, true)
+				if f2 ~= false and f2 ~= nil then
+					local cf = f1[1]:Lerp(f2[1], alpha)
+					local size = f1[2]:Lerp(f2[2], alpha)
+					local color = f1[3]:Lerp(f2[3], alpha)
+					local trans = f1[4] + (f2[4] - f1[4]) * alpha
+
+					c.CFrame = offsetReplayCFrame(cf)
+					c.Color = color
+					c.Transparency = trans
+					if item.meshFallback and item.meshVisual then
+						local baseSize = item.meshBaseSize or c.Size
+						item.meshVisual.Scale = Vector3.new(safeDiv(size.X, baseSize.X), safeDiv(size.Y, baseSize.Y), safeDiv(size.Z, baseSize.Z))
+					else
+						c.Size = size
+					end
+				else
+					c.CFrame = offsetReplayCFrame(f1[1])
+					c.Color = f1[3]
+					c.Transparency = f1[4]
+					c.Size = f1[2]
+				end
+			elseif item.kind == "Decal" then
+				local t1 = f1[2] or 0
+				local l1 = f1[3] or 0
+				local color1 = f1[4] or Color3.new(1, 1, 1)
+				local texture1 = f1[1] or ""
+				local t2, l2, color2 = t1, l1, color1
+				if f2 ~= false and f2 ~= nil and type(f2) == "table" then
+					t2 = f2[2] or t1
+					l2 = f2[3] or l1
+					color2 = f2[4] or color1
+				end
+
+				local t = t1 + (t2 - t1) * alpha
+				local l = l1 + (l2 - l1) * alpha
+				local color = color1:Lerp(color2, alpha)
+
+				pcall(function() c.Texture = texture1 end)
+				pcall(function() c.Color3 = color end)
+				applyDecalTransparencyState(c, { t, l })
+			elseif item.kind == "Sound" then
+				local isPlaying1 = f1[1]
+				local timePos1 = f1[2]
+				local vol1 = f1[3]
+				local timePos2 = (f2 ~= false and f2 ~= nil) and f2[2] or timePos1
+				local vol2 = (f2 ~= false and f2 ~= nil) and f2[3] or vol1
+				local vol = vol1 + (vol2 - vol1) * alpha
+				local lerpedTimePos = timePos1 + (timePos2 - timePos1) * alpha
+
+				c.Volume = vol
+				if isPlaying1 and isPlaying and not isDraggingTimeline then
+					if not c.IsPlaying then
+						c:Play()
+					end
+					if math.abs(c.TimePosition - lerpedTimePos) > 0.15 then
+						c.TimePosition = lerpedTimePos
+					end
+				else
+					if c.IsPlaying then
+						c:Stop()
+					end
+					c.TimePosition = lerpedTimePos
+				end
+			elseif item.kind == "Text" then
+				c.Text = f1
+			elseif item.kind == "Enabled" then
+				c.Enabled = f1
+			elseif item.kind == "Props" then
+				setReplayObjectActive(item, true)
+				applyProps(c, f1)
+			end
+		elseif c then
+			if item.kind == "BasePart" then
+				setReplayObjectActive(item, false)
+			elseif item.kind == "Decal" then
+				applyDecalTransparencyState(c, { 1, 1 })
+			elseif item.kind == "Sound" then
+				if c.IsPlaying then
+					c:Stop()
+				end
+			elseif item.kind == "Text" then
+				c.Text = ""
+			elseif item.kind == "Enabled" then
+				c.Enabled = false
+			elseif item.kind == "Props" then
+				if c ~= Lighting then
+					setReplayObjectActive(item, false)
+				end
+			end
+		end
+	end
+
+	local percent = (totalFrames > 1) and ((floatFrame - 1) / (totalFrames - 1)) or 0
+	TimelineFill.Size = UDim2.new(math.clamp(percent, 0, 1), 0, 1, 0)
+end
+
+function stopAllReplaySounds()
+	if not currentSession then
+		return
+	end
+	for _, item in ipairs(getTrackedList(currentSession)) do
+		if item.kind == "Sound" and item.clone and item.clone.IsPlaying then
+			item.clone:Stop()
+		end
+	end
+end
+
+function togglePlayPause()
+	if not isReplayMode then
+		return
+	end
+
+	isPlaying = not isPlaying
+	if isPlaying then
+		if currentFrame >= totalFrames then
+			currentFrame = 1
+		end
+		PlayPauseBtn.Text = "⏸ 일시정지"
+		PlayPauseBtn.BackgroundColor3 = Color3.fromRGB(200, 150, 80)
+		applyFrame(currentFrame)
+	else
+		PlayPauseBtn.Text = "▶ 재생"
+		PlayPauseBtn.BackgroundColor3 = Color3.fromRGB(80, 200, 80)
+		stopAllReplaySounds()
+	end
+end
+
+startReplay = function(session)
+	if not session or #session.Frames == 0 then
+		return
+	end
+
+	currentSession = session
+	if session.IsLoadedReplay or not next(session.RootClones) then
+		buildLoadedReplay(session)
+	end
+
+	resetStateCache(currentSession)
+	resetPlaybackCursor(currentSession)
+	buildReplayLighting(currentSession)
+	resetStateCache(currentSession)
+	resetPlaybackCursor(currentSession)
+	updateReplayPlaybackOffset(currentSession)
+	resetPlaybackCursor(currentSession)
+
+	isReplayMode = true
+	isPlaying = true
+	totalFrames = #currentSession.Frames
+	currentFrame = 1
+
+	ReplayFolder.Parent = workspace
+	for _, clone in pairs(currentSession.RootClones) do
+		if clone then
+			clone.Parent = ReplayFolder
+		end
+	end
+	rememberReplayParents(currentSession)
+
+	hideLiveWorld()
+	hideAllOtherGuis()
+	applyFrame(currentFrame)
+
+	MainToggleBtn.Visible = false
+	ActionMenu.Visible = false
+	PlaybackMenu.Visible = true
+	PlayPauseBtn.Text = "⏸ 일시정지"
+	PlayPauseBtn.BackgroundColor3 = Color3.fromRGB(200, 150, 80)
+end
+
+RecordBtn.MouseButton1Click:Connect(function()
+	if isReplayMode then
+		return
+	end
+	ListPanel.Visible = false
+
+	if isRecording then
+		isRecording = false
+		if recordingConnection then
+			recordingConnection:Disconnect()
+			recordingConnection = nil
+		end
+		if recAddedConnection then
+			recAddedConnection:Disconnect()
+			recAddedConnection = nil
+		end
+		if recAddedSoundConnection then
+			recAddedSoundConnection:Disconnect()
+			recAddedSoundConnection = nil
+		end
+		if recAddedLightingConnection then
+			recAddedLightingConnection:Disconnect()
+			recAddedLightingConnection = nil
+		end
+
+		RecordBtn.Text = "⏺ 녹화 시작"
+		RecordBtn.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+		OpenListBtn.Visible = true
+
+		if currentSession and #currentSession.Frames > 0 then
+			currentSession.IsSaved = false
+			currentSession.IsSaving = false
+			currentSession.UniqueId = nil
+			refreshReplayList()
+			ListPanel.Visible = true
+			ShareStatusLabel.Text = "녹화 완료. 현재 세션 목록에서 재생하거나 코드로 내보낼 수 있습니다."
+		end
+	else
+		isRecording = true
+		RecordBtn.Text = "⏹ 녹화 중지"
+		RecordBtn.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+		OpenListBtn.Visible = false
+
+		currentSession = {
+			Version = REPLAY_VERSION,
+			ReplayFPS = REPLAY_FPS,
+			CreatedAt = os.time(),
+			Manifest = {},
+			OrigToId = {},
+			Frames = {},
+			StringDict = {},
+			StringArray = {},
+			TrackedParts = {},
+			OrigToClone = {},
+			RootClones = {},
+			LastState = {},
+			NextId = 1,
+			TotalBytes = 0,
+			IsSaved = false,
+			IsSaving = false,
+			RecorderRootId = nil,
+			TrackedList = {},
+			TrackedListDirty = true,
+		}
+		table.insert(Possessions, currentSession)
+
+		for _, obj in pairs(workspace:GetDescendants()) do
+			registerEntity(obj)
+		end
+		for _, obj in pairs(SoundService:GetDescendants()) do
+			registerEntity(obj)
+		end
+		registerLightingTree(Lighting)
+		updateRecorderRootId(currentSession)
+
+		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
+		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
+		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
+		recordAccumulator = 0
+
+		recordingConnection = RunService.Heartbeat:Connect(function(dt)
+			recordAccumulator += dt
+			while recordAccumulator >= frameStep do
+				recordAccumulator -= frameStep
+				updateRecorderRootId(currentSession)
+				local frameChanges = {}
+				local oldStates = {}
+				local hasChanges = false
+
+				for _, item in ipairs(getTrackedList(currentSession)) do
+					local id = item.id
+					local changed, currentState = readStateIfChanged(item, currentSession.LastState[id])
+					if changed then
+						frameChanges[id] = currentState
+						oldStates[id] = currentSession.LastState[id]
+						currentSession.LastState[id] = currentState
+						hasChanges = true
+					end
+				end
+
+				local packedBuffer = hasChanges and serializeBuffer(frameChanges, currentSession.TrackedParts, oldStates, currentSession.StringDict, currentSession.StringArray) or false
+				table.insert(currentSession.Frames, packedBuffer)
+				currentSession.TotalBytes += packedBuffer and (buffer.len(packedBuffer) + 4) or 4
+			end
+		end)
+	end
+end)
+
+PlayPauseBtn.MouseButton1Click:Connect(togglePlayPause)
+
+CloseReplayBtn.MouseButton1Click:Connect(function()
+	if not isReplayMode then
+		return
+	end
+
+	isReplayMode = false
+	isPlaying = false
+	stopAllReplaySounds()
+
+	for _, clone in pairs(currentSession.RootClones) do
+		if clone then
+			clone.Parent = nil
+		end
+	end
+
+	ReplayFolder.Parent = nil
+	restoreReplayLighting()
+	restoreLiveWorld()
+	restoreAllOtherGuis()
+
+	PlaybackMenu.Visible = false
+	MainToggleBtn.Visible = true
+	ActionMenu.Visible = true
+end)
+
+numberKeybinds = {
+	[Enum.KeyCode.Zero] = 0.0,
+	[Enum.KeyCode.KeypadZero] = 0.0,
+	[Enum.KeyCode.One] = 0.1,
+	[Enum.KeyCode.KeypadOne] = 0.1,
+	[Enum.KeyCode.Two] = 0.2,
+	[Enum.KeyCode.KeypadTwo] = 0.2,
+	[Enum.KeyCode.Three] = 0.3,
+	[Enum.KeyCode.KeypadThree] = 0.3,
+	[Enum.KeyCode.Four] = 0.4,
+	[Enum.KeyCode.KeypadFour] = 0.4,
+	[Enum.KeyCode.Five] = 0.5,
+	[Enum.KeyCode.KeypadFive] = 0.5,
+	[Enum.KeyCode.Six] = 0.6,
+	[Enum.KeyCode.KeypadSix] = 0.6,
+	[Enum.KeyCode.Seven] = 0.7,
+	[Enum.KeyCode.KeypadSeven] = 0.7,
+	[Enum.KeyCode.Eight] = 0.8,
+	[Enum.KeyCode.KeypadEight] = 0.8,
+	[Enum.KeyCode.Nine] = 0.9,
+	[Enum.KeyCode.KeypadNine] = 0.9,
+}
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then
+		return
+	end
+	if isReplayMode then
+		if input.KeyCode == Enum.KeyCode.Space then
+			togglePlayPause()
+		elseif numberKeybinds[input.KeyCode] ~= nil then
+			currentFrame = math.max(1, (numberKeybinds[input.KeyCode] * (totalFrames - 1)) + 1)
+			applyFrame(currentFrame)
+		end
+	end
+end)
+
+RunService.RenderStepped:Connect(function(dt)
+	if isReplayMode and isPlaying and not isDraggingTimeline then
+		currentFrame += dt * (currentSession.ReplayFPS or REPLAY_FPS)
+		if currentFrame >= totalFrames then
+			currentFrame = totalFrames
+			isPlaying = false
+			PlayPauseBtn.Text = "▶ 재생"
+			PlayPauseBtn.BackgroundColor3 = Color3.fromRGB(80, 200, 80)
+			stopAllReplaySounds()
+		end
+		applyFrame(currentFrame)
+	end
+end)
+
+TimelineBg.InputBegan:Connect(function(input)
+	if isReplayMode and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+		isDraggingTimeline = true
+		isPlaying = false
+		PlayPauseBtn.Text = "▶ 재생"
+		PlayPauseBtn.BackgroundColor3 = Color3.fromRGB(80, 200, 80)
+		stopAllReplaySounds()
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		isDraggingTimeline = false
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if isDraggingTimeline and isReplayMode and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		currentFrame = math.max(1, (math.clamp((input.Position.X - TimelineBg.AbsolutePosition.X) / TimelineBg.AbsoluteSize.X, 0, 1) * (totalFrames - 1)) + 1)
+		applyFrame(currentFrame)
+	end
+end)
+
+MainToggleBtn.MouseButton1Click:Connect(function()
+	if not isReplayMode then
+		ActionMenu.Visible = not ActionMenu.Visible
+		ListPanel.Visible = false
+	end
+end)
+
+CloseListBtn.MouseButton1Click:Connect(function()
+	ListPanel.Visible = false
+end)
+
+OpenListBtn.MouseButton1Click:Connect(function()
+	if not isRecording then
+		refreshReplayList()
+		ListPanel.Visible = not ListPanel.Visible
+	end
+end)
+
+ApplyCodeBtn.MouseButton1Click:Connect(function()
+	importSessionFromShareCode(ShareCodeBox.Text)
+end)
+
+PrevShareChunkBtn.MouseButton1Click:Connect(function()
+	showShareExportChunk((shareExportIndex or 1) - 1)
+end)
+
+NextShareChunkBtn.MouseButton1Click:Connect(function()
+	showShareExportChunk((shareExportIndex or 1) + 1)
+end)
+
+loadSavedReplays()
