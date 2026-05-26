@@ -14,6 +14,7 @@ local StarterGui = game:GetService("StarterGui")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local EncodingService = game:GetService("EncodingService")
+GeometryService = game:GetService("GeometryService")
 Lighting = game:GetService("Lighting")
 
 local player = Players.LocalPlayer
@@ -24,17 +25,26 @@ local LoadReplaysFunction = nil
 local SaveReplayFunction = nil
 local DeleteReplayFunction = nil
 
-local REPLAY_VERSION = 17
-local MIN_REPLAY_VERSION = 17
-local REPLAY_FPS = 20
-local frameStep = 1 / REPLAY_FPS
-local STATE_CACHE_LIMIT = 32
-local LIVE_HIDE_ENFORCE_INTERVAL = 1
+local REPLAY_VERSION = 17 -- 현재 리플레이 저장 형식 버전
+local MIN_REPLAY_VERSION = 17 -- 이 스크립트가 불러올 수 있는 최소 리플레이 버전
+local REPLAY_FPS = 20 -- 녹화/재생 기준 FPS, 20이면 1초에 20프레임 저장
+local frameStep = 1 / REPLAY_FPS -- 프레임 하나의 시간 간격
+local STATE_CACHE_LIMIT = 32 -- 재생/seek용 상태 캐시 최대 개수
+local LIVE_HIDE_ENFORCE_INTERVAL = 1 -- 리플레이 중 실제 월드 숨김 상태를 다시 강제하는 주기(초)
 
-local POS_SCALE = 20
-local MAP_POS_SCALE = 20
-local CHARACTER_POS_SCALE = 300
-local SIZE_SCALE = 20
+local RECORD_MAX_CATCHUP_FRAMES = 2 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
+local RECORD_REGISTER_BATCH_SIZE = 250 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
+local RECORD_MAP_PART_INTERVAL = 1 -- 맵 BasePart를 몇 프레임마다 검사할지, 값이 클수록 가볍지만 변화 감지가 느림
+local RECORD_MAP_VISUAL_INTERVAL = 1 -- 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 검사할지
+local RECORD_LIGHTING_INTERVAL = 1 -- Lighting/조명 효과 값을 몇 프레임마다 검사할지, 1이면 매 프레임 검사
+
+local CHARACTER_REGISTER_STABLE_FRAMES = 1 -- 리스폰 캐릭터 파츠 크기가 몇 프레임 안정돼야 등록할지
+local CHARACTER_REGISTER_TIMEOUT = 1 -- 리스폰 캐릭터 안정화 대기를 최대 몇 초까지 할지
+
+local POS_SCALE = 1000
+local MAP_POS_SCALE = 1000
+local CHARACTER_POS_SCALE = 1000
+local SIZE_SCALE = 1000
 
 local Possessions = {}
 local currentSession
@@ -51,6 +61,7 @@ local recordAccumulator = 0
 local recordingConnection
 local recAddedConnection
 local recAddedSoundConnection
+local recCharacterConnection
 recAddedLightingConnection = nil
 local liveAddedConnection
 local liveSoundAddedConnection
@@ -859,6 +870,10 @@ local BASEPART_PROPS = {
 	"TopSurface", "BottomSurface", "FrontSurface", "BackSurface", "LeftSurface", "RightSurface",
 }
 local MESH_PART_PROPS = { "MeshId", "TextureID", "DoubleSided", "RenderFidelity", "CollisionFidelity" }
+UNION_OPERATION_PROPS = { "UsePartColor", "RenderFidelity", "CollisionFidelity" }
+CSG_RECIPE_ATTRIBUTE = "ReplayCSGRecipe"
+CSG_RECIPE_FOLDER_NAME = "ReplayCSGRecipe"
+CSG_RECIPE_VERSION = 1
 local SOUND_PROPS = { "SoundId", "Volume", "PlaybackSpeed", "TimePosition", "Looped", "RollOffMaxDistance", "RollOffMinDistance" }
 local GUI_PROPS = { "Size", "Position", "AnchorPoint", "BackgroundTransparency", "BackgroundColor3", "BorderSizePixel", "Visible", "Rotation" }
 local TEXT_PROPS = { "Text", "TextColor3", "TextTransparency", "TextScaled", "TextSize", "Font", "RichText", "TextStrokeColor3", "TextStrokeTransparency", "TextXAlignment", "TextYAlignment" }
@@ -887,6 +902,7 @@ local function getPropertyList(obj)
 	if obj:IsA("BasePart") then appendProps(props, BASEPART_PROPS) end
 	if obj:IsA("Part") then appendProps(props, { "Shape" }) end
 	if obj:IsA("MeshPart") then appendProps(props, MESH_PART_PROPS) end
+	if obj:IsA("UnionOperation") then appendProps(props, UNION_OPERATION_PROPS) end
 	if obj:IsA("Sound") then appendProps(props, SOUND_PROPS) end
 	if obj:IsA("Sky") then appendProps(props, SKY_PROPS) end
 	if obj:IsA("Atmosphere") then appendProps(props, ATMOSPHERE_PROPS) end
@@ -1422,7 +1438,37 @@ local function rebuildStringDictFromArray(session)
 	end
 end
 
-local function estimateManifestEntrySize(data)
+function encodeCSGRecipeForManifest(recipe)
+	if typeof(recipe) ~= "table" then
+		return ""
+	end
+
+	local ok, encoded = pcall(function()
+		return HttpService:JSONEncode(recipe)
+	end)
+	if ok and type(encoded) == "string" then
+		return encoded
+	end
+
+	return ""
+end
+
+function decodeCSGRecipeFromManifest(recipeText)
+	if type(recipeText) ~= "string" or recipeText == "" then
+		return nil
+	end
+
+	local ok, decoded = pcall(function()
+		return HttpService:JSONDecode(recipeText)
+	end)
+	if ok and typeof(decoded) == "table" then
+		return decoded
+	end
+
+	return nil
+end
+
+function estimateManifestEntrySize(data)
 	local size = 64
 	local props = data.Props or {}
 	for _, value in pairs(props) do
@@ -1448,10 +1494,14 @@ local function estimateManifestEntrySize(data)
 		size += estimateVarUIntSize(data.PosScale)
 	end
 
+	if data.CSGRecipe then
+		size += estimateStringIndexSize()
+	end
+
 	return size
 end
 
-local function encodeManifestBuffer(manifest, stringDict, stringArray)
+function encodeManifestBuffer(manifest, stringDict, stringArray)
 	local entries = {}
 	local estimate = 16
 	for id, data in pairs(manifest or {}) do
@@ -1516,6 +1566,9 @@ local function encodeManifestBuffer(manifest, stringDict, stringArray)
 		if data.PosScale then
 			extraMask = bit32.bor(extraMask, 4)
 		end
+		if data.CSGRecipe then
+			extraMask = bit32.bor(extraMask, 8)
+		end
 		buffer.writeu8(manifestBuf, offset, extraMask)
 		offset += 1
 
@@ -1532,6 +1585,9 @@ local function encodeManifestBuffer(manifest, stringDict, stringArray)
 		if bit32.band(extraMask, 4) ~= 0 then
 			offset = writeVarUInt(manifestBuf, offset, tonumber(data.PosScale) or POS_SCALE)
 		end
+		if bit32.band(extraMask, 8) ~= 0 then
+			offset = writeStringIndex(manifestBuf, offset, stringDict, stringArray, encodeCSGRecipeForManifest(data.CSGRecipe))
+		end
 	end
 
 	local finalBuf = buffer.create(offset)
@@ -1539,7 +1595,7 @@ local function encodeManifestBuffer(manifest, stringDict, stringArray)
 	return finalBuf
 end
 
-local function decodeManifestBuffer(manifestBuf, stringArray)
+function decodeManifestBuffer(manifestBuf, stringArray)
 	local manifest = {}
 	local offset = 0
 	local entryCount
@@ -1615,10 +1671,19 @@ local function decodeManifestBuffer(manifestBuf, stringArray)
 		if bit32.band(extraMask, 4) ~= 0 then
 			data.PosScale, offset = readVarUInt(manifestBuf, offset)
 		end
+		if bit32.band(extraMask, 8) ~= 0 then
+			local recipeText
+			recipeText, offset = readStringIndex(manifestBuf, offset, stringArray)
+			data.CSGRecipe = decodeCSGRecipeFromManifest(recipeText)
+		end
 
 		if className == "MeshPart" then
 			data.MeshId = props.MeshId
 			data.TextureID = props.TextureID
+		elseif className == "UnionOperation" then
+			data.UsePartColor = props.UsePartColor
+			data.RenderFidelity = props.RenderFidelity
+			data.CollisionFidelity = props.CollisionFidelity
 		elseif className == "SpecialMesh" then
 			data.MeshId = props.MeshId
 			data.TextureId = props.TextureId
@@ -1637,7 +1702,7 @@ local function decodeManifestBuffer(manifestBuf, stringArray)
 	return manifest
 end
 
-local function getRawProp(props, name)
+function getRawProp(props, name)
 	if typeof(props) ~= "table" then
 		return nil
 	end
@@ -1648,7 +1713,7 @@ local function getRawProp(props, name)
 	return value
 end
 
-local function getDecalTransparencyState(obj)
+function getDecalTransparencyState(obj)
 	local transparency = 0
 	local localModifier = 0
 	pcall(function() transparency = obj.Transparency end)
@@ -1656,7 +1721,7 @@ local function getDecalTransparencyState(obj)
 	return { transparency, localModifier }
 end
 
-local function applyDecalTransparencyState(obj, state)
+function applyDecalTransparencyState(obj, state)
 	if type(state) == "number" then
 		pcall(function() obj.Transparency = state end)
 		return
@@ -1668,12 +1733,12 @@ local function applyDecalTransparencyState(obj, state)
 	pcall(function() obj.LocalTransparencyModifier = state[2] or 0 end)
 end
 
-local function isBlankContentId(value)
+function isBlankContentId(value)
 	value = tostring(value or "")
 	return value == "" or value == "0" or value == "rbxassetid://" or value == "rbxassetid://0"
 end
 
-local function hasTexturedHeadMesh(head)
+function hasTexturedHeadMesh(head)
 	if not head or not head:IsA("BasePart") or head.Name ~= "Head" then
 		return false
 	end
@@ -1705,7 +1770,7 @@ local function hasTexturedHeadMesh(head)
 	return false
 end
 
-local function isDuplicateDefaultFace(obj)
+function isDuplicateDefaultFace(obj)
 	if not (obj:IsA("Decal") or obj:IsA("Texture")) then
 		return false
 	end
@@ -1715,7 +1780,7 @@ local function isDuplicateDefaultFace(obj)
 	return hasTexturedHeadMesh(obj.Parent)
 end
 
-local function isCharacterObject(obj)
+function isCharacterObject(obj)
 	local model = obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model")
 	return model and model:FindFirstChildOfClass("Humanoid") ~= nil
 end
@@ -1724,11 +1789,11 @@ function isLightingReplayObject(obj)
 	return obj == Lighting or obj:IsDescendantOf(Lighting)
 end
 
-local function getReplayPositionScale(obj)
+function getReplayPositionScale(obj)
 	return isCharacterObject(obj) and CHARACTER_POS_SCALE or MAP_POS_SCALE
 end
 
-local function getTrackKind(obj)
+function getTrackKind(obj)
 	if isLightingReplayObject(obj) and #getPropertyList(obj) > 0 then
 		return "Props"
 	elseif obj:IsA("BasePart") then
@@ -1745,7 +1810,18 @@ local function getTrackKind(obj)
 	return nil
 end
 
-local function isStaticReplayObject(obj)
+function getRecordCheckInterval(kind, obj)
+	if kind == "BasePart" then
+		return isCharacterObject(obj) and 1 or RECORD_MAP_PART_INTERVAL
+	elseif kind == "Decal" then
+		return isCharacterObject(obj) and 1 or RECORD_MAP_VISUAL_INTERVAL
+	elseif kind == "Props" then
+		return RECORD_LIGHTING_INTERVAL
+	end
+	return 1
+end
+
+function isStaticReplayObject(obj)
 	return obj:IsA("SpecialMesh")
 		or obj:IsA("BlockMesh")
 		or obj:IsA("CylinderMesh")
@@ -1758,8 +1834,45 @@ local function isStaticReplayObject(obj)
 		or obj:IsA("CharacterMesh")
 end
 
-local function isManifestObject(obj)
+function normalizeCSGOperation(op)
+	op = tostring(op or ""):lower()
+	if op == "subtract" or op == "sub" or op == "minus" or op == "cut" then
+		return "Subtract"
+	elseif op == "intersect" or op == "intersection" then
+		return "Intersect"
+	elseif op == "main" or op == "base" then
+		return "Main"
+	end
+	return "Union"
+end
+
+function isCSGRecipeMetadataObject(obj)
+	local cur = obj
+	while cur do
+		if cur:IsA("Folder") and cur.Name == CSG_RECIPE_FOLDER_NAME then
+			return true
+		end
+		cur = cur.Parent
+	end
+	return false
+end
+
+function getCSGRecipeFolder(obj)
+	if not obj then
+		return nil
+	end
+	local folder = obj:FindFirstChild(CSG_RECIPE_FOLDER_NAME)
+	if folder and folder:IsA("Folder") then
+		return folder
+	end
+	return nil
+end
+
+function isManifestObject(obj)
 	if obj:IsDescendantOf(ReplayFolder) or obj.Name == "Terrain" or obj:IsA("Camera") then
+		return false
+	end
+	if isCSGRecipeMetadataObject(obj) then
 		return false
 	end
 	if isDuplicateDefaultFace(obj) then
@@ -1776,7 +1889,7 @@ local function isManifestObject(obj)
 		or obj:IsA("GuiObject")
 end
 
-local function prepareReplayInstance(obj)
+function prepareReplayInstance(obj)
 	if obj:IsA("BasePart") then
 		obj.Anchored = true
 		obj.CanCollide = false
@@ -1786,31 +1899,43 @@ local function prepareReplayInstance(obj)
 	elseif isReplayHiddenEffectObject and isReplayHiddenEffectObject(obj) then
 		setReplayEffectActive(obj, false)
 	elseif obj:IsA("Humanoid") then
-		obj.PlatformStand = true
-		obj.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+		pcall(function() obj.PlatformStand = true end)
+		pcall(function() obj.AutoRotate = false end)
+		pcall(function() obj.BreakJointsOnDeath = false end)
+		pcall(function() obj.RequiresNeck = false end)
+		pcall(function() obj.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None end)
+		pcall(function()
+			if obj.MaxHealth > 0 then
+				obj.Health = obj.MaxHealth
+			end
+		end)
 	end
 end
 
-local function cleanClone(clone)
+function cleanClone(clone)
 	for _, c in pairs(clone:GetDescendants()) do
-		if c:IsA("JointInstance") or c:IsA("Constraint") or c:IsA("WeldConstraint") or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript") then
+		if isCSGRecipeMetadataObject(c) then
 			c:Destroy()
-		else
+		elseif c.Parent and (c:IsA("JointInstance") or c:IsA("Constraint") or c:IsA("WeldConstraint") or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript")) then
+			c:Destroy()
+		elseif c.Parent then
 			prepareReplayInstance(c)
 		end
 	end
 	prepareReplayInstance(clone)
 end
 
-local function removeReplayManagedVisualChildren(inst)
+function removeReplayManagedVisualChildren(inst)
 	for _, child in ipairs(inst:GetDescendants()) do
-		if child:IsA("Decal") or child:IsA("Texture") then
+		if isCSGRecipeMetadataObject(child) then
+			child:Destroy()
+		elseif child.Parent and (child:IsA("Decal") or child:IsA("Texture")) then
 			child:Destroy()
 		end
 	end
 end
 
-local function getSiblingIndex(obj)
+function getSiblingIndex(obj)
 	local parent = obj.Parent
 	if not parent then
 		return 1
@@ -1827,7 +1952,7 @@ local function getSiblingIndex(obj)
 	return 1
 end
 
-local function getInstancePath(obj)
+function getInstancePath(obj)
 	local path = {}
 	local cur = obj
 	while cur and cur ~= game do
@@ -1837,7 +1962,89 @@ local function getInstancePath(obj)
 	return path
 end
 
-local function findInstanceByPath(path)
+function readCSGRecipeAttribute(obj)
+	local text
+	pcall(function()
+		text = obj:GetAttribute(CSG_RECIPE_ATTRIBUTE)
+	end)
+
+	if type(text) == "string" and text ~= "" then
+		return decodeCSGRecipeFromManifest(text)
+	end
+
+	return nil
+end
+
+function captureCSGOperand(part, index)
+	local props = captureAllPackedProps(part)
+	local op = part:GetAttribute("ReplayCSGOp") or part:GetAttribute("CSGOperation") or part:GetAttribute("Operation")
+	local role = part:GetAttribute("ReplayCSGRole") or part:GetAttribute("CSGRole") or part:GetAttribute("Role")
+	if role then
+		op = role
+	end
+
+	local step = tonumber(part:GetAttribute("ReplayCSGStep") or part:GetAttribute("CSGStep") or index) or index
+
+	return {
+		ClassName = part.ClassName,
+		Name = part.Name,
+		Operation = normalizeCSGOperation(op),
+		Step = step,
+		Props = props,
+		SourcePath = getInstancePath(part),
+	}
+end
+
+function captureCSGRecipeFromFolder(obj)
+	local folder = getCSGRecipeFolder(obj)
+	if not folder then
+		return nil
+	end
+
+	local operands = {}
+	for _, child in ipairs(folder:GetDescendants()) do
+		if child:IsA("BasePart") then
+			operands[#operands + 1] = captureCSGOperand(child, #operands + 1)
+		end
+	end
+
+	if #operands < 2 then
+		return nil
+	end
+
+	local mainIndex = tonumber(folder:GetAttribute("ReplayCSGMainIndex") or folder:GetAttribute("MainIndex")) or nil
+	if not mainIndex then
+		for i, operand in ipairs(operands) do
+			if normalizeCSGOperation(operand.Operation) == "Main" then
+				mainIndex = i
+				break
+			end
+		end
+	end
+	mainIndex = mainIndex or 1
+	operands[mainIndex].Operation = "Main"
+
+	return {
+		Version = CSG_RECIPE_VERSION,
+		MainIndex = mainIndex,
+		Operands = operands,
+		Options = {
+			SplitApart = folder:GetAttribute("ReplayCSGSplitApart") == true,
+			CollisionFidelity = tostring(folder:GetAttribute("ReplayCSGCollisionFidelity") or ""),
+			RenderFidelity = tostring(folder:GetAttribute("ReplayCSGRenderFidelity") or ""),
+		},
+	}
+end
+
+function captureCSGRecipe(obj)
+	if not obj or not obj:IsA("UnionOperation") then
+		return nil
+	end
+
+	return readCSGRecipeAttribute(obj) or captureCSGRecipeFromFolder(obj)
+end
+
+function findInstanceByPath(path)
 	if typeof(path) ~= "table" or #path == 0 then
 		return nil
 	end
@@ -1877,7 +2084,7 @@ local function findInstanceByPath(path)
 	return cur
 end
 
-local function findChildByManifest(parent, data, usedInstances)
+function findChildByManifest(parent, data, usedInstances)
 	if not parent or typeof(data.SourcePath) ~= "table" then
 		return nil
 	end
@@ -1906,7 +2113,7 @@ local function findChildByManifest(parent, data, usedInstances)
 	return nil
 end
 
-local function setSmoothSurfaces(part)
+function setSmoothSurfaces(part)
 	for _, prop in ipairs({ "TopSurface", "BottomSurface", "FrontSurface", "BackSurface", "LeftSurface", "RightSurface" }) do
 		pcall(function()
 			part[prop] = Enum.SurfaceType.Smooth
@@ -1914,14 +2121,14 @@ local function setSmoothSurfaces(part)
 	end
 end
 
-local function safeDiv(a, b)
+function safeDiv(a, b)
 	if math.abs(b) < 0.001 then
 		return 1
 	end
 	return a / b
 end
 
-local function findManifestParentId(session, obj)
+function findManifestParentId(session, obj)
 	local parent = obj.Parent
 	while parent do
 		local parentId = session.OrigToId[parent]
@@ -1933,7 +2140,7 @@ local function findManifestParentId(session, obj)
 	return nil
 end
 
-local function extractInitialState(session, obj, id)
+function extractInitialState(session, obj, id)
 	local props = isLightingReplayObject(obj) and captureAllPackedProps(obj) or captureProps(obj)
 	local data = {
 		Id = id,
@@ -1958,6 +2165,12 @@ local function extractInitialState(session, obj, id)
 		if okMeshSize then
 			data.MeshSize = packValue(meshSize)
 		end
+	end
+	if obj:IsA("UnionOperation") then
+		data.UsePartColor = props.UsePartColor
+		data.RenderFidelity = props.RenderFidelity
+		data.CollisionFidelity = props.CollisionFidelity
+		data.CSGRecipe = captureCSGRecipe(obj)
 	end
 	if obj:IsA("SpecialMesh") then
 		data.MeshId = props.MeshId
@@ -1996,7 +2209,7 @@ local function extractInitialState(session, obj, id)
 	return data
 end
 
-local function applyReferences(inst, data, idToInstance)
+function applyReferences(inst, data, idToInstance)
 	local refs = data.Refs
 	if typeof(refs) ~= "table" then
 		return
@@ -2012,7 +2225,7 @@ local function applyReferences(inst, data, idToInstance)
 	end
 end
 
-local function registerTree(root)
+function registerTree(root)
 	if not currentSession or not root or root:IsDescendantOf(ReplayFolder) then
 		return
 	end
@@ -2116,6 +2329,7 @@ local function registerTree(root)
 					kind = kind,
 					className = obj.ClassName,
 					posScale = kind == "BasePart" and getReplayPositionScale(obj) or nil,
+					recordInterval = getRecordCheckInterval(kind, obj),
 				}
 				currentSession.TrackedListDirty = true
 			end
@@ -2164,6 +2378,7 @@ function registerLightingObject(obj)
 			clone = nil,
 			kind = kind,
 			className = obj.ClassName,
+			recordInterval = getRecordCheckInterval(kind, obj),
 		}
 		currentSession.TrackedListDirty = true
 	end
@@ -2183,7 +2398,132 @@ function registerLightingTree(root)
 	end
 end
 
-local function registerEntity(obj)
+function retireTrackedTree(session, root)
+	if not session or not root then
+		return
+	end
+
+	session.RetiredRoots = session.RetiredRoots or {}
+	session.RetiredRoots[root] = true
+
+	for _, item in pairs(session.TrackedParts or {}) do
+		local orig = item.orig
+		if orig == root or (orig and orig:IsDescendantOf(root)) then
+			item.retired = true
+			item.recordInterval = 1
+		end
+	end
+end
+
+function isLocalCharacterRoot(root)
+	if not root or not root:IsA("Model") or not root:FindFirstChildOfClass("Humanoid") then
+		return false
+	end
+	return root == player.Character or Players:GetPlayerFromCharacter(root) == player
+end
+
+function isStaleLocalCharacterRoot(root)
+	if not root or not root:IsA("Model") or not root:FindFirstChildOfClass("Humanoid") then
+		return false
+	end
+	if root == player.Character or Players:GetPlayerFromCharacter(root) == player then
+		return false
+	end
+	return root.Name == player.Name
+end
+
+function updateLocalRecordingCharacterRoot(root)
+	if not isRecording or not currentSession or not isLocalCharacterRoot(root) then
+		return
+	end
+
+	local previousRoot = currentSession.LocalCharacterRoot
+	if previousRoot and previousRoot ~= root then
+		retireTrackedTree(currentSession, previousRoot)
+	end
+
+	currentSession.LocalCharacterRoot = root
+end
+
+function getCharacterSizeSignature(character)
+	local count = 0
+	local signature = 0
+	for _, obj in ipairs(character:GetDescendants()) do
+		if obj:IsA("BasePart") then
+			count += 1
+			signature += obj.Size.X * 31 + obj.Size.Y * 17 + obj.Size.Z * 13
+		end
+	end
+	return count, signature
+end
+
+function waitForCharacterStable(character)
+	if not character then
+		return false
+	end
+
+	local deadline = os.clock() + CHARACTER_REGISTER_TIMEOUT
+	local humanoid
+	local rootPart
+	pcall(function()
+		humanoid = character:WaitForChild("Humanoid", CHARACTER_REGISTER_TIMEOUT)
+	end)
+	pcall(function()
+		rootPart = character:WaitForChild("HumanoidRootPart", CHARACTER_REGISTER_TIMEOUT)
+	end)
+
+	local stableFrames = 0
+	local lastSignature
+	while os.clock() < deadline and character.Parent do
+		RunService.Heartbeat:Wait()
+
+		local count, signature = getCharacterSizeSignature(character)
+		local hasRoot = rootPart and rootPart.Parent == character and rootPart:IsA("BasePart")
+		local hasHumanoid = humanoid and humanoid.Parent == character
+		if hasRoot and hasHumanoid and count >= 2 then
+			if lastSignature and math.abs(signature - lastSignature) <= 0.001 then
+				stableFrames += 1
+			else
+				stableFrames = 0
+			end
+			lastSignature = signature
+
+			if stableFrames >= CHARACTER_REGISTER_STABLE_FRAMES then
+				return true
+			end
+		end
+	end
+
+	return character.Parent ~= nil
+end
+
+local registerEntity
+
+function registerCharacterWhenStable(session, character)
+	if not session or not character then
+		return
+	end
+
+	session.PendingCharacterRoots = session.PendingCharacterRoots or {}
+	if session.PendingCharacterRoots[character] then
+		return
+	end
+	session.PendingCharacterRoots[character] = true
+
+	task.spawn(function()
+		waitForCharacterStable(character)
+
+		if session.PendingCharacterRoots then
+			session.PendingCharacterRoots[character] = nil
+		end
+
+		if isRecording and currentSession == session and character.Parent then
+			registerEntity(character)
+		end
+	end)
+end
+
+function registerEntity(obj)
 	if not isRecording or not currentSession then
 		return
 	end
@@ -2202,6 +2542,24 @@ local function registerEntity(obj)
 		root = modelAncestor
 	end
 
+	if isLocalCharacterRoot(root) and currentSession.LocalCharacterRoot ~= root then
+		local previousRoot = currentSession.LocalCharacterRoot
+		if previousRoot then
+			retireTrackedTree(currentSession, previousRoot)
+		end
+		currentSession.LocalCharacterRoot = root
+		registerCharacterWhenStable(currentSession, root)
+		return
+	end
+	if currentSession.PendingCharacterRoots and currentSession.PendingCharacterRoots[root] then
+		return
+	end
+	if isStaleLocalCharacterRoot(root) then
+		retireTrackedTree(currentSession, root)
+		return
+	end
+	updateLocalRecordingCharacterRoot(root)
+
 	if currentSession.OrigToClone[root] then
 		if not currentSession.OrigToClone[obj] and isManifestObject(obj) then
 			registerTree(obj)
@@ -2212,7 +2570,7 @@ local function registerEntity(obj)
 	registerTree(root)
 end
 
-local function getTrackedList(session)
+function getTrackedList(session)
 	if not session then
 		return {}
 	end
@@ -2236,7 +2594,41 @@ local function getTrackedList(session)
 	return list
 end
 
-local function sortedManifestEntries(manifest)
+function shouldRecordItemOnFrame(session, item, frameIndex)
+	if not session or not item then
+		return false
+	end
+	if session.LastState and session.LastState[item.id] == nil then
+		return true
+	end
+
+	local interval = tonumber(item.recordInterval) or 1
+	if interval <= 1 then
+		return true
+	end
+
+	if item.recordOffset == nil then
+		item.recordOffset = (tonumber(item.id) or 0) % interval
+	end
+
+	return frameIndex % interval == item.recordOffset
+end
+
+function registerDescendantsBatched(root, callback)
+	local descendants = root:GetDescendants()
+	for i, obj in ipairs(descendants) do
+		if not isRecording or not currentSession then
+			return
+		end
+
+		callback(obj)
+		if i % RECORD_REGISTER_BATCH_SIZE == 0 then
+			task.wait()
+		end
+	end
+end
+
+function sortedManifestEntries(manifest)
 	local entries = {}
 	for id, data in pairs(manifest or {}) do
 		local numericId = tonumber(id) or tonumber(data.Id)
@@ -2250,14 +2642,14 @@ local function sortedManifestEntries(manifest)
 	return entries
 end
 
-local function getManifestData(session, id)
+function getManifestData(session, id)
 	if not session or not session.Manifest then
 		return nil
 	end
 	return session.Manifest[id] or session.Manifest[tostring(id)]
 end
 
-local function manifestHeadHasTexturedMesh(session, headId)
+function manifestHeadHasTexturedMesh(session, headId)
 	local headData = getManifestData(session, headId)
 	if typeof(headData) ~= "table" or headData.Name ~= "Head" then
 		return false
@@ -2291,7 +2683,7 @@ local function manifestHeadHasTexturedMesh(session, headId)
 	return false
 end
 
-local function shouldSkipManifestFace(session, data)
+function shouldSkipManifestFace(session, data)
 	if typeof(data) ~= "table" then
 		return false
 	end
@@ -2327,8 +2719,246 @@ function canParentReplayInstance(inst, parent)
 	return true
 end
 
-local function createLoadedInstance(data)
+function getEnumByName(enumType, value)
+	if typeof(value) == "EnumItem" then
+		return value
+	end
+
+	local name = tostring(value or "")
+	if name == "" then
+		return nil
+	end
+
+	local enumItem
+	pcall(function()
+		enumItem = enumType[name]
+	end)
+	return enumItem
+end
+
+function decodeCSGOptions(optionsData)
+	local options = {
+		SplitApart = false,
+	}
+	if typeof(optionsData) ~= "table" then
+		return options
+	end
+
+	options.SplitApart = optionsData.SplitApart == true
+
+	local collision = getEnumByName(Enum.CollisionFidelity, optionsData.CollisionFidelity)
+	if collision then
+		options.CollisionFidelity = collision
+	end
+
+	local render = getEnumByName(Enum.RenderFidelity, optionsData.RenderFidelity)
+	if render then
+		options.RenderFidelity = render
+	end
+
+	return options
+end
+
+function createCSGOperandInstance(operand)
+	if typeof(operand) ~= "table" then
+		return nil
+	end
+
+	local props = operand.Props or {}
+	local source = findInstanceByPath(operand.SourcePath)
+	if source and source:IsA("BasePart") then
+		local clone = source:Clone()
+		clone.Name = operand.Name or source.Name
+		removeReplayManagedVisualChildren(clone)
+		applyProps(clone, props)
+		prepareReplayInstance(clone)
+		return clone
+	end
+
+	local className = tostring(operand.ClassName or "Part")
+	local ok, inst = pcall(function()
+		return Instance.new(className)
+	end)
+	if not ok or not inst or not inst:IsA("BasePart") then
+		if inst then
+			inst:Destroy()
+		end
+		inst = Instance.new("Part")
+		className = "Part"
+	end
+
+	inst.Name = operand.Name or className
+	applyDefaultPropsForSkipped(inst, className, props)
+	applyProps(inst, props)
+	prepareReplayInstance(inst)
+	return inst
+end
+
+function runCSGOperation(mainPart, otherParts, operation, options)
+	local op = normalizeCSGOperation(operation)
+	if not mainPart or #otherParts == 0 then
+		return mainPart
+	end
+
+	local ok, result = pcall(function()
+		if op == "Subtract" then
+			return GeometryService:SubtractAsync(mainPart, otherParts, options)
+		elseif op == "Intersect" then
+			return GeometryService:IntersectAsync(mainPart, otherParts, options)
+		end
+		return GeometryService:UnionAsync(mainPart, otherParts, options)
+	end)
+
+	if not ok or not result then
+		return nil
+	end
+
+	if typeof(result) == "table" then
+		for i = 2, #result do
+			if result[i] then
+				result[i]:Destroy()
+			end
+		end
+		return result[1]
+	elseif typeof(result) == "Instance" then
+		return result
+	end
+
+	return nil
+end
+
+function buildImplicitCSGSteps(operands, mainIndex)
+	local steps = {}
+	for i, operand in ipairs(operands or {}) do
+		if i ~= mainIndex then
+			steps[#steps + 1] = {
+				Operation = normalizeCSGOperation(operand.Operation),
+				Parts = { i },
+				Step = tonumber(operand.Step) or i,
+			}
+		end
+	end
+	table.sort(steps, function(a, b)
+		if (a.Step or 0) == (b.Step or 0) then
+			return tostring(a.Operation or "") < tostring(b.Operation or "")
+		end
+		return (a.Step or 0) < (b.Step or 0)
+	end)
+	return steps
+end
+
+function buildUnionFromCSGRecipe(recipe, finalProps, finalName)
+	if typeof(recipe) ~= "table" then
+		return nil
+	end
+
+	local operands = recipe.Operands or recipe.Parts
+	if typeof(operands) ~= "table" or #operands < 2 then
+		return nil
+	end
+
+	local created = {}
+	for i, operand in ipairs(operands) do
+		created[i] = createCSGOperandInstance(operand)
+	end
+
+	local mainIndex = tonumber(recipe.MainIndex) or 1
+	local mainPart = created[mainIndex]
+	if not mainPart then
+		for _, part in pairs(created) do
+			if part then
+				part:Destroy()
+			end
+		end
+		return nil
+	end
+
+	local options = decodeCSGOptions(recipe.Options)
+	local steps = recipe.Steps
+	if typeof(steps) ~= "table" or #steps == 0 then
+		steps = buildImplicitCSGSteps(operands, mainIndex)
+	end
+
+	for _, step in ipairs(steps) do
+		local otherParts = {}
+		local usedIndexes = {}
+		for _, partIndex in ipairs(step.Parts or step.Operands or {}) do
+			local numericIndex = tonumber(partIndex)
+			local part = numericIndex and created[numericIndex]
+			if part and part ~= mainPart then
+				otherParts[#otherParts + 1] = part
+				usedIndexes[#usedIndexes + 1] = numericIndex
+			end
+		end
+
+		local nextMain = runCSGOperation(mainPart, otherParts, step.Operation or step.Op or step.Type, options)
+		if not nextMain then
+			for _, part in pairs(created) do
+				if part then
+					part:Destroy()
+				end
+			end
+			if mainPart then
+				mainPart:Destroy()
+			end
+			return nil
+		end
+
+		if mainPart ~= nextMain then
+			mainPart:Destroy()
+		end
+		mainPart = nextMain
+		for _, usedIndex in ipairs(usedIndexes) do
+			if created[usedIndex] then
+				created[usedIndex]:Destroy()
+				created[usedIndex] = nil
+			end
+		end
+		created[mainIndex] = mainPart
+	end
+
+	for _, part in pairs(created) do
+		if part and part ~= mainPart then
+			part:Destroy()
+		end
+	end
+
+	mainPart.Name = finalName or "RebuiltUnionOperation"
+	applyProps(mainPart, finalProps)
+	cleanClone(mainPart)
+	return mainPart
+end
+
+function createLoadedInstance(data)
 	local props = data.Props or {}
+
+	if data.ClassName == "UnionOperation" then
+		local source = findInstanceByPath(data.SourcePath)
+		if source and source:IsA("UnionOperation") then
+			local clone = source:Clone()
+			clone.Name = data.Name or source.Name
+			removeReplayManagedVisualChildren(clone)
+			applyProps(clone, props)
+			cleanClone(clone)
+			return clone, nil, false, true
+		end
+
+		local rebuilt = buildUnionFromCSGRecipe(data.CSGRecipe, props, data.Name)
+		if rebuilt then
+			return rebuilt, nil, false, false
+		end
+
+		local part = Instance.new("Part")
+		part.Name = data.Name or "MissingUnionOperation"
+		setSmoothSurfaces(part)
+		applyProps(part, props, {
+			UsePartColor = true,
+			RenderFidelity = true,
+			CollisionFidelity = true,
+		})
+		prepareReplayInstance(part)
+		return part, nil, false, false
+	end
 
 	if data.ClassName == "MeshPart" then
 		local source = findInstanceByPath(data.SourcePath)
@@ -2407,7 +3037,7 @@ local function createLoadedInstance(data)
 	return inst, nil, false, false
 end
 
-local function buildLoadedReplay(session)
+function buildLoadedReplay(session)
 	if session.BuiltFromManifest then
 		return true
 	end
@@ -2619,7 +3249,7 @@ function buildReplayLighting(session)
 	session.TrackedListDirty = true
 end
 
-local function enforceGuisHidden()
+function enforceGuisHidden()
 	if not isReplayMode then
 		return
 	end
@@ -2645,7 +3275,7 @@ local function enforceGuisHidden()
 	end
 end
 
-local function hideAllOtherGuis()
+function hideAllOtherGuis()
 	pcall(function()
 		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
 	end)
@@ -2656,7 +3286,7 @@ local function hideAllOtherGuis()
 	RunService:BindToRenderStep("ReplayHideGuis", Enum.RenderPriority.Last.Value + 1, enforceGuisHidden)
 end
 
-local function restoreAllOtherGuis()
+function restoreAllOtherGuis()
 	pcall(function()
 		RunService:UnbindFromRenderStep("ReplayHideGuis")
 	end)
@@ -2718,7 +3348,7 @@ function setReplayEffectActive(obj, active, prop)
 	end
 end
 
-local function hideLiveObject(obj)
+function hideLiveObject(obj)
 	if obj:IsDescendantOf(ReplayFolder) or obj.Name == "Terrain" or obj:IsA("Camera") then
 		return
 	end
@@ -2749,7 +3379,7 @@ local function hideLiveObject(obj)
 	end
 end
 
-local function enforceLiveWorldHidden()
+function enforceLiveWorldHidden()
 	for obj, data in pairs(hiddenStates) do
 		if obj and obj.Parent then
 			if data.type == "BasePart" then
@@ -2767,7 +3397,7 @@ local function enforceLiveWorldHidden()
 	end
 end
 
-local function hideLiveTree(root)
+function hideLiveTree(root)
 	if not root or root:IsDescendantOf(ReplayFolder) or root == workspace or root == SoundService then
 		return
 	end
@@ -2778,7 +3408,7 @@ local function hideLiveTree(root)
 	end
 end
 
-local function addSourceRoot(root, roots, seen)
+function addSourceRoot(root, roots, seen)
 	if not root or seen[root] or root:IsDescendantOf(ReplayFolder) or root == workspace or root == SoundService then
 		return
 	end
@@ -2795,7 +3425,7 @@ local function addSourceRoot(root, roots, seen)
 	roots[#roots + 1] = root
 end
 
-local function collectReplaySourceRoots(session)
+function collectReplaySourceRoots(session)
 	local roots = {}
 	local seen = {}
 
@@ -2822,7 +3452,7 @@ local function collectReplaySourceRoots(session)
 	return roots
 end
 
-local function hideLiveWorld()
+function hideLiveWorld()
 	hiddenStates = {}
 
 	for _, obj in pairs(workspace:GetDescendants()) do
@@ -2848,7 +3478,7 @@ local function hideLiveWorld()
 	end)
 end
 
-local function restoreLiveWorld()
+function restoreLiveWorld()
 	pcall(function()
 		RunService:UnbindFromRenderStep("ReplayHideLive")
 	end)
@@ -2866,7 +3496,9 @@ local function restoreLiveWorld()
 	end
 
 	for obj, data in pairs(hiddenStates) do
-		if obj and obj.Parent then
+		local model = obj and (obj:IsA("Model") and obj or obj:FindFirstAncestorOfClass("Model"))
+		local keepHidden = model and isStaleLocalCharacterRoot(model)
+		if obj and obj.Parent and not keepHidden then
 			if data.type == "BasePart" then
 				obj.LocalTransparencyModifier = data.origLocalTrans or 0
 				obj.Transparency = data.origTrans
@@ -2882,7 +3514,11 @@ local function restoreLiveWorld()
 	hiddenStates = {}
 end
 
-local function readStateIfChanged(item, lastState)
+function readStateIfChanged(item, lastState)
+	if item.retired then
+		return lastState ~= false, false
+	end
+
 	local orig = item.orig
 	if item.kind == "Props" then
 		if not orig or (orig ~= Lighting and not orig:IsDescendantOf(Lighting)) then
@@ -2962,7 +3598,7 @@ local function readStateIfChanged(item, lastState)
 	return lastState ~= false, false
 end
 
-local function encodeSessionForSave(session)
+function encodeSessionForSave(session)
 	session.StringArray = session.StringArray or {}
 	rebuildStringDictFromArray(session)
 
@@ -3024,7 +3660,7 @@ local function encodeSessionForSave(session)
 	}
 end
 
-local function decodeSavedReplay(saved)
+function decodeSavedReplay(saved)
 	local ok, decoded = pcall(function()
 		if typeof(saved) ~= "table" then
 			return nil
@@ -3348,7 +3984,8 @@ refreshReplayList = function()
 		rowStroke.Thickness = 1
 		rowStroke.Parent = itemFrame
 
-		local actionWidth = 142
+		local canServerSave = SaveReplayFunction ~= nil
+		local actionWidth = (session.IsSaved or not canServerSave) and 142 or 220
 		local btn = makeButton(itemFrame, UDim2.new(1, -actionWidth, 1, -10), Color3.fromRGB(43, 49, 64), "")
 		btn.Position = UDim2.new(0, 5, 0, 5)
 		btn.TextSize = 16
@@ -3357,12 +3994,26 @@ refreshReplayList = function()
 		local fps = session.ReplayFPS or REPLAY_FPS
 		local duration = math.floor(#session.Frames / fps) .. "초"
 		local sizeStr = formatBytes(session.TotalBytes or 0)
-		btn.Text = "  ▶ #" .. i .. "  세션  ·  " .. duration .. "  ·  " .. sizeStr
+		local saveState = session.IsSaved and "저장됨" or (session.IsSaving and "저장 중" or "임시")
+		btn.Text = "  ▶ #" .. i .. "  " .. saveState .. "  ·  " .. duration .. "  ·  " .. sizeStr
 
 		btn.MouseButton1Click:Connect(function()
 			ListPanel.Visible = false
 			startReplay(session)
 		end)
+
+		if canServerSave and not session.IsSaved then
+			local saveBtn = makeButton(itemFrame, UDim2.new(0, 74, 1, -10), session.IsSaving and Color3.fromRGB(95, 105, 120) or Color3.fromRGB(73, 169, 108), session.IsSaving and "저장중" or "저장")
+			saveBtn.Position = UDim2.new(1, -215, 0, 5)
+			saveBtn.TextSize = 15
+			saveBtn.Active = not session.IsSaving
+
+			saveBtn.MouseButton1Click:Connect(function()
+				if not session.IsSaved and not session.IsSaving then
+					saveSession(session)
+				end
+			end)
+		end
 
 		local copyBtn = makeButton(itemFrame, UDim2.new(0, 84, 1, -10), Color3.fromRGB(78, 126, 205), "코드")
 		copyBtn.Position = UDim2.new(1, -136, 0, 5)
@@ -3377,8 +4028,24 @@ refreshReplayList = function()
 		delBtn.TextSize = 18
 
 		delBtn.MouseButton1Click:Connect(function()
+			if session.IsSaving then
+				ShareStatusLabel.Text = "저장 중인 리플레이는 잠시 후 삭제할 수 있습니다."
+				return
+			end
+
+			local shouldDeleteSaved = session.IsSaved
+			local deleteId = session.UniqueId
+
 			table.remove(Possessions, i)
 			refreshReplayList()
+
+			if shouldDeleteSaved and deleteId and DeleteReplayFunction then
+				task.spawn(function()
+					pcall(function()
+						DeleteReplayFunction:InvokeServer(deleteId)
+					end)
+				end)
+			end
 		end)
 	end
 
@@ -3386,12 +4053,85 @@ refreshReplayList = function()
 end
 
 function loadSavedReplays()
-	Possessions = {}
-	refreshReplayList()
+	if not LoadReplaysFunction then
+		Possessions = {}
+		refreshReplayList()
+		return
+	end
+
+	task.spawn(function()
+		local ok, savedList = pcall(function()
+			return LoadReplaysFunction:InvokeServer()
+		end)
+		if not ok or typeof(savedList) ~= "table" then
+			return
+		end
+
+		Possessions = {}
+		for _, saved in ipairs(savedList) do
+			local dec = decodeSavedReplay(saved)
+			if dec then
+				table.insert(Possessions, dec)
+			end
+		end
+		refreshReplayList()
+	end)
 end
 
 function saveSession(session)
-	ShareStatusLabel.Text = "이 버전은 서버 저장 없이 현재 세션에서만 사용됩니다."
+	if not SaveReplayFunction then
+		ShareStatusLabel.Text = "익스플로러 버전은 서버 저장 없이 코드 버튼으로 내보내세요."
+		return
+	end
+
+	if not session or session.IsSaved or session.IsSaving then
+		return
+	end
+
+	session.IsSaving = true
+	ShareStatusLabel.Text = "영구 저장 중..."
+	refreshReplayList()
+
+	task.spawn(function()
+		local payload = encodeSessionForSave(session)
+		if not payload then
+			session.IsSaved = false
+			session.IsSaving = false
+			ShareStatusLabel.Text = "저장 실패: 압축에 실패했습니다."
+			warn("[Replay] save failed: zstd compression failed")
+			refreshReplayList()
+			return
+		end
+
+		local okEncode, jsonString = pcall(function()
+			return HttpService:JSONEncode(payload)
+		end)
+
+		if okEncode and jsonString then
+			local exactByteSize = string.len(jsonString)
+			payload.TotalBytes = exactByteSize
+			session.TotalBytes = exactByteSize
+		end
+
+		local ok, saved, uniqueIdOrMsg = pcall(function()
+			return SaveReplayFunction:InvokeServer(payload)
+		end)
+
+		if ok and saved then
+			session.IsSaved = true
+			session.IsSaving = false
+			session.UniqueId = uniqueIdOrMsg
+			ShareStatusLabel.Text = "영구 저장 완료."
+			print("[Replay] save complete:", formatBytes(session.TotalBytes))
+			refreshReplayList()
+		else
+			session.IsSaved = false
+			session.IsSaving = false
+			ShareStatusLabel.Text = "저장 실패: " .. tostring(uniqueIdOrMsg or saved)
+			warn("[Replay] save failed:", uniqueIdOrMsg or saved)
+			refreshReplayList()
+		end
+	end)
 end
 
 function cloneReplayState(state)
@@ -3415,7 +4155,7 @@ function resetStateCache(session)
 	session.StateCacheOrder = {}
 end
 
-local function rememberState(session, frameIndex, state)
+function rememberState(session, frameIndex, state)
 	if not session.StateCache then
 		resetStateCache(session)
 	end
@@ -3432,7 +4172,7 @@ local function rememberState(session, frameIndex, state)
 	end
 end
 
-local function getStateForFrame(session, frameIndex)
+function getStateForFrame(session, frameIndex)
 	frameIndex = math.clamp(math.floor(frameIndex), 1, #session.Frames)
 	if not session.StateCache then
 		resetStateCache(session)
@@ -3955,6 +4695,10 @@ RecordBtn.MouseButton1Click:Connect(function()
 			recAddedSoundConnection:Disconnect()
 			recAddedSoundConnection = nil
 		end
+		if recCharacterConnection then
+			recCharacterConnection:Disconnect()
+			recCharacterConnection = nil
+		end
 		if recAddedLightingConnection then
 			recAddedLightingConnection:Disconnect()
 			recAddedLightingConnection = nil
@@ -3970,7 +4714,7 @@ RecordBtn.MouseButton1Click:Connect(function()
 			currentSession.UniqueId = nil
 			refreshReplayList()
 			ListPanel.Visible = true
-			ShareStatusLabel.Text = "녹화 완료. 현재 세션 목록에서 재생하거나 코드로 내보낼 수 있습니다."
+			ShareStatusLabel.Text = SaveReplayFunction and "녹화 완료. 저장 버튼을 누르면 영구 저장됩니다." or "녹화 완료. 코드 버튼으로 내보낼 수 있습니다."
 		end
 	else
 		isRecording = true
@@ -3996,29 +4740,52 @@ RecordBtn.MouseButton1Click:Connect(function()
 			IsSaved = false,
 			IsSaving = false,
 			RecorderRootId = nil,
+			LocalCharacterRoot = player.Character,
+			RetiredRoots = {},
+			PendingCharacterRoots = {},
 			TrackedList = {},
 			TrackedListDirty = true,
+			RecordFrameIndex = 0,
 		}
 		table.insert(Possessions, currentSession)
+		local recordingSession = currentSession
 
-		for _, obj in pairs(workspace:GetDescendants()) do
-			registerEntity(obj)
-		end
-		for _, obj in pairs(SoundService:GetDescendants()) do
-			registerEntity(obj)
+		ShareStatusLabel.Text = "녹화 대상 준비 중..."
+		registerDescendantsBatched(workspace, registerEntity)
+		registerDescendantsBatched(SoundService, registerEntity)
+		if not isRecording or currentSession ~= recordingSession then
+			return
 		end
 		registerLightingTree(Lighting)
 		updateRecorderRootId(currentSession)
+		ShareStatusLabel.Text = "녹화 중..."
 
 		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
 		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
 		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
+		recCharacterConnection = player.CharacterAdded:Connect(function(character)
+			local session = currentSession
+			if not isRecording or not session then
+				return
+			end
+
+			local previousRoot = session.LocalCharacterRoot
+			if previousRoot and previousRoot ~= character then
+				retireTrackedTree(session, previousRoot)
+			end
+			session.LocalCharacterRoot = character
+
+			registerCharacterWhenStable(session, character)
+		end)
 		recordAccumulator = 0
 
 		recordingConnection = RunService.Heartbeat:Connect(function(dt)
 			recordAccumulator += dt
-			while recordAccumulator >= frameStep do
+			local catchupFrames = 0
+			while recordAccumulator >= frameStep and catchupFrames < RECORD_MAX_CATCHUP_FRAMES do
 				recordAccumulator -= frameStep
+				catchupFrames += 1
+				currentSession.RecordFrameIndex = (currentSession.RecordFrameIndex or 0) + 1
 				updateRecorderRootId(currentSession)
 				local frameChanges = {}
 				local oldStates = {}
@@ -4026,18 +4793,23 @@ RecordBtn.MouseButton1Click:Connect(function()
 
 				for _, item in ipairs(getTrackedList(currentSession)) do
 					local id = item.id
-					local changed, currentState = readStateIfChanged(item, currentSession.LastState[id])
-					if changed then
-						frameChanges[id] = currentState
-						oldStates[id] = currentSession.LastState[id]
-						currentSession.LastState[id] = currentState
-						hasChanges = true
+					if shouldRecordItemOnFrame(currentSession, item, currentSession.RecordFrameIndex) then
+						local changed, currentState = readStateIfChanged(item, currentSession.LastState[id])
+						if changed then
+							frameChanges[id] = currentState
+							oldStates[id] = currentSession.LastState[id]
+							currentSession.LastState[id] = currentState
+							hasChanges = true
+						end
 					end
 				end
 
 				local packedBuffer = hasChanges and serializeBuffer(frameChanges, currentSession.TrackedParts, oldStates, currentSession.StringDict, currentSession.StringArray) or false
 				table.insert(currentSession.Frames, packedBuffer)
 				currentSession.TotalBytes += packedBuffer and (buffer.len(packedBuffer) + 4) or 4
+			end
+			if recordAccumulator >= frameStep then
+				recordAccumulator = 0
 			end
 		end)
 	end
