@@ -33,7 +33,7 @@ local STATE_CACHE_LIMIT = 32 -- 재생/seek용 상태 캐시 최대 개수
 local LIVE_HIDE_ENFORCE_INTERVAL = 1 -- 리플레이 중 실제 월드 숨김 상태를 다시 강제하는 주기(초)
 
 local RECORD_MAX_CATCHUP_FRAMES = 2 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
-local RECORD_REGISTER_BATCH_SIZE = 250 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
+local RECORD_REGISTER_BATCH_SIZE = 1000 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
 local RECORD_MAP_PART_INTERVAL = 1 -- 맵 BasePart를 몇 프레임마다 검사할지, 값이 클수록 가볍지만 변화 감지가 느림
 local RECORD_MAP_VISUAL_INTERVAL = 1 -- 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 검사할지
 local RECORD_LIGHTING_INTERVAL = 1 -- Lighting/조명 효과 값을 몇 프레임마다 검사할지, 1이면 매 프레임 검사
@@ -41,10 +41,10 @@ local RECORD_LIGHTING_INTERVAL = 1 -- Lighting/조명 효과 값을 몇 프레�
 local CHARACTER_REGISTER_STABLE_FRAMES = 1 -- 리스폰 캐릭터 파츠 크기가 몇 프레임 안정돼야 등록할지
 local CHARACTER_REGISTER_TIMEOUT = 1 -- 리스폰 캐릭터 안정화 대기를 최대 몇 초까지 할지
 
-local POS_SCALE = 1000
-local MAP_POS_SCALE = 1000
-local CHARACTER_POS_SCALE = 1000
-local SIZE_SCALE = 1000
+local POS_SCALE = 20
+local MAP_POS_SCALE = 20
+local CHARACTER_POS_SCALE = 300
+local SIZE_SCALE = 20
 
 local Possessions = {}
 local currentSession
@@ -4750,6 +4750,10 @@ RecordBtn.MouseButton1Click:Connect(function()
 		table.insert(Possessions, currentSession)
 		local recordingSession = currentSession
 
+		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
+		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
+		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
+
 		ShareStatusLabel.Text = "녹화 대상 준비 중..."
 		registerDescendantsBatched(workspace, registerEntity)
 		registerDescendantsBatched(SoundService, registerEntity)
@@ -4760,9 +4764,6 @@ RecordBtn.MouseButton1Click:Connect(function()
 		updateRecorderRootId(currentSession)
 		ShareStatusLabel.Text = "녹화 중..."
 
-		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
-		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
-		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
 		recCharacterConnection = player.CharacterAdded:Connect(function(character)
 			local session = currentSession
 			if not isRecording or not session then
@@ -4946,4 +4947,3 @@ NextShareChunkBtn.MouseButton1Click:Connect(function()
 	showShareExportChunk((shareExportIndex or 1) + 1)
 end)
 
-loadSavedReplays()
