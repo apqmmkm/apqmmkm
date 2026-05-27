@@ -31,11 +31,12 @@ local frameStep = 1 / REPLAY_FPS -- 프레임 하나의 시간 간격
 local STATE_CACHE_LIMIT = 32 -- 재생/seek용 상태 캐시 최대 개수
 local LIVE_HIDE_ENFORCE_INTERVAL = 1 -- 리플레이 중 실제 월드 숨김 상태를 다시 강제하는 주기(초)
 
-local RECORD_MAX_CATCHUP_FRAMES = 2 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
-local RECORD_REGISTER_BATCH_SIZE = 250 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
-local RECORD_MAP_PART_INTERVAL = 1 -- 맵 BasePart를 몇 프레임마다 검사할지, 값이 클수록 가볍지만 변화 감지가 느림
-local RECORD_MAP_VISUAL_INTERVAL = 1 -- 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 검사할지
-local RECORD_LIGHTING_INTERVAL = 1 -- Lighting/조명 효과 값을 몇 프레임마다 검사할지, 1이면 매 프레임 검사
+local RECORD_MAX_CATCHUP_FRAMES = 1 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
+local RECORD_REGISTER_BATCH_SIZE = 100 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
+local RECORD_MAP_PART_INTERVAL = REPLAY_FPS * 3 -- 정적 맵 BasePart를 몇 프레임마다 백업 검사할지
+local RECORD_MAP_VISUAL_INTERVAL = REPLAY_FPS -- 정적 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 백업 검사할지
+local RECORD_LIGHTING_INTERVAL = 5 -- Lighting/조명 효과 값을 몇 프레임마다 백업 검사할지, 변화 신호가 오면 즉시 검사
+local RECORD_DYNAMIC_PROMOTE_FRAMES = REPLAY_FPS -- 정적 오브젝트 변화 감지 후 몇 프레임 동안 매 프레임 검사할지
 
 local CHARACTER_REGISTER_STABLE_FRAMES = 1 -- 리스폰 캐릭터 파츠 크기가 몇 프레임 안정돼야 등록할지
 local CHARACTER_REGISTER_TIMEOUT = 1 -- 리스폰 캐릭터 안정화 대기를 최대 몇 초까지 할지
@@ -1818,6 +1819,38 @@ function getReplayPositionScale(obj)
 	return isCharacterObject(obj) and CHARACTER_POS_SCALE or MAP_POS_SCALE
 end
 
+function hasReplayDynamicHint(obj)
+	local cur = obj
+	while cur do
+		local dynamic = false
+		pcall(function()
+			dynamic = cur:GetAttribute("ReplayDynamic") == true or cur:GetAttribute("ReplayAlwaysRecord") == true
+		end)
+		if dynamic then
+			return true
+		end
+		if cur == workspace or cur == SoundService or cur == Lighting then
+			break
+		end
+		cur = cur.Parent
+	end
+	return false
+end
+
+function shouldRecordMapObjectEveryFrame(obj, kind)
+	if isCharacterObject(obj) or hasReplayDynamicHint(obj) then
+		return true
+	end
+	if kind == "BasePart" then
+		local anchored = true
+		pcall(function()
+			anchored = obj.Anchored
+		end)
+		return not anchored
+	end
+	return false
+end
+
 function getTrackKind(obj)
 	if isLightingReplayObject(obj) and #getPropertyList(obj) > 0 then
 		return "Props"
@@ -1839,11 +1872,16 @@ end
 
 function getRecordCheckInterval(kind, obj)
 	if kind == "BasePart" then
-		return isCharacterObject(obj) and 1 or RECORD_MAP_PART_INTERVAL
+		return shouldRecordMapObjectEveryFrame(obj, kind) and 1 or RECORD_MAP_PART_INTERVAL
 	elseif kind == "Decal" then
-		return isCharacterObject(obj) and 1 or RECORD_MAP_VISUAL_INTERVAL
+		return shouldRecordMapObjectEveryFrame(obj, kind) and 1 or RECORD_MAP_VISUAL_INTERVAL
+	elseif kind == "Enabled" then
+		return shouldRecordMapObjectEveryFrame(obj, kind) and 1 or RECORD_MAP_VISUAL_INTERVAL
 	elseif kind == "Props" then
-		return RECORD_LIGHTING_INTERVAL
+		if shouldRecordMapObjectEveryFrame(obj, kind) then
+			return 1
+		end
+		return isLightingReplayObject(obj) and RECORD_LIGHTING_INTERVAL or RECORD_MAP_VISUAL_INTERVAL
 	end
 	return 1
 end
@@ -2382,7 +2420,7 @@ function registerTree(root)
 			currentSession.Manifest[id] = extractInitialState(currentSession, obj, id)
 			local kind = getTrackKind(obj)
 			if kind then
-				currentSession.TrackedParts[id] = {
+				local item = {
 					id = id,
 					orig = obj,
 					clone = clone,
@@ -2391,7 +2429,10 @@ function registerTree(root)
 					posScale = kind == "BasePart" and getReplayPositionScale(obj) or nil,
 					recordInterval = getRecordCheckInterval(kind, obj),
 				}
+				currentSession.TrackedParts[id] = item
 				currentSession.TrackedListDirty = true
+				currentSession.RecordBucketsDirty = true
+				setupRecordChangeSignals(currentSession, item, obj)
 			end
 		end
 		pcall(function()
@@ -2432,7 +2473,7 @@ function registerLightingObject(obj)
 
 	local kind = getTrackKind(obj)
 	if kind then
-		currentSession.TrackedParts[id] = {
+		local item = {
 			id = id,
 			orig = obj,
 			clone = nil,
@@ -2440,7 +2481,10 @@ function registerLightingObject(obj)
 			className = obj.ClassName,
 			recordInterval = getRecordCheckInterval(kind, obj),
 		}
+		currentSession.TrackedParts[id] = item
 		currentSession.TrackedListDirty = true
+		currentSession.RecordBucketsDirty = true
+		setupRecordChangeSignals(currentSession, item, obj)
 	end
 end
 
@@ -2471,8 +2515,10 @@ function retireTrackedTree(session, root)
 		if orig == root or (orig and orig:IsDescendantOf(root)) then
 			item.retired = true
 			item.recordInterval = 1
+			markRecordItemDirty(session, item)
 		end
 	end
+	session.RecordBucketsDirty = true
 end
 
 function isLocalCharacterRoot(root)
@@ -2658,6 +2704,9 @@ function shouldRecordItemOnFrame(session, item, frameIndex)
 	if not session or not item then
 		return false
 	end
+	if item.forceRecordUntilFrame and frameIndex <= item.forceRecordUntilFrame then
+		return true
+	end
 	if session.LastState and session.LastState[item.id] == nil then
 		return true
 	end
@@ -2674,15 +2723,247 @@ function shouldRecordItemOnFrame(session, item, frameIndex)
 	return frameIndex % interval == item.recordOffset
 end
 
+function queueInitialRecordItem(session, item)
+	if not session or not item then
+		return
+	end
+	session.PendingInitialRecordItems = session.PendingInitialRecordItems or {}
+	session.PendingInitialRecordItems[item] = true
+end
+
+function markRecordItemDirty(session, item)
+	if not session or not item then
+		return
+	end
+	if item.orig and item.kind then
+		local nextInterval = getRecordCheckInterval(item.kind, item.orig)
+		if nextInterval ~= item.recordInterval then
+			item.recordInterval = nextInterval
+			session.RecordBucketsDirty = true
+		end
+	end
+	local untilFrame = (session.RecordFrameIndex or 0) + RECORD_DYNAMIC_PROMOTE_FRAMES
+	item.forceRecordUntilFrame = math.max(item.forceRecordUntilFrame or 0, untilFrame)
+	session.DirtyRecordItems = session.DirtyRecordItems or {}
+	session.DirtyRecordItems[item] = true
+end
+
+function addRecordSignal(session, conn)
+	if not session or not conn then
+		return
+	end
+	session.RecordChangeConnections = session.RecordChangeConnections or {}
+	table.insert(session.RecordChangeConnections, conn)
+end
+
+function disconnectRecordChangeSignals(session)
+	if not session then
+		return
+	end
+	for _, conn in ipairs(session.RecordChangeConnections or {}) do
+		if conn then
+			pcall(function()
+				conn:Disconnect()
+			end)
+		end
+	end
+	session.RecordChangeConnections = {}
+	session.DirtyRecordItems = {}
+	session.PendingInitialRecordItems = {}
+	session.RecordBuckets = nil
+	session.RecordAlwaysList = nil
+	session.RecordBucketIntervals = nil
+	session.RecordBucketsDirty = true
+end
+
+function watchRecordProperty(session, item, obj, prop)
+	if not session or not item or not obj or not prop then
+		return
+	end
+	local ok, signal = pcall(function()
+		return obj:GetPropertyChangedSignal(prop)
+	end)
+	if ok and signal then
+		addRecordSignal(session, signal:Connect(function()
+			if isRecording and currentSession == session then
+				markRecordItemDirty(session, item)
+			end
+		end))
+	end
+end
+
+function watchRecordProperties(session, item, obj, props)
+	if not session or not item or not obj or not props then
+		return
+	end
+
+	local watched = {}
+	for _, prop in ipairs(props) do
+		watched[prop] = true
+	end
+
+	local ok, changedSignal = pcall(function()
+		return obj.Changed
+	end)
+	if ok and changedSignal then
+		addRecordSignal(session, changedSignal:Connect(function(prop)
+			if watched[prop] and isRecording and currentSession == session then
+				markRecordItemDirty(session, item)
+			end
+		end))
+	else
+		for _, prop in ipairs(props) do
+			watchRecordProperty(session, item, obj, prop)
+		end
+	end
+end
+
+function setupRecordChangeSignals(session, item, obj)
+	if not session or not item or not obj then
+		return
+	end
+
+	queueInitialRecordItem(session, item)
+
+	local okAncestry, ancestrySignal = pcall(function()
+		return obj.AncestryChanged
+	end)
+	if okAncestry and ancestrySignal then
+		addRecordSignal(session, ancestrySignal:Connect(function()
+			if isRecording and currentSession == session then
+				markRecordItemDirty(session, item)
+			end
+		end))
+	end
+
+	if item.kind == "BasePart" then
+		watchRecordProperties(session, item, obj, { "CFrame", "Position", "Orientation", "Size", "Color", "Transparency", "Anchored" })
+	elseif item.kind == "Decal" then
+		watchRecordProperties(session, item, obj, { "Texture", "Color3", "Transparency", "LocalTransparencyModifier" })
+	elseif item.kind == "Enabled" then
+		watchRecordProperties(session, item, obj, { "Enabled" })
+	elseif item.kind == "Props" and not isCharacterObject(obj) then
+		watchRecordProperties(session, item, obj, getPropertyList(obj))
+	end
+end
+
+function addFrameRecordItem(target, seen, item)
+	if item and not seen[item] then
+		seen[item] = true
+		target[#target + 1] = item
+	end
+end
+
+function buildRecordBuckets(session)
+	local list = getTrackedList(session)
+	local always = {}
+	local buckets = {}
+	local intervals = {}
+
+	for _, item in ipairs(list) do
+		local interval = tonumber(item.recordInterval) or 1
+		if interval <= 1 then
+			always[#always + 1] = item
+		else
+			interval = math.max(2, math.floor(interval))
+			local offset = item.recordOffset
+			if offset == nil or offset >= interval or item.recordOffsetInterval ~= interval then
+				offset = (tonumber(item.id) or 0) % interval
+				item.recordOffset = offset
+				item.recordOffsetInterval = interval
+			end
+			if not buckets[interval] then
+				buckets[interval] = {}
+				intervals[#intervals + 1] = interval
+			end
+			local intervalBuckets = buckets[interval]
+			intervalBuckets[offset] = intervalBuckets[offset] or {}
+			table.insert(intervalBuckets[offset], item)
+		end
+	end
+
+	session.RecordAlwaysList = always
+	session.RecordBuckets = buckets
+	session.RecordBucketIntervals = intervals
+	session.RecordBucketSourceSize = #list
+	session.RecordBucketsDirty = false
+end
+
+function getRecordItemsForFrame(session, frameIndex)
+	local trackedList = getTrackedList(session)
+	if not session.RecordBuckets or session.RecordBucketsDirty or session.RecordBucketSourceSize ~= #trackedList then
+		buildRecordBuckets(session)
+	end
+
+	local result = session.RecordFrameScratch or {}
+	for i = #result, 1, -1 do
+		result[i] = nil
+	end
+	session.RecordFrameScratch = result
+
+	local seen = session.RecordFrameSeen or {}
+	for item in pairs(seen) do
+		seen[item] = nil
+	end
+	session.RecordFrameSeen = seen
+
+	for _, item in ipairs(session.RecordAlwaysList or {}) do
+		addFrameRecordItem(result, seen, item)
+	end
+
+	for _, interval in ipairs(session.RecordBucketIntervals or {}) do
+		local bucket = session.RecordBuckets[interval]
+		local scheduled = bucket and bucket[frameIndex % interval]
+		if scheduled then
+			for _, item in ipairs(scheduled) do
+				addFrameRecordItem(result, seen, item)
+			end
+		end
+	end
+
+	for item in pairs(session.PendingInitialRecordItems or {}) do
+		addFrameRecordItem(result, seen, item)
+		session.PendingInitialRecordItems[item] = nil
+	end
+
+	for item in pairs(session.DirtyRecordItems or {}) do
+		if item.forceRecordUntilFrame and frameIndex <= item.forceRecordUntilFrame then
+			addFrameRecordItem(result, seen, item)
+		else
+			session.DirtyRecordItems[item] = nil
+		end
+	end
+
+	return result
+end
+
 function registerDescendantsBatched(root, callback)
-	local descendants = root:GetDescendants()
-	for i, obj in ipairs(descendants) do
+	local queue = root:GetChildren()
+	local index = 1
+	local processed = 0
+
+	while index <= #queue do
 		if not isRecording or not currentSession then
 			return
 		end
 
+		local obj = queue[index]
+		index += 1
+		processed += 1
+
 		callback(obj)
-		if i % RECORD_REGISTER_BATCH_SIZE == 0 then
+
+		local skipChildren = currentSession
+			and currentSession.OrigToClone
+			and currentSession.OrigToClone[obj] ~= nil
+
+		if not skipChildren then
+			for _, child in ipairs(obj:GetChildren()) do
+				queue[#queue + 1] = child
+			end
+		end
+
+		if processed % RECORD_REGISTER_BATCH_SIZE == 0 then
 			task.wait()
 		end
 	end
@@ -4876,6 +5157,7 @@ RecordBtn.MouseButton1Click:Connect(function()
 			recAddedLightingConnection:Disconnect()
 			recAddedLightingConnection = nil
 		end
+		disconnectRecordChangeSignals(currentSession)
 
 		RecordBtn.Text = "⏺ 녹화 시작"
 		RecordBtn.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
@@ -4918,6 +5200,12 @@ RecordBtn.MouseButton1Click:Connect(function()
 			PendingCharacterRoots = {},
 			TrackedList = {},
 			TrackedListDirty = true,
+			RecordBucketsDirty = true,
+			RecordChangeConnections = {},
+			PendingInitialRecordItems = {},
+			DirtyRecordItems = {},
+			RecordFrameScratch = {},
+			RecordFrameSeen = {},
 			RecordFrameIndex = 0,
 		}
 		table.insert(Possessions, currentSession)
@@ -4964,16 +5252,14 @@ RecordBtn.MouseButton1Click:Connect(function()
 				local oldStates = {}
 				local hasChanges = false
 
-				for _, item in ipairs(getTrackedList(currentSession)) do
+				for _, item in ipairs(getRecordItemsForFrame(currentSession, currentSession.RecordFrameIndex)) do
 					local id = item.id
-					if shouldRecordItemOnFrame(currentSession, item, currentSession.RecordFrameIndex) then
-						local changed, currentState = readStateIfChanged(item, currentSession.LastState[id])
-						if changed then
-							frameChanges[id] = currentState
-							oldStates[id] = currentSession.LastState[id]
-							currentSession.LastState[id] = currentState
-							hasChanges = true
-						end
+					local changed, currentState = readStateIfChanged(item, currentSession.LastState[id])
+					if changed then
+						frameChanges[id] = currentState
+						oldStates[id] = currentSession.LastState[id]
+						currentSession.LastState[id] = currentState
+						hasChanges = true
 					end
 				end
 
