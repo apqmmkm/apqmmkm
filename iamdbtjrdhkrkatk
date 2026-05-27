@@ -11,7 +11,6 @@ local UserInputService = game:GetService("UserInputService")
 local SoundService = game:GetService("SoundService")
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 local EncodingService = game:GetService("EncodingService")
 GeometryService = game:GetService("GeometryService")
@@ -33,7 +32,7 @@ local STATE_CACHE_LIMIT = 32 -- 재생/seek용 상태 캐시 최대 개수
 local LIVE_HIDE_ENFORCE_INTERVAL = 1 -- 리플레이 중 실제 월드 숨김 상태를 다시 강제하는 주기(초)
 
 local RECORD_MAX_CATCHUP_FRAMES = 2 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
-local RECORD_REGISTER_BATCH_SIZE = 1000 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
+local RECORD_REGISTER_BATCH_SIZE = 250 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
 local RECORD_MAP_PART_INTERVAL = 1 -- 맵 BasePart를 몇 프레임마다 검사할지, 값이 클수록 가볍지만 변화 감지가 느림
 local RECORD_MAP_VISUAL_INTERVAL = 1 -- 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 검사할지
 local RECORD_LIGHTING_INTERVAL = 1 -- Lighting/조명 효과 값을 몇 프레임마다 검사할지, 1이면 매 프레임 검사
@@ -878,6 +877,26 @@ local SOUND_PROPS = { "SoundId", "Volume", "PlaybackSpeed", "TimePosition", "Loo
 local GUI_PROPS = { "Size", "Position", "AnchorPoint", "BackgroundTransparency", "BackgroundColor3", "BorderSizePixel", "Visible", "Rotation" }
 local TEXT_PROPS = { "Text", "TextColor3", "TextTransparency", "TextScaled", "TextSize", "Font", "RichText", "TextStrokeColor3", "TextStrokeTransparency", "TextXAlignment", "TextYAlignment" }
 local CHARACTER_MESH_PROPS = { "BodyPart", "MeshId", "BaseTextureId", "OverlayTextureId" }
+local HUMANOID_PROPS = { "RigType", "AutomaticScalingEnabled", "HipHeight", "DisplayDistanceType", "HealthDisplayType", "NameDisplayDistance" }
+local ACCESSORY_PROPS = { "AccessoryType" }
+local WRAP_LAYER_PROPS = {
+	"Enabled", "Order", "Puffiness", "BindOffset",
+	"CageMeshId", "CageOrigin", "ReferenceMeshId", "ReferenceOrigin",
+	"ShrinkFactor", "AutoSkin", "DebugMode",
+}
+local WRAP_TARGET_PROPS = { "CageMeshId", "CageOrigin", "ImportOrigin", "Stiffness" }
+local HUMANOID_DESCRIPTION_PROPS = {
+	"BackAccessory", "FaceAccessory", "FrontAccessory", "HairAccessory", "HatAccessory",
+	"NeckAccessory", "ShouldersAccessory", "WaistAccessory",
+	"ClimbAnimation", "FallAnimation", "IdleAnimation", "JumpAnimation", "MoodAnimation",
+	"RunAnimation", "SwimAnimation", "WalkAnimation",
+	"GraphicTShirt", "Pants", "Shirt", "Face",
+	"Head", "LeftArm", "LeftLeg", "RightArm", "RightLeg", "Torso",
+	"BodyTypeScale", "DepthScale", "HeadScale", "HeightScale", "ProportionScale", "WidthScale",
+}
+local JOINT_PROPS = { "C0", "C1", "Enabled" }
+local MOTOR6D_PROPS = { "Transform" }
+local WELD_CONSTRAINT_PROPS = { "Enabled" }
 LIGHTING_PROPS = {
 	"Ambient", "Brightness", "ClockTime", "TimeOfDay", "ColorShift_Bottom", "ColorShift_Top",
 	"EnvironmentDiffuseScale", "EnvironmentSpecularScale", "ExposureCompensation",
@@ -911,10 +930,13 @@ local function getPropertyList(obj)
 	if obj:IsA("ColorCorrectionEffect") then appendProps(props, COLOR_CORRECTION_PROPS) end
 	if obj:IsA("DepthOfFieldEffect") then appendProps(props, DEPTH_OF_FIELD_PROPS) end
 	if obj:IsA("SunRaysEffect") then appendProps(props, SUN_RAYS_PROPS) end
-	if obj:IsA("ValueBase") then appendProps(props, { "Value" }) end
 	if obj:IsA("SpecialMesh") or obj:IsA("BlockMesh") or obj:IsA("CylinderMesh") then appendProps(props, { "Scale", "Offset" }) end
 	if obj:IsA("SpecialMesh") then appendProps(props, { "MeshType", "MeshId", "TextureId", "VertexColor" }) end
 	if obj:IsA("CharacterMesh") then appendProps(props, CHARACTER_MESH_PROPS) end
+	if obj:IsA("Accessory") then appendProps(props, ACCESSORY_PROPS) end
+	if obj.ClassName == "WrapLayer" then appendProps(props, WRAP_LAYER_PROPS) end
+	if obj.ClassName == "WrapTarget" then appendProps(props, WRAP_TARGET_PROPS) end
+	if obj:IsA("HumanoidDescription") then appendProps(props, HUMANOID_DESCRIPTION_PROPS) end
 	if obj:IsA("Decal") or obj:IsA("Texture") then appendProps(props, { "Texture", "Face", "Color3", "Transparency", "LocalTransparencyModifier", "ZIndex" }) end
 	if obj:IsA("Texture") then appendProps(props, { "StudsPerTileU", "StudsPerTileV", "OffsetStudsU", "OffsetStudsV" }) end
 	if obj:IsA("SurfaceAppearance") then appendProps(props, { "ColorMap", "MetalnessMap", "NormalMap", "RoughnessMap", "AlphaMode" }) end
@@ -933,7 +955,10 @@ local function getPropertyList(obj)
 	if obj:IsA("GuiObject") then appendProps(props, GUI_PROPS) end
 	if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then appendProps(props, TEXT_PROPS) end
 	if obj:IsA("Attachment") then appendProps(props, { "CFrame", "Position", "Orientation", "Visible", "Axis", "SecondaryAxis" }) end
-	if obj:IsA("Humanoid") then appendProps(props, { "DisplayDistanceType", "HealthDisplayType", "NameDisplayDistance" }) end
+	if obj:IsA("Humanoid") then appendProps(props, HUMANOID_PROPS) end
+	if obj:IsA("JointInstance") then appendProps(props, JOINT_PROPS) end
+	if obj:IsA("Motor6D") then appendProps(props, MOTOR6D_PROPS) end
+	if obj:IsA("WeldConstraint") then appendProps(props, WELD_CONSTRAINT_PROPS) end
 	return props
 end
 
@@ -1806,6 +1831,8 @@ function getTrackKind(obj)
 		return "Text"
 	elseif obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") or obj:IsA("Light") or obj:IsA("SurfaceGui") or obj:IsA("BillboardGui") then
 		return "Enabled"
+	elseif obj:IsA("JointInstance") or obj:IsA("WeldConstraint") then
+		return "Props"
 	end
 	return nil
 end
@@ -1832,6 +1859,9 @@ function isStaticReplayObject(obj)
 		or obj:IsA("Pants")
 		or obj:IsA("ShirtGraphic")
 		or obj:IsA("CharacterMesh")
+		or obj:IsA("HumanoidDescription")
+		or obj.ClassName == "WrapLayer"
+		or obj.ClassName == "WrapTarget"
 end
 
 function normalizeCSGOperation(op)
@@ -1916,7 +1946,7 @@ function cleanClone(clone)
 	for _, c in pairs(clone:GetDescendants()) do
 		if isCSGRecipeMetadataObject(c) then
 			c:Destroy()
-		elseif c.Parent and (c:IsA("JointInstance") or c:IsA("Constraint") or c:IsA("WeldConstraint") or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript")) then
+		elseif c.Parent and ((c:IsA("Constraint") and not c:IsA("WeldConstraint")) or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript")) then
 			c:Destroy()
 		elseif c.Parent then
 			prepareReplayInstance(c)
@@ -2152,6 +2182,15 @@ function extractInitialState(session, obj, id)
 		SourcePath = getInstancePath(obj),
 	}
 
+	if obj:IsA("Humanoid") then
+		local okRigType, rigType = pcall(function()
+			return obj.RigType
+		end)
+		if okRigType then
+			data.Props.RigType = packValue(rigType)
+		end
+	end
+
 	if data.TrackKind == "BasePart" then
 		data.PosScale = getReplayPositionScale(obj)
 	end
@@ -2202,6 +2241,21 @@ function extractInitialState(session, obj, id)
 			refs.AdorneeId = session.OrigToId[adornee]
 		end
 	end
+	if obj:IsA("JointInstance") or obj:IsA("WeldConstraint") then
+		local ok0, part0 = pcall(function()
+			return obj.Part0
+		end)
+		if ok0 and part0 and session.OrigToId[part0] then
+			refs.Part0Id = session.OrigToId[part0]
+		end
+
+		local ok1, part1 = pcall(function()
+			return obj.Part1
+		end)
+		if ok1 and part1 and session.OrigToId[part1] then
+			refs.Part1Id = session.OrigToId[part1]
+		end
+	end
 	if next(refs) then
 		data.Refs = refs
 	end
@@ -2222,6 +2276,12 @@ function applyReferences(inst, data, idToInstance)
 	end
 	if refs.AdorneeId and idToInstance[tonumber(refs.AdorneeId)] then
 		pcall(function() inst.Adornee = idToInstance[tonumber(refs.AdorneeId)] end)
+	end
+	if refs.Part0Id and idToInstance[tonumber(refs.Part0Id)] then
+		pcall(function() inst.Part0 = idToInstance[tonumber(refs.Part0Id)] end)
+	end
+	if refs.Part1Id and idToInstance[tonumber(refs.Part1Id)] then
+		pcall(function() inst.Part1 = idToInstance[tonumber(refs.Part1Id)] end)
 	end
 end
 
@@ -3249,6 +3309,82 @@ function buildReplayLighting(session)
 	session.TrackedListDirty = true
 end
 
+function pulseReplayAppearanceObject(obj)
+	local parent = obj and obj.Parent
+	if not parent then
+		return
+	end
+
+	pcall(function()
+		obj.Parent = nil
+		obj.Parent = parent
+	end)
+end
+
+function modelHasReplayAppearanceData(model)
+	for _, obj in ipairs(model:GetDescendants()) do
+		if obj:IsA("Shirt")
+			or obj:IsA("Pants")
+			or obj:IsA("ShirtGraphic")
+			or obj:IsA("Accessory")
+			or obj:IsA("CharacterMesh") then
+			return true
+		end
+	end
+
+	return false
+end
+
+function refreshReplayHumanoidAppearance(model)
+	if not model or not model:IsA("Model") or not modelHasReplayAppearanceData(model) then
+		return
+	end
+
+	local humanoid = model:FindFirstChildOfClass("Humanoid")
+	if not humanoid then
+		return
+	end
+
+	task.defer(function()
+		if not model.Parent or not humanoid.Parent then
+			return
+		end
+
+		pulseReplayAppearanceObject(humanoid)
+
+		for _, child in ipairs(model:GetChildren()) do
+			if child:IsA("Shirt") or child:IsA("Pants") or child:IsA("ShirtGraphic") then
+				pulseReplayAppearanceObject(child)
+			end
+		end
+
+		prepareReplayInstance(humanoid)
+	end)
+end
+
+function refreshReplayHumanoidAppearances(session)
+	local seen = {}
+
+	for _, root in pairs((session and session.RootClones) or {}) do
+		if root then
+			if root:IsA("Model") and root:FindFirstChildOfClass("Humanoid") and not seen[root] then
+				seen[root] = true
+				refreshReplayHumanoidAppearance(root)
+			end
+
+			for _, obj in ipairs(root:GetDescendants()) do
+				if obj:IsA("Humanoid") then
+					local model = obj.Parent
+					if model and model:IsA("Model") and not seen[model] then
+						seen[model] = true
+						refreshReplayHumanoidAppearance(model)
+					end
+				end
+			end
+		end
+	end
+end
+
 function enforceGuisHidden()
 	if not isReplayMode then
 		return
@@ -3521,7 +3657,13 @@ function readStateIfChanged(item, lastState)
 
 	local orig = item.orig
 	if item.kind == "Props" then
-		if not orig or (orig ~= Lighting and not orig:IsDescendantOf(Lighting)) then
+		if not orig or not orig.Parent then
+			return lastState ~= false, false
+		end
+		if orig ~= Lighting
+			and not orig:IsDescendantOf(Lighting)
+			and not orig:IsDescendantOf(workspace)
+			and not orig:IsDescendantOf(SoundService) then
 			return lastState ~= false, false
 		end
 
@@ -3772,11 +3914,21 @@ function trimText(text)
 	return tostring(text or ""):match("^%s*(.-)%s*$")
 end
 
-SHARE_CHUNK_BODY_LIMIT = 180000
+SHARE_TEXTBOX_TEXT_LIMIT = 200000
+SHARE_CHUNK_BODY_LIMIT = SHARE_TEXTBOX_TEXT_LIMIT
 shareExportChunks = {}
 shareExportIndex = 1
 shareExportRawSize = 0
 shareImportChunkGroups = {}
+
+function getShareChunkHeader(chunkId, index, total)
+	return "UR17CHUNK|" .. chunkId .. "|" .. index .. "|" .. total .. "|"
+end
+
+function getShareChunkBodyLimit(chunkId, total)
+	local worstHeader = getShareChunkHeader(chunkId, total, total)
+	return math.max(1, SHARE_TEXTBOX_TEXT_LIMIT - #worstHeader)
+end
 
 function selectShareCodeText()
 	task.defer(function()
@@ -3830,13 +3982,23 @@ function splitShareCodeText(shareText, payload)
 		return
 	end
 
-	local total = math.ceil(#shareText / SHARE_CHUNK_BODY_LIMIT)
 	local chunkId = tostring(payload.CreatedAt or os.time()) .. "-" .. tostring(#shareText) .. "-" .. tostring(math.random(100000, 999999))
+	local total = math.ceil(#shareText / SHARE_CHUNK_BODY_LIMIT)
+	local bodyLimit = SHARE_CHUNK_BODY_LIMIT
+
+	while true do
+		bodyLimit = getShareChunkBodyLimit(chunkId, total)
+		local nextTotal = math.ceil(#shareText / bodyLimit)
+		if nextTotal == total then
+			break
+		end
+		total = nextTotal
+	end
 
 	for i = 1, total do
-		local startIndex = ((i - 1) * SHARE_CHUNK_BODY_LIMIT) + 1
-		local body = shareText:sub(startIndex, startIndex + SHARE_CHUNK_BODY_LIMIT - 1)
-		shareExportChunks[i] = "UR17CHUNK|" .. chunkId .. "|" .. i .. "|" .. total .. "|" .. body
+		local startIndex = ((i - 1) * bodyLimit) + 1
+		local body = shareText:sub(startIndex, startIndex + bodyLimit - 1)
+		shareExportChunks[i] = getShareChunkHeader(chunkId, i, total) .. body
 	end
 end
 
@@ -3853,6 +4015,11 @@ function parseShareCodeChunk(codeText)
 	end
 
 	return chunkId, index, total, body or ""
+end
+
+function getShareChunkExpectedSize(chunkId)
+	local sizeText = tostring(chunkId or ""):match("^%d+%-(%d+)%-")
+	return tonumber(sizeText)
 end
 
 function exportSessionToShareCode(session)
@@ -3928,6 +4095,11 @@ function importSessionFromShareCode(codeText)
 		end
 
 		codeText = table.concat(parts)
+		local expectedSize = getShareChunkExpectedSize(chunkId)
+		if expectedSize and #codeText ~= expectedSize then
+			ShareStatusLabel.Text = "Code size mismatch. Re-copy the missing or cut part. (" .. formatBytes(#codeText) .. "/" .. formatBytes(expectedSize) .. ")"
+			return
+		end
 		shareImportChunkGroups[chunkId] = nil
 	end
 
@@ -4002,7 +4174,7 @@ refreshReplayList = function()
 			startReplay(session)
 		end)
 
-		if canServerSave and not session.IsSaved then
+		if not session.IsSaved and canServerSave then
 			local saveBtn = makeButton(itemFrame, UDim2.new(0, 74, 1, -10), session.IsSaving and Color3.fromRGB(95, 105, 120) or Color3.fromRGB(73, 169, 108), session.IsSaving and "저장중" or "저장")
 			saveBtn.Position = UDim2.new(1, -215, 0, 5)
 			saveBtn.TextSize = 15
@@ -4663,6 +4835,7 @@ startReplay = function(session)
 		end
 	end
 	rememberReplayParents(currentSession)
+	refreshReplayHumanoidAppearances(currentSession)
 
 	hideLiveWorld()
 	hideAllOtherGuis()
@@ -4750,10 +4923,6 @@ RecordBtn.MouseButton1Click:Connect(function()
 		table.insert(Possessions, currentSession)
 		local recordingSession = currentSession
 
-		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
-		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
-		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
-
 		ShareStatusLabel.Text = "녹화 대상 준비 중..."
 		registerDescendantsBatched(workspace, registerEntity)
 		registerDescendantsBatched(SoundService, registerEntity)
@@ -4764,6 +4933,9 @@ RecordBtn.MouseButton1Click:Connect(function()
 		updateRecorderRootId(currentSession)
 		ShareStatusLabel.Text = "녹화 중..."
 
+		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
+		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
+		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
 		recCharacterConnection = player.CharacterAdded:Connect(function(character)
 			local session = currentSession
 			if not isRecording or not session then
@@ -4947,3 +5119,4 @@ NextShareChunkBtn.MouseButton1Click:Connect(function()
 	showShareExportChunk((shareExportIndex or 1) + 1)
 end)
 
+loadSavedReplays()
