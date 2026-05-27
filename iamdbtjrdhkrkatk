@@ -33,10 +33,11 @@ local LIVE_HIDE_ENFORCE_INTERVAL = 1 -- 리플레이 중 실제 월드 숨김 �
 
 local RECORD_MAX_CATCHUP_FRAMES = 1 -- 렉으로 밀렸을 때 한 Heartbeat에서 최대 몇 프레임까지 따라잡아 녹화할지
 local RECORD_REGISTER_BATCH_SIZE = 100 -- 녹화 시작 시 오브젝트 등록을 몇 개마다 한 번씩 쉬면서 처리할지
-local RECORD_MAP_PART_INTERVAL = REPLAY_FPS * 3 -- 정적 맵 BasePart를 몇 프레임마다 백업 검사할지
-local RECORD_MAP_VISUAL_INTERVAL = REPLAY_FPS -- 정적 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 백업 검사할지
-local RECORD_LIGHTING_INTERVAL = 5 -- Lighting/조명 효과 값을 몇 프레임마다 백업 검사할지, 변화 신호가 오면 즉시 검사
+local RECORD_MAP_PART_INTERVAL = REPLAY_FPS * 10 -- 정적 맵 BasePart를 몇 프레임마다 백업 검사할지
+local RECORD_MAP_VISUAL_INTERVAL = REPLAY_FPS * 3 -- 정적 맵 Decal/Texture/Effect 같은 시각 요소를 몇 프레임마다 백업 검사할지
+local RECORD_LIGHTING_INTERVAL = REPLAY_FPS -- Lighting/조명 효과 값을 몇 프레임마다 백업 검사할지, 변화 신호가 오면 즉시 검사
 local RECORD_DYNAMIC_PROMOTE_FRAMES = REPLAY_FPS -- 정적 오브젝트 변화 감지 후 몇 프레임 동안 매 프레임 검사할지
+local RECORD_MANIFEST_ONLY_REGISTRATION = true -- 녹화 중 대형 Clone을 만들지 않고 재생 시작 시 manifest에서 빌드
 
 local CHARACTER_REGISTER_STABLE_FRAMES = 1 -- 리스폰 캐릭터 파츠 크기가 몇 프레임 안정돼야 등록할지
 local CHARACTER_REGISTER_TIMEOUT = 1 -- 리스폰 캐릭터 안정화 대기를 최대 몇 초까지 할지
@@ -1984,6 +1985,8 @@ function cleanClone(clone)
 	for _, c in pairs(clone:GetDescendants()) do
 		if isCSGRecipeMetadataObject(c) then
 			c:Destroy()
+		elseif c.Parent and isDuplicateDefaultFace(c) then
+			c:Destroy()
 		elseif c.Parent and ((c:IsA("Constraint") and not c:IsA("WeldConstraint")) or c:IsA("BodyMover") or c:IsA("Animator") or c:IsA("Script") or c:IsA("LocalScript")) then
 			c:Destroy()
 		elseif c.Parent then
@@ -2329,8 +2332,19 @@ function registerTree(root)
 	end
 
 	local allOrigs = { root }
-	for _, d in ipairs(root:GetDescendants()) do
-		allOrigs[#allOrigs + 1] = d
+	local scanIndex = 1
+	while scanIndex <= #allOrigs do
+		local obj = allOrigs[scanIndex]
+		scanIndex += 1
+		for _, child in ipairs(obj:GetChildren()) do
+			allOrigs[#allOrigs + 1] = child
+		end
+		if scanIndex % RECORD_REGISTER_BATCH_SIZE == 0 then
+			task.wait()
+			if not isRecording or not currentSession then
+				return
+			end
+		end
 	end
 
 	local hasManifestObject = false
@@ -2341,6 +2355,56 @@ function registerTree(root)
 		end
 	end
 	if not hasManifestObject then
+		return
+	end
+
+	if RECORD_MANIFEST_ONLY_REGISTRATION then
+		currentSession.RegisteredRoots = currentSession.RegisteredRoots or {}
+		currentSession.RegisteredRoots[root] = true
+
+		for i, obj in ipairs(allOrigs) do
+			if isManifestObject(obj) and not currentSession.OrigToId[obj] then
+				local id = currentSession.NextId
+				currentSession.NextId += 1
+				currentSession.OrigToId[obj] = id
+			end
+			if i % RECORD_REGISTER_BATCH_SIZE == 0 then
+				task.wait()
+				if not isRecording or not currentSession then
+					return
+				end
+			end
+		end
+
+		for i, obj in ipairs(allOrigs) do
+			local id = currentSession.OrigToId[obj]
+			if id and not currentSession.Manifest[id] then
+				currentSession.Manifest[id] = extractInitialState(currentSession, obj, id)
+				local kind = getTrackKind(obj)
+				if kind then
+					local item = {
+						id = id,
+						orig = obj,
+						clone = nil,
+						kind = kind,
+						className = obj.ClassName,
+						posScale = kind == "BasePart" and getReplayPositionScale(obj) or nil,
+						recordInterval = getRecordCheckInterval(kind, obj),
+					}
+					currentSession.TrackedParts[id] = item
+					currentSession.TrackedListDirty = true
+					currentSession.RecordBucketsDirty = true
+					setupRecordChangeSignals(currentSession, item, obj)
+				end
+			end
+			if i % RECORD_REGISTER_BATCH_SIZE == 0 then
+				task.wait()
+				if not isRecording or not currentSession then
+					return
+				end
+			end
+		end
+
 		return
 	end
 
@@ -2666,6 +2730,13 @@ function registerEntity(obj)
 	end
 	updateLocalRecordingCharacterRoot(root)
 
+	if currentSession.RegisteredRoots and currentSession.RegisteredRoots[root] then
+		if not currentSession.OrigToId[obj] and isManifestObject(obj) then
+			registerTree(obj)
+		end
+		return
+	end
+
 	if currentSession.OrigToClone[root] then
 		if not currentSession.OrigToClone[obj] and isManifestObject(obj) then
 			registerTree(obj)
@@ -2748,6 +2819,17 @@ function markRecordItemDirty(session, item)
 	session.DirtyRecordItems[item] = true
 end
 
+function markTrackedObjectDirty(session, obj)
+	if not session or not obj then
+		return
+	end
+	local id = session.OrigToId and session.OrigToId[obj]
+	local item = id and session.TrackedParts and session.TrackedParts[id]
+	if item then
+		markRecordItemDirty(session, item)
+	end
+end
+
 function addRecordSignal(session, conn)
 	if not session or not conn then
 		return
@@ -2824,17 +2906,6 @@ function setupRecordChangeSignals(session, item, obj)
 	end
 
 	queueInitialRecordItem(session, item)
-
-	local okAncestry, ancestrySignal = pcall(function()
-		return obj.AncestryChanged
-	end)
-	if okAncestry and ancestrySignal then
-		addRecordSignal(session, ancestrySignal:Connect(function()
-			if isRecording and currentSession == session then
-				markRecordItemDirty(session, item)
-			end
-		end))
-	end
 
 	if item.kind == "BasePart" then
 		watchRecordProperties(session, item, obj, { "CFrame", "Position", "Orientation", "Size", "Color", "Transparency", "Anchored" })
@@ -2954,8 +3025,10 @@ function registerDescendantsBatched(root, callback)
 		callback(obj)
 
 		local skipChildren = currentSession
-			and currentSession.OrigToClone
-			and currentSession.OrigToClone[obj] ~= nil
+			and (
+				(currentSession.OrigToClone and currentSession.OrigToClone[obj] ~= nil)
+				or (currentSession.RegisteredRoots and currentSession.RegisteredRoots[obj] ~= nil)
+			)
 
 		if not skipChildren then
 			for _, child in ipairs(obj:GetChildren()) do
@@ -5206,6 +5279,9 @@ RecordBtn.MouseButton1Click:Connect(function()
 			DirtyRecordItems = {},
 			RecordFrameScratch = {},
 			RecordFrameSeen = {},
+			FrameChangesScratch = {},
+			OldStatesScratch = {},
+			RegisteredRoots = {},
 			RecordFrameIndex = 0,
 		}
 		table.insert(Possessions, currentSession)
@@ -5224,6 +5300,21 @@ RecordBtn.MouseButton1Click:Connect(function()
 		recAddedConnection = workspace.DescendantAdded:Connect(registerEntity)
 		recAddedSoundConnection = SoundService.DescendantAdded:Connect(registerEntity)
 		recAddedLightingConnection = Lighting.DescendantAdded:Connect(registerLightingTree)
+		addRecordSignal(currentSession, workspace.DescendantRemoving:Connect(function(obj)
+			if isRecording and currentSession == recordingSession then
+				markTrackedObjectDirty(recordingSession, obj)
+			end
+		end))
+		addRecordSignal(currentSession, SoundService.DescendantRemoving:Connect(function(obj)
+			if isRecording and currentSession == recordingSession then
+				markTrackedObjectDirty(recordingSession, obj)
+			end
+		end))
+		addRecordSignal(currentSession, Lighting.DescendantRemoving:Connect(function(obj)
+			if isRecording and currentSession == recordingSession then
+				markTrackedObjectDirty(recordingSession, obj)
+			end
+		end))
 		recCharacterConnection = player.CharacterAdded:Connect(function(character)
 			local session = currentSession
 			if not isRecording or not session then
@@ -5248,8 +5339,16 @@ RecordBtn.MouseButton1Click:Connect(function()
 				catchupFrames += 1
 				currentSession.RecordFrameIndex = (currentSession.RecordFrameIndex or 0) + 1
 				updateRecorderRootId(currentSession)
-				local frameChanges = {}
-				local oldStates = {}
+				local frameChanges = currentSession.FrameChangesScratch or {}
+				for key in pairs(frameChanges) do
+					frameChanges[key] = nil
+				end
+				currentSession.FrameChangesScratch = frameChanges
+				local oldStates = currentSession.OldStatesScratch or {}
+				for key in pairs(oldStates) do
+					oldStates[key] = nil
+				end
+				currentSession.OldStatesScratch = oldStates
 				local hasChanges = false
 
 				for _, item in ipairs(getRecordItemsForFrame(currentSession, currentSession.RecordFrameIndex)) do
